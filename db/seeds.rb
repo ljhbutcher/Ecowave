@@ -94,5 +94,21 @@ Material.create!([
   }
 ])
 
+Project.create! ([
+  {
+    name: "Summer collection",
+    description: "exploring pink tones"
+  },
+  {
+    name: "Winter Collection",
+    description: "coats and knits"
+  },
+
+  {
+    name: "Evening Dresses",
+    description: "range of dark colours"
+  }
+])
+
 
 puts "#{Material.count} seed files created"

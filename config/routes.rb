@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :projects do
-    resources :project_materials, only: [:new, :create]
+    resources :project_materials, only: [:new, :create, :show, :destroy]
   end
 
   resources :materials
