@@ -5,7 +5,9 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @project_materials = @project.project_materials.includes(:material)
   end
+
 
   def new
     @project = Project.new
