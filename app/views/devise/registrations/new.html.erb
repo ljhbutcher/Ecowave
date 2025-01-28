@@ -1,4 +1,6 @@
-<h2>Sign up</h2>
+<body class="landing-body">
+  <div class="landing-container">
+    <h1 class="landing-logo">EcoWave</h1>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
@@ -7,19 +9,30 @@
     <%= f.input :email,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "email" }%>
+                input_html: { autocomplete: "email", class: "sign-in" },
+                    placeholder: "EMAIL",
+                    label: false %>
     <%= f.input :password,
                 required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
+                input_html: { autocomplete: "new-password", class: "sign-in" },
+                placeholder: "PASSWORD",
+                label: false %>
     <%= f.input :password_confirmation,
                 required: true,
-                input_html: { autocomplete: "new-password" } %>
+                input_html: { autocomplete: "new-password", class: "sign-in" },
+                placeholder: "CONFIRM PASSWORD",
+                label: false %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
+        <div class="btn-container">
+          <%= f.button :submit, "SIGN UP", class: "sign-in" %>
+        </div>
+      <% end %>
 
-<%= render "devise/shared/links" %>
+      <div class="landing-toggle">
+      <button class="dark-mode-toggle">☀️</button>
+    </div>
+  </div>
+</body>
+
+<%# <%= render "devise/shared/links" %>

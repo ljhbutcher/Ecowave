@@ -1,18 +1,15 @@
 <body class="landing-body">
-
   <div class="landing-container">
     <h1 class="landing-logo">EcoWave</h1>
 
     <div class="landing-buttons">
       <a href="/users/sign_in" class="btn sign-in">SIGN IN</a>
       <a href="/users/sign_up" class="btn sign-up">SIGN UP</a>
-      <%= link_to "LOG OUT", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-
+      <%= link_to "LOG OUT", destroy_user_session_path, data: {turbo_method: :delete}, class: "btn sign-in" %>
     </div>
 
     <div class="landing-toggle">
       <button class="dark-mode-toggle">☀️</button>
     </div>
   </div>
-
 </body>
