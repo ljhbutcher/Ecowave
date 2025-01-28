@@ -23,6 +23,19 @@
   margin-bottom: 40px;
 }
 
+.input-field {
+  display: block;
+  width: 150px;
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 20px;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  border: 2px solid black;
+  color: black;
+}
+
 .sign-in {
   display: block;
   width: 150px;
@@ -37,6 +50,20 @@
 }
 
 .sign-up {
+  display: block;
+  width: 150px;
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 20px;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  background: black;
+  color: white;
+  margin-bottom: 250px;
+}
+
+.btn logout {
   display: block;
   width: 150px;
   padding: 10px;
