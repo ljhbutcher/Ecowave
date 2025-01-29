@@ -1,1 +1,21 @@
-<h1>list</h1>
+<h1>Project information</h1>
+<h3>This collection includes the following fabrics:</h3>
+<ul>
+  <% @project_materials.each do |project_material| %>
+    <li><%= project_material.material.name %> </li>
+  <% end %>
+</ul>
+
+<%= link_to "Back", projects_path %>
+
+
+
+<%= simple_form_for [@project, @project_material]  do |form| %>
+  <%= form.association :material %>
+  <%= form.submit "Add Material" %>
+<% end %>
+
+
+
+
+<%= link_to "Edit " %>

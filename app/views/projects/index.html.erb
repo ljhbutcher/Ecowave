@@ -1,1 +1,10 @@
-<h1>Projects</h1>
+<h1>list of Projects</h1>
+<% @projects.each do |project| %>
+<h3><%= link_to project.name, project_path(project) %></h3>
+<p><%= project.description %></p>
+<%= button_to "Delete", project_path(project), method: :delete, data: { confirm: "Are you sure?", turbo: false }, class: "btn-delete" %>
+<% end %>
+
+<%= link_to root_path, class: "btn-home" do %>
+   <i class="fa-solid fa-home"></i>
+<% end %>

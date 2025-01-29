@@ -1,4 +1,16 @@
-<h1>List of Materials</h1>
-<% @materials.each do |material| %>
-<%= material.name %>
+<h1>Inventory</h1>
+<div>
+  <% @materials.each do |material| %>
+    <%= link_to material.name, material_path(material) %>
+    <%= button_to "Delete", material_path(material), method: :delete, data: { confirm: "Are you sure?", turbo: false }, class: "btn-delete" %>
+    <%= link_to  new_project_project_material_path(:project_id), class: "btn-add-material" do %>
+   <i class="fa-solid fa-plus"></i>
+<% end %>
+  <% end %>
+</div>
+
+
+
+<%= link_to root_path, class: "btn-home" do %>
+   <i class="fa-solid fa-home"></i>
 <% end %>
