@@ -1,1 +1,48 @@
 // Specific CSS for your home-page
+.homepage-p{
+  text-align: center;
+ }
+
+ .homepage-title{
+  text-align: center;
+  text-decoration: underline;
+ }
+
+ .pages-options{
+  display: flex;
+  justify-content: space-between;
+ }
+
+ .hr-lines{
+  position: relative;
+  max-width: 500px;
+  margin: 15px auto;
+  text-align: center;
+}
+
+.hr-lines:before{
+  content:" ";
+  height: 2px;
+  width: 85px;
+  background: black;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+}
+
+.hr-lines:after{
+  content:" ";
+  height: 2px;
+  width: 85px;
+  background: black;
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+}
+
+p{
+  text-transform: uppercase;
+  color: black;
+}
