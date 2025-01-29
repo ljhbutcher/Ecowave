@@ -1,0 +1,102 @@
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+.dark-mode-toggle {
+  cursor: pointer;
+}
+
+.landing-body {
+  background-color: #fff;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.landing-container {
+  text-align: center;
+}
+
+.landing-logo {
+  font-size: 60px;
+  letter-spacing: 4px;
+  margin-bottom: 300px;
+  margin-top: 60px;
+}
+
+.landing-buttons {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.input-field {
+  display: block;
+  width: 150px;
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 20px;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  border: 2px solid black;
+  color: black;
+}
+
+.sign-in {
+  display: block;
+  width: 150px;
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 20px;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  border: 2px solid black;
+  color: black;
+}
+
+.sign-up {
+  display: block;
+  width: 150px;
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 20px;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  background: black;
+  color: white;
+  margin-bottom: 250px;
+}
+
+.btn logout {
+  display: block;
+  width: 150px;
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 20px;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  background: black;
+  color: white;
+}
+
+.landing-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.dark-mode-toggle {
+  background: white;
+  border: 1px solid black;
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 100px;
+}
