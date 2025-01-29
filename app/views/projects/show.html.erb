@@ -10,10 +10,7 @@
 
 
 
-<%= simple_form_for [@project, @project_material]  do |form| %>
-  <%= form.association :material %>
-  <%= form.submit "Add Material" %>
-<% end %>
+<%= link_to "Add new material",  new_project_project_material_path(@project) %>
 
 
 

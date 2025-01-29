@@ -11,12 +11,15 @@ class ProjectMaterialsController < ApplicationController
     @project_material.project = @project
     if @project_material.save
       redirect_to project_path(@project)
-    else render :new, status: :unprocessable_entity
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   def new
     @project_material = ProjectMaterial.new
+    @materials = Material.all
+    @project = Project.find(params[:project_id])
   end
 
   private

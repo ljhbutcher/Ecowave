@@ -1,4 +1,23 @@
 <h1>Add new material to inventory</h1>
 
 <%= link_to "Cancel", materials_path %>
-<h1>Add a new material</h1>
+
+
+Type
+Fiber
+Colour
+Dimensions L(m),W(cm), g/m2
+Origin
+Purchase purchase_location
+Certifications
+submit "Add Fabric"
+
+<%= form_with model: @material do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :address %>
+  <%= f.text_field :address %>
+  <%= f.label :rating %>
+  <%= f.number_field :rating %>
+  <%= f.submit %>
+<% end %>
