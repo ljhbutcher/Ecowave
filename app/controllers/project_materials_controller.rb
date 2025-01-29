@@ -6,9 +6,11 @@ class ProjectMaterialsController < ApplicationController
   end
 
   def create
+    @project = Project.find(params[:project_id])
     @project_material = ProjectMaterial.new(project_material_params)
+    @project_material.project = @project
     if @project_material.save
-      redirect_to project_material_path
+      redirect_to project_path(@project)
     else render :new, status: :unprocessable_entity
     end
   end
@@ -19,8 +21,8 @@ class ProjectMaterialsController < ApplicationController
 
   private
 
-  def project_materials_params
-    params.require(:project_material).permit(:material_id, :project_id)
+  def project_material_params
+    params.require(:project_material).permit(:material_id)
   end
 
 end
