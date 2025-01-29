@@ -15,6 +15,14 @@
   justify-content: space-evenly;
 }
 
+.navbar-item img {
+  width: 24px;  /* Set a fixed size */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 100%; /* Prevent image from exceeding its container's width */
+  vertical-align: middle; /* Align image with text or button */
+}
+
+
 .navbar-items {
   list-style-type: none;
   margin: 0;
