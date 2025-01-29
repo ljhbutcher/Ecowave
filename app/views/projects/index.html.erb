@@ -1,11 +1,23 @@
-<h1 class="hr-lines">E C O W A V E</h1>
-<h2>list of Projects</h2>
-<% @projects.each do |project| %>
-<h3><%= link_to project.name, project_path(project) %></h3>
-<p><%= project.description %></p>
-<%= button_to "Delete", project_path(project), method: :delete, data: { confirm: "Are you sure?", turbo: false }, class: "btn-delete" %>
-<% end %>
+<div class="search-container">
+  <input type="text" placeholder="SEARCH">
+  <i class="fas fa-search"></i>
+</div>
+
+<ul class="project-list">
+
+
+  <% @projects.each do |project| %>
+    <li class="project-item">
+      <%= image_tag "project-management.png", class: "project-img" %>
+      <div class="project-info">
+        <p><strong><%= link_to project.name, project_path(project) %></strong></p>
+        <p><strong><%= project.description %></strong></p>
+      </div>
+      <%= link_to "🗑️", project_path(project), method: :delete, data: { confirm: "Are you sure?", turbo: false }, class: "btn-delete" %>
+    </li>
+  <% end %>
+</ul>
 
 <%= link_to root_path, class: "btn-home" do %>
-   <i class="fa-solid fa-home"></i>
+  <i class="fas fa-home"></i>
 <% end %>
