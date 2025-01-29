@@ -10,7 +10,10 @@
   </head>
 
   <body>
+    <% if user_signed_in? %>
+      <%= render "shared/navbar" %>
+    <% end %>
+
     <%= yield %>
-    <%= render "shared/navbar" %>
   </body>
 </html>

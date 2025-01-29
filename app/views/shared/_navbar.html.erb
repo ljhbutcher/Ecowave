@@ -18,6 +18,10 @@
         <li class="navbar-item"><a href="/materials">M</a></li>
         <li class="navbar-item plus"><a href="/materials/new">+</a></li>
         <li class="navbar-item"><a href="/ai">AI</a></li>
-        <li class="navbar-item"><a href="/camera">SO</a></li>
+        <li class="navbar-item">
+          <%= link_to "SO", destroy_user_session_path, data: { turbo_method: :delete } %>
+        </li>
+
+
       </ul>
 </nav>
