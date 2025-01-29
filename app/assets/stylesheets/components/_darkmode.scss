@@ -1,0 +1,21 @@
+.landing-toggle {
+  position: fixed;  /* Fixes the button to the screen */
+  top: 10px;        /* Distance from the top of the screen */
+  left: 10px;       /* Distance from the left side of the screen */
+  z-index: 1000;    /* Ensures it's above other elements */
+}
+
+.dark-mode-toggle {
+  font-size: 24px;  /* Adjust the size of the toggle button */
+  background: none; /* Remove any background styling */
+  border: none;     /* Remove borders */
+  cursor: pointer;  /* Change cursor to pointer for a clickable element */
+}
+
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+.dark-mode-toggle {
+  cursor: pointer;
+}
