@@ -1,1 +1,11 @@
-<h1>individuals</h1>
+<h1>Material details</h1>
+<h2><%= @material.name %></h2>
+
+
+<% if @material.photo.attached? %>
+<%= cl_image_tag @material.photo.key, height: 300, width: 400, crop: :fill %>
+
+
+
+<p><%= raw @material.content %></p>
+<% end %>

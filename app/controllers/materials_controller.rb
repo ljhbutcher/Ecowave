@@ -12,10 +12,11 @@ class MaterialsController < ApplicationController
   end
 
   def create
-    @material = Material.new(materials_params)
+    @material = Material.new(material_params)
     if @material.save
-      redirect_to material_path
-    else render :new, status: :unprocessable_entity
+      redirect_to material_path(@material)
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -25,23 +26,22 @@ class MaterialsController < ApplicationController
 
   def update
     @material = Material.find(params[:id])
-    if @material.update (materials_params)
-      redirect_to material_path
+    if @material.update(material_params)
+      redirect_to material_path(@material)
     else
       render :edit, status: :unprocessable_entity
     end
-
   end
 
   def destroy
     @material = Material.find(params[:id])
     @material.destroy
+    redirect_to materials_path
   end
 
   private
-  def materials_params
-    params.require(:material).permit(:name, :weight, :supplier, :amount)
+
+  def material_params
+    params.require(:material).permit(:name, :weight, :amount, :supplier, :origin_production, :purchase_location, :photo)
   end
-
-
 end

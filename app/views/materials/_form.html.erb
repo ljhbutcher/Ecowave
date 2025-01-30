@@ -1,0 +1,26 @@
+<%= simple_form_for(@material, html: { multipart: true }) do |f| %>
+  <div class="field" style="margin-bottom: 15px;">
+    <%= f.input :name, label: "Material Name" %>
+  </div>
+  <div class="field" style="margin-bottom: 15px;">
+    <%= f.input :weight, label: "Weight (kg)" %>
+  </div>
+  <div class="field" style="margin-bottom: 15px;">
+    <%= f.input :amount, label: "Amount (units)" %>
+  </div>
+  <div class="field" style="margin-bottom: 15px;">
+    <%= f.input :supplier, label: "Supplier" %>
+  </div>
+  <div class="field" style="margin-bottom: 15px;">
+    <%= f.input :origin_production, label: "Origin of Production" %>
+  </div>
+  <div class="field" style="margin-bottom: 15px;">
+    <%= f.input :purchase_location, label: "Purchase Location" %>
+  </div>
+  <div class="field" style="margin-bottom: 15px;">
+    <%= f.input :photo, label: "Fabric Photo", as: :file %>
+  </div>
+  <div class="actions" style="display: flex; justify-content: center;">
+        <%= f.submit "Submit" %>
+      </div>
+<% end %>

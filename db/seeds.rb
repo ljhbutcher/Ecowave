@@ -11,7 +11,7 @@
 # Seed data for the materials table (fabrics)
 Material.destroy_all
 
-puts "creating seed files"
+puts "Creating seed files"
 
 Material.create!([
   {
@@ -21,11 +21,10 @@ Material.create!([
     amount: 200.0,
     origin_production: "India",
     purchase_location: "Mumbai, India",
-    CO2: 250.0,
+    co2: 250.0,
     water_usage: 1500.0,
-    electricity_used: 300.0,
-    created_at: Time.now,
-    updated_at: Time.now
+    electricity_used: 300.0
+
   },
   {
     name: "Polyester",
@@ -34,11 +33,10 @@ Material.create!([
     amount: 150.0,
     origin_production: "China",
     purchase_location: "Shanghai, China",
-    CO2: 800.0,
+    co2: 800.0,
     water_usage: 500.0,
-    electricity_used: 1200.0,
-    created_at: Time.now,
-    updated_at: Time.now
+    electricity_used: 1200.0
+
   },
   {
     name: "Silk",
@@ -47,11 +45,10 @@ Material.create!([
     amount: 50.0,
     origin_production: "Thailand",
     purchase_location: "Bangkok, Thailand",
-    CO2: 150.0,
+    co2: 150.0,
     water_usage: 200.0,
-    electricity_used: 400.0,
-    created_at: Time.now,
-    updated_at: Time.now
+    electricity_used: 400.0
+
   },
   {
     name: "Wool",
@@ -60,11 +57,10 @@ Material.create!([
     amount: 100.0,
     origin_production: "New Zealand",
     purchase_location: "Auckland, New Zealand",
-    CO2: 300.0,
+    co2: 300.0,
     water_usage: 800.0,
-    electricity_used: 250.0,
-    created_at: Time.now,
-    updated_at: Time.now
+    electricity_used: 250.0
+
   },
   {
     name: "Linen",
@@ -73,26 +69,72 @@ Material.create!([
     amount: 120.0,
     origin_production: "Belgium",
     purchase_location: "Brussels, Belgium",
-    CO2: 100.0,
+    co2: 100.0,
     water_usage: 400.0,
-    electricity_used: 150.0,
-    created_at: Time.now,
-    updated_at: Time.now
+    electricity_used: 150.0
+
   },
   {
-    name: "Rayon",
-    weight: 250.0,
-    supplier: "Sustainable Textiles",
-    amount: 80.0,
-    origin_production: "Indonesia",
-    purchase_location: "Jakarta, Indonesia",
-    CO2: 500.0,
-    water_usage: 1000.0,
-    electricity_used: 700.0,
-    created_at: Time.now,
-    updated_at: Time.now
+    name: "Tencel",
+    weight: 220.0,
+    supplier: "Lenzing AG",
+    amount: 140.0,
+    origin_production: "Austria",
+    purchase_location: "Lenzing, Austria",
+    co2: 350.0,
+    water_usage: 700.0,
+    electricity_used: 500.0
+
+  },
+
+  {
+    name: "Jute",
+    weight: 450.0,
+    supplier: "Jute World",
+    amount: 90.0,
+    origin_production: "India",
+    purchase_location: "Kolkata, India",
+    co2: 150.0,
+    water_usage: 500.0,
+    electricity_used: 220.0,
+  },
+
+  {
+    name: "Modal",
+    weight: 210.0,
+    supplier: "Lenzing AG",
+    amount: 130.0,
+    origin_production: "Austria",
+    purchase_location: "Lenzing, Austria",
+    co2: 300.0,
+    water_usage: 600.0,
+    electricity_used: 450.0
+
+  },
+  {
+    name: "Corduroy",
+    weight: 420.0,
+    supplier: "Textile Hub",
+    amount: 120.0,
+    origin_production: "USA",
+    purchase_location: "North Carolina, USA",
+    co2: 450.0,
+    water_usage: 900.0,
+    electricity_used: 600.0
+
+  },
+  {
+    name: "Denim",
+    weight: 480.0,
+    supplier: "Blue Ridge Denim",
+    amount: 150.0,
+    origin_production: "USA",
+    purchase_location: "South Carolina, USA",
+    co2: 550.0,
+    water_usage: 1200.0,
+    electricity_used: 750.0
+
   }
 ])
-
 
 puts "#{Material.count} seed files created"
