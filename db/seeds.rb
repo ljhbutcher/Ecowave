@@ -122,9 +122,7 @@ Material.create!([
     purchase_location: "Jakarta, Indonesia",
     co2: 500.0,
     water_usage: 1000.0,
-    electricity_used: 700.0,
-    created_at: Time.now,
-    updated_at: Time.now
+    electricity_used: 700.0
   }
 ])
 
