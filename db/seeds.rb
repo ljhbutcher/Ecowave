@@ -88,7 +88,7 @@ Material.create!([
   }
 ])
 
-Project.create! ([
+Project.create!([
   {
     name: "Summer collection",
     description: "exploring pink tones"
