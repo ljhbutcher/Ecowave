@@ -1,4 +1,11 @@
-<h1>Inventory</h1>
+
+
+
+    <% if material.photo.attached? %>
+      <%= cl_image_tag material.photo.key, height: 200, width: 300, crop: :fill %>
+
+<h1 class="hr-lines">E C O W A V E</h1>
+<h2>Inventory</h2>
 <div>
   <% @materials.each do |material| %>
     <%= link_to material.name, material_path(material) %>
@@ -11,6 +18,8 @@
 
 
 
-<%= link_to root_path, class: "btn-home" do %>
+<%= link_to home_path, class: "btn-home" do %>
    <i class="fa-solid fa-home"></i>
 <% end %>
+
+<%= link_to "add to Inventory", new_material_path %>

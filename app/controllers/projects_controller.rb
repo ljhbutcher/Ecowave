@@ -1,6 +1,12 @@
 class ProjectsController < ApplicationController
   def index
     @projects = Project.all
+    if params[:query].present?
+      @projects = Project.where("name ILIKE ? OR description ILIKE ?", "%#{params[:query]}%", "%#{params[:query]}%")
+    else
+      @projects = Project.all
+    end
+    params[:query] = ""
   end
 
   def show
@@ -18,7 +24,8 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     if @project.save
       redirect_to project_path
-    else render:new, status: :unprocessable_entity
+    else
+      render:new, status: :unprocessable_entity
     end
   end
 
@@ -32,6 +39,9 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+    @project = Project.find(params[:id])
+    @project.destroy
+    redirect_to projects_path, notice: 'Project was successfully destroyed.'
   end
 
   private

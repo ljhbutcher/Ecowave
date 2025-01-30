@@ -1,4 +1,5 @@
-<h1>Project information</h1>
+<h1 class="hr-lines">E C O W A V E</h1>
+<h2>Project information</h2>
 <h3>This collection includes the following fabrics:</h3>
 <ul>
   <% @project_materials.each do |project_material| %>
@@ -10,10 +11,7 @@
 
 
 
-<%= simple_form_for [@project, @project_material]  do |form| %>
-  <%= form.association :material %>
-  <%= form.submit "Add Material" %>
-<% end %>
+<%= link_to "Add new material",  new_project_project_material_path(@project) %>
 
 
 
