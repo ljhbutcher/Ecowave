@@ -81,4 +81,7 @@ production:
   <<: *default
   database: ecowave_production
   username: ecowave
+  username: ecowave
   password: <%= ENV["ECOWAVE_DATABASE_PASSWORD"] %>
+
+
