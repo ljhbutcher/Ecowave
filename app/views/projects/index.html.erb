@@ -8,6 +8,10 @@
     <% end %>
   </div>
 
+  <div class="add-container">
+    <%= link_to "ADD NEW PROJECT", new_project_path, class: "add" %>
+  </div>
+
 
     <ul class="project-list">
       <% @projects.each do |project| %>
@@ -30,5 +34,5 @@
     </ul>
 </div>
 <%= link_to home_path, class: "btn-home" do %>
-   <i class="fa-solid fa-home"></i>
+   <i class="d-flex justify-content-center fa-solid fa-home center"></i>
 <% end %>
