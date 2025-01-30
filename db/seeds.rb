@@ -79,7 +79,6 @@ Material.create!([
     name: "Jute",
     weight: 450.0,
     supplier: "Jute World",
-    amount: 90.0,
     origin_production: "India",
     purchase_location: "Kolkata, India",
     co2: 150.0,
@@ -90,7 +89,6 @@ Material.create!([
     name: "Modal",
     weight: 210.0,
     supplier: "Lenzing AG",
-    amount: 130.0,
     origin_production: "Austria",
     purchase_location: "Lenzing, Austria",
     co2: 300.0,
@@ -101,7 +99,6 @@ Material.create!([
     name: "Corduroy",
     weight: 420.0,
     supplier: "Textile Hub",
-    amount: 120.0,
     origin_production: "USA",
     purchase_location: "North Carolina, USA",
     co2: 450.0,
@@ -112,7 +109,6 @@ Material.create!([
     name: "Denim",
     weight: 480.0,
     supplier: "Blue Ridge Denim",
-    amount: 150.0,
     origin_production: "USA",
     purchase_location: "South Carolina, USA",
     co2: 550.0,
@@ -127,9 +123,7 @@ Material.create!([
     purchase_location: "Jakarta, Indonesia",
     co2: 500.0,
     water_usage: 1000.0,
-    electricity_used: 700.0,
-    created_at: Time.now,
-    updated_at: Time.now
+    electricity_used: 700.0
   }
 ])
 
