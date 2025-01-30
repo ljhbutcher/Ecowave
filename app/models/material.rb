@@ -39,26 +39,49 @@ class Material < ApplicationRecord
 
   def gpt_prompt
     <<~PROMPT
-      Based on the latest environmental regulations
-      from the European Commission and the Paris Climate Accord,
-      estimate the environmental impact of the following fabric:
+      You are an advanced environmental Life Cycle Assessment (LCA) expert
+      with knowledge of average impacts across all known fabric types
+      (natural, synthetic, semi-synthetic, etc.).
 
-      - Fabric Type: #{fabric_type}
-      - Fiber Composition: #{fiber}
-      - Dimensions: Length: #{length}m, Width: #{width}cm, Weight: #{grams_per_square_meter}g/m²
-      - Color: #{colour}
-      - Origin: #{origin}
-      - Purchase Location: #{purchase_location}
-      - Certifications: #{certifications}
+      When assessing each fabric, keep in mind the following
+      "bad score thresholds" for 1m² of fabric:
+        - Water usage: ~2,000 L/m² (e.g., conventional cotton can be very water-intensive)
+        - CO₂ emissions: ~2 kg CO₂/m² (e.g., polyester or heavily processed fibers can be high)
+        - Electricity usage: ~1 kWh/m² (synthetic fibers or high-energy processes)
 
-      Only give me details for:
-      - Water usage (liters per m²)
-      - CO₂ emissions (kg per m²)
-      - Electricity consumption (kWh per m²)
-      Give me only the metrics without any bullet points,
-      titles, symbols, followed by a 300-character summary of the fabric.
+      Additionally, account for:
+        - Distance between the fabric's origin and its purchase location
+          (transportation adds to CO₂).
+        - The presence (or absence) of polyester or other synthetics in the fiber composition.
+        - Any known certifications (e.g., GOTS, OEKO-TEX) that can lower impact or add disclaimers.
+        - The type of fiber, color, weight (grams per square meter), and any relevant production details.
+
+      Based on the data:
+        - Fabric Type: #{fabric_type}
+        - Fiber Composition: #{fiber}
+        - Dimensions: Length: #{length}m, Width: #{width}cm, Weight: #{grams_per_square_meter} g/m²
+        - Color: #{colour}
+        - Origin: #{origin}
+        - Purchase Location: #{purchase_location}
+        - Certifications: #{certifications}
+
+      Provide a realistic estimation of:
+        1) Water usage in liters per m²
+        2) CO₂ emissions in kg per m²
+        3) Electricity consumption in kWh per m²
+        4) A summary of up to 300 characters describing the fabric's environmental impact
+
+      If you lack sufficient data to be precise, disclaim uncertainty rather than inventing data.
+      Format the final answer without bullet points, symbols, or headings, using exactly
+      the following structure (comma-separated):
+
+      water_usage_value L/m², co2_value kg/m², electricity_value kWh/m², summary_text
+
+      Example format (with made-up numbers):
+      "120 L/m², 1.5 kg/m², 0.7 kWh/m², The fabric has a moderate environmental impact..."
     PROMPT
   end
+
 
   # -------------------------------
   # 3) Validations & Aggregators
