@@ -1,5 +1,5 @@
 <h1 class="hr-lines">E C O W A V E</h1>
-<h2>Project information</h2>
+<h2><%= @project.name %></h2>
 <h3>This collection includes the following fabrics:</h3>
 <ul>
   <% @project_materials.each do |project_material| %>
@@ -16,4 +16,27 @@
 
 
 
-<%= link_to "Edit " %>
+<%# <div id="summary-edit-form" style="display: none;">
+  <%= form_with model: @project, id:"summary-form" do |f| %>
+  <%#= f.label :description %>
+  <%#= f.text_field :description %>
+  <%#= f.submit %>
+  <%# end %>
+<%# </div>  %>
+
+
+<div id="summary">
+  <% if @project.summary %>
+    <p id="summary-content"><%= @project.summary.content %></p>
+    <%= link_to 'Edit', '#', id: 'edit-summary-link' %>
+  <% else %>
+    <%= link_to 'Add Summary', '#', id: 'add-summary-link' %>
+  <% end %>
+</div>
+
+<div id="summary-edit-form" style="display: none;">
+  <%= form_with(model:[@project, @summary], local: true, id: 'summary-form') do |f| %>
+    <%= f.text_area :content, rows: 4, cols: 50 %>
+    <%= f.submit "Save Summary" %>
+  <% end %>
+</div>

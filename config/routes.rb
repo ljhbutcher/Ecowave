@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :project_materials, only: [:new, :create, :show, :destroy]
+    resources :summaries, only: [:create, :update]
+
   end
 
   resources :materials

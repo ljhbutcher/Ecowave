@@ -15,8 +15,10 @@ class MaterialsController < ApplicationController
   def create
     @material = Material.new(materials_params)
     if @material.save
-      redirect_to material_path
-    else render :new, status: :unprocessable_entity
+      redirect_to materials_path, notice: "Material was successfully added."
+    else
+      Rails.logger.debug @material.errors.full_messages
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -41,8 +43,6 @@ class MaterialsController < ApplicationController
 
   private
   def materials_params
-    params.require(:material).permit(:name, :weight, :supplier, :amount)
+    params.require(:material).permit(:name, :weight, :supplier, :amount, :fiber, :colour, :origin, :purchase_location, :certifications, :length, :width, :weight)
   end
-
-
 end

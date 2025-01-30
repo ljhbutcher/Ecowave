@@ -13,6 +13,8 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project_materials = @project.project_materials.includes(:material)
     @project_material = ProjectMaterial.new
+    @summary = @project.build_summary if @project.summary.nil?
+
   end
 
 
@@ -34,7 +36,15 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
+     @project.update(project_params)
+      redirect_to project_path(@project), notice: 'Project was successfully updated.'
 
+      @summary = @project.summary
+      if @summary.update(summary_params)
+        redirect_to @project, notice: 'Summary was successfully updated.'
+      else
+        render :show
+      end
   end
 
   def destroy
@@ -49,4 +59,7 @@ class ProjectsController < ApplicationController
     params.require(:project).permit(:name, :description)
   end
 
+  def summary_params
+    params.require(:summary).permit(:content)
+  end
 end
