@@ -5,6 +5,7 @@ class MaterialsController < ApplicationController
 
   def show
     @material = Material.find(params[:id])
+    @project = Project.find(params[:project_id]) if params[:project_id].present?
   end
 
   def new

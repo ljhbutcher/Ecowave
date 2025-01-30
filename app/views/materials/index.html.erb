@@ -1,12 +1,25 @@
-<h1>List of Materials</h1>
-<ul>
-  <% @materials.each do |material| %>
-    <li>
-      <%= link_to material.name, material_path(material) %>
-    </li>
+
+
 
     <% if material.photo.attached? %>
       <%= cl_image_tag material.photo.key, height: 200, width: 300, crop: :fill %>
-    <% end %>
+
+<h1 class="hr-lines">E C O W A V E</h1>
+<h2>Inventory</h2>
+<div>
+  <% @materials.each do |material| %>
+    <%= link_to material.name, material_path(material) %>
+    <%= button_to "Delete", material_path(material), method: :delete, data: { confirm: "Are you sure?", turbo: false }, class: "btn-delete" %>
+    <%= link_to  new_project_project_material_path(:project_id), class: "btn-add-material" do %>
+   <i class="fa-solid fa-plus"></i>
+<% end %>
   <% end %>
-</ul>
+</div>
+
+
+
+<%= link_to home_path, class: "btn-home" do %>
+   <i class="fa-solid fa-home"></i>
+<% end %>
+
+<%= link_to "add to Inventory", new_material_path %>

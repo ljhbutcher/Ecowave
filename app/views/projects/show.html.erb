@@ -1,1 +1,19 @@
-<h1>list</h1>
+<h1 class="hr-lines">E C O W A V E</h1>
+<h2>Project information</h2>
+<h3>This collection includes the following fabrics:</h3>
+<ul>
+  <% @project_materials.each do |project_material| %>
+    <li><%= project_material.material.name %> </li>
+  <% end %>
+</ul>
+
+<%= link_to "Back", projects_path %>
+
+
+
+<%= link_to "Add new material",  new_project_project_material_path(@project) %>
+
+
+
+
+<%= link_to "Edit " %>

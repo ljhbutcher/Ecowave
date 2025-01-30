@@ -1,11 +1,33 @@
-<h1>Material details</h1>
-<h2><%= @material.name %></h2>
 
 
-<% if @material.photo.attached? %>
-<%= cl_image_tag @material.photo.key, height: 300, width: 400, crop: :fill %>
+
 
 
 
 <p><%= raw @material.content %></p>
+<h1 class="hr-lines">E C O W A V E</h1>
+<h2>Material Info</h2>
+<div>
+  <h2><%= @material.name %></h2>
+  <ul>
+    <li><%= @material.weight %> kg</li>
+    <li><%= @material.supplier %></li>
+    <li><%= @material.purchase_location %></li>
+    <li>CO2: <%= @material.CO2 %> kg</li>
+    <li>Water Usage: <%= @material.water_usage %> liters</li>
+    <li>Electricity Used: <%= @material.electricity_used %> kWh</li>
+    <% if @material.photo.attached? %>
+<%= cl_image_tag @material.photo.key, height: 300, width: 400, crop: :fill %>
+  </ul>
+</div>
+
+<%= link_to "Back", materials_path, class: "btn-back" %>
+
+<% if @project %>
+  <%= link_to project_project_material_path(@project, @material), class: "btn-add-material" do %>
+    <i class="fa-solid fa-plus"></i> Add to Project
+  <% end %>
+<% else %>
+  <p>Select a project to add this material.</p>
+  <%= link_to "Select a Project", projects_path, class: "btn-add-material" %>
 <% end %>

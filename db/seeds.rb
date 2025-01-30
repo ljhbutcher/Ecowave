@@ -18,61 +18,51 @@ Material.create!([
     name: "Cotton",
     weight: 500.0,
     supplier: "EcoTextiles Co.",
-    amount: 200.0,
-    origin_production: "India",
+    origin: "India",
     purchase_location: "Mumbai, India",
     co2: 250.0,
     water_usage: 1500.0,
     electricity_used: 300.0
-
   },
   {
     name: "Polyester",
     weight: 300.0,
     supplier: "Global Fabrics Ltd.",
-    amount: 150.0,
-    origin_production: "China",
+    origin: "China",
     purchase_location: "Shanghai, China",
     co2: 800.0,
     water_usage: 500.0,
     electricity_used: 1200.0
-
   },
   {
     name: "Silk",
     weight: 100.0,
     supplier: "Luxury Threads",
-    amount: 50.0,
-    origin_production: "Thailand",
+    origin: "Thailand",
     purchase_location: "Bangkok, Thailand",
     co2: 150.0,
     water_usage: 200.0,
     electricity_used: 400.0
-
   },
   {
     name: "Wool",
     weight: 400.0,
     supplier: "Shepherd Supplies",
-    amount: 100.0,
-    origin_production: "New Zealand",
+    origin: "New Zealand",
     purchase_location: "Auckland, New Zealand",
     co2: 300.0,
     water_usage: 800.0,
     electricity_used: 250.0
-
   },
   {
     name: "Linen",
     weight: 200.0,
     supplier: "Natural Fabrics Co.",
-    amount: 120.0,
-    origin_production: "Belgium",
+    origin: "Belgium",
     purchase_location: "Brussels, Belgium",
     co2: 100.0,
     water_usage: 400.0,
     electricity_used: 150.0
-
   },
   {
     name: "Tencel",
@@ -84,9 +74,7 @@ Material.create!([
     co2: 350.0,
     water_usage: 700.0,
     electricity_used: 500.0
-
   },
-
   {
     name: "Jute",
     weight: 450.0,
@@ -96,9 +84,8 @@ Material.create!([
     purchase_location: "Kolkata, India",
     co2: 150.0,
     water_usage: 500.0,
-    electricity_used: 220.0,
+    electricity_used: 220.0
   },
-
   {
     name: "Modal",
     weight: 210.0,
@@ -109,7 +96,6 @@ Material.create!([
     co2: 300.0,
     water_usage: 600.0,
     electricity_used: 450.0
-
   },
   {
     name: "Corduroy",
@@ -121,7 +107,6 @@ Material.create!([
     co2: 450.0,
     water_usage: 900.0,
     electricity_used: 600.0
-
   },
   {
     name: "Denim",
@@ -133,7 +118,33 @@ Material.create!([
     co2: 550.0,
     water_usage: 1200.0,
     electricity_used: 750.0
+  },
+  {
+    name: "Rayon",
+    weight: 250.0,
+    supplier: "Sustainable Textiles",
+    origin: "Indonesia",
+    purchase_location: "Jakarta, Indonesia",
+    co2: 500.0,
+    water_usage: 1000.0,
+    electricity_used: 700.0,
+    created_at: Time.now,
+    updated_at: Time.now
+  }
+])
 
+Project.create!([
+  {
+    name: "Summer collection",
+    description: "exploring pink tones"
+  },
+  {
+    name: "Winter Collection",
+    description: "coats and knits"
+  },
+  {
+    name: "Evening Dresses",
+    description: "range of dark colours"
   }
 ])
 
