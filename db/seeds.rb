@@ -68,7 +68,6 @@ Material.create!([
     name: "Tencel",
     weight: 220.0,
     supplier: "Lenzing AG",
-    amount: 140.0,
     origin_production: "Austria",
     purchase_location: "Lenzing, Austria",
     co2: 350.0,
