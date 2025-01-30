@@ -1,12 +1,16 @@
-<h1 class="hr-lines">E C O W A V E</h1>
-<br>
-<p class="homepage-title">Your Score</p>
-<br>
-<p class="homepage-p"> <%= Material.avg_electricity.round(1) %> </p>
-<p class="homepage-p"> <strong> Electricity </strong></p>
-<br>
-<p class="homepage-p"> <%= Material.avg_co2.round(1) %> </p>
-<p class="homepage-p"> <strong> CO2 </strong></p>
-<br>
-<p class="homepage-p"> <%= Material.avg_water.round(1) %> </p>
-<p class="homepage-p"> <strong> Water </strong> </p>
+<div class="homepage-background">
+  <div class="homepage-info">
+    <h1 class="hr-lines">E C O W A V E</h1>
+    <br>
+    <p class="homepage-title">Your Score</p>
+    <br>
+    <p class="homepage-p"> <%= Material.avg_electricity.round(1) %> </p>
+    <p class="homepage-p"> <strong> Electricity </strong></p>
+    <br>
+    <p class="homepage-p"> <%= Material.avg_co2.round(1) %> </p>
+    <p class="homepage-p"> <strong> CO2 </strong></p>
+    <br>
+    <p class="homepage-p"> <%= Material.avg_water.round(1) %> </p>
+    <p class="homepage-p"> <strong> Water </strong> </p>
+  </div>
+</div>
