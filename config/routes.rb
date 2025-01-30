@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   end
 
   resources :materials
+  resources :projects, only: [:index, :show, :create, :update, :destroy]
 end

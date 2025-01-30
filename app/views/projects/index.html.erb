@@ -1,23 +1,31 @@
-<div class="search-container">
-  <input type="text" placeholder="SEARCH">
-  <i class="fas fa-search"></i>
+<div class="project-container">
+
+
+  <div class="search-container">
+    <%= form_with url: projects_path, method: :get, local: true, class: "search-form" do %>
+    <%= text_field_tag :query, params[:query], placeholder: "SEARCH", class: "search-input", autocomplete: "off" %>
+    <button type="submit"><i class="fas fa-search"></i></button>
+    <% end %>
+  </div>
+
+
+    <ul class="project-list">
+      <% @projects.each do |project| %>
+        <li class="project-item">
+          <%= image_tag "project-management.png", class: "project-img" %>
+          <div class="project-info">
+            <p>PROJECT: <%= link_to project.name, project_path(project) %></p>
+            <p>DEADLINE: 22/09/2025</p>
+            <p>SCORE: 80/100</p>
+          </div>
+
+
+          <%= button_to project_path(project), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-delete" do %>
+          <%= image_tag "bin.png", alt: "Delete" %>
+          <% end %>
+
+
+        </li>
+      <% end %>
+    </ul>
 </div>
-
-<ul class="project-list">
-
-
-  <% @projects.each do |project| %>
-    <li class="project-item">
-      <%= image_tag "project-management.png", class: "project-img" %>
-      <div class="project-info">
-        <p><strong><%= link_to project.name, project_path(project) %></strong></p>
-        <p><strong><%= project.description %></strong></p>
-      </div>
-      <%= link_to "🗑️", project_path(project), method: :delete, data: { confirm: "Are you sure?", turbo: false }, class: "btn-delete" %>
-    </li>
-  <% end %>
-</ul>
-
-<%= link_to root_path, class: "btn-home" do %>
-  <i class="fas fa-home"></i>
-<% end %>
