@@ -1,3 +1,9 @@
+
+
+
+    <% if material.photo.attached? %>
+      <%= cl_image_tag material.photo.key, height: 200, width: 300, crop: :fill %>
+
 <h1 class="hr-lines">E C O W A V E</h1>
 <h2>Inventory</h2>
 <div>

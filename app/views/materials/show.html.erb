@@ -1,3 +1,10 @@
+
+
+
+
+
+
+<p><%= raw @material.content %></p>
 <h1 class="hr-lines">E C O W A V E</h1>
 <h2>Material Info</h2>
 <div>
@@ -9,6 +16,8 @@
     <li>CO2: <%= @material.CO2 %> kg</li>
     <li>Water Usage: <%= @material.water_usage %> liters</li>
     <li>Electricity Used: <%= @material.electricity_used %> kWh</li>
+    <% if @material.photo.attached? %>
+<%= cl_image_tag @material.photo.key, height: 300, width: 400, crop: :fill %>
   </ul>
 </div>
 
