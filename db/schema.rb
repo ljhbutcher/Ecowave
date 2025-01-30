@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_29_224644) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_30_164055) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,15 +46,13 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_29_224644) do
     t.string "name"
     t.float "weight"
     t.string "supplier"
-    t.float "amount"
     t.string "origin_production"
-    t.string "purchase_location"
     t.float "co2"
     t.float "water_usage"
     t.float "electricity_used"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "type"
+    t.string "fabric_type"
     t.string "fiber"
     t.string "colour"
     t.string "origin"
@@ -63,6 +61,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_29_224644) do
     t.float "width"
     t.float "grams_per_square_meter"
     t.string "purchase_location"
+    t.string "texture"
+    t.string "product_code"
+    t.date "purchase_date"
+    t.float "price_per_meter"
+    t.text "notes"
+    t.text "summary"
   end
 
   create_table "project_materials", force: :cascade do |t|

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :project_materials, only: [:new, :create, :show, :destroy]
   end
 
-  resources :materials
-  resources :projects, only: [:index, :show, :create, :update, :destroy]
+  resources :materials do
+    get :process_ai, on: :member
+  end
 end
