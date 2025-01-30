@@ -1,0 +1,36 @@
+
+.ldBar {
+  position: relative;
+  width: 100% !important;
+  height: 250px !important;
+}
+
+.ldBar.label-center > .ldBar-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-shadow: 0 0 3px #fff;
+}
+
+.ldBar-label:after {
+  content: "%";
+  display: inline;
+}
+
+.ldBar.no-percent .ldBar-label:after {
+  content: "";
+}
+
+.ldBar path.mainline {
+  stroke-width: 10;
+  stroke: rgb(255, 255, 255);
+  stroke-linecap: round;
+}
+.ldBar path.baseline {
+  stroke-width: 14;
+  stroke: #000000;
+  stroke-linecap: round;
+  filter:url(#custom-shadow);
+}
