@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema[7.1].define(version: 2025_01_31_144640) do
+=======
+ActiveRecord::Schema[7.1].define(version: 2025_01_31_144737) do
+>>>>>>> master
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -84,6 +88,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_31_144640) do
     t.datetime "updated_at", null: false
     t.text "summary"
     t.text "notes"
+    t.datetime "deadline"
   end
 
   create_table "solid_cache_entries", force: :cascade do |t|
