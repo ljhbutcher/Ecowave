@@ -1,25 +1,30 @@
-
-
-
-    <% if material.photo.attached? %>
-      <%= cl_image_tag material.photo.key, height: 200, width: 300, crop: :fill %>
-
 <h1 class="hr-lines">E C O W A V E</h1>
 <h2>Inventory</h2>
+
 <div>
   <% @materials.each do |material| %>
+    <!-- Only display an image if the material has one attached -->
+    <% if material.photo.attached? %>
+      <%= cl_image_tag material.photo.key, height: 200, width: 300, crop: :fill %>
+    <% end %>
+
+    <!-- Link to the material's show page -->
     <%= link_to material.name, material_path(material) %>
-    <%= button_to "Delete", material_path(material), method: :delete, data: { confirm: "Are you sure?", turbo: false }, class: "btn-delete" %>
-    <%= link_to  new_project_project_material_path(:project_id), class: "btn-add-material" do %>
-   <i class="fa-solid fa-plus"></i>
-<% end %>
-  <% end %>
+
+    <!-- Delete button -->
+    <%= button_to "Delete",
+                  material_path(material),
+                  method: :delete,
+                  data: { confirm: "Are you sure?", turbo: false },
+                  class: "btn-delete" %>
+
+    <!-- Button or link to add this material to a project (requires valid project_id) -->
+    <%= link_to new_project_project_material_path(:project_id), class: "btn-add-material" do %>
+      <i class="fa-solid fa-plus"></i>
+    <% end %>
+
+  <% end %> <!-- closes the each loop -->
 </div>
 
-
-
-<%= link_to home_path, class: "btn-home" do %>
-   <i class="fa-solid fa-home"></i>
-<% end %>
-
-<%= link_to "add to Inventory", new_material_path %>
+<!-- Link to create new material -->
+<%= link_to "Add to Inventory", new_material_path %>
