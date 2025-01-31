@@ -1,7 +1,7 @@
 .navbar-container {
-    margin: 0;
-    padding: 0;
-    width: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
 .navbar {
@@ -17,7 +17,7 @@
 }
 
 .navbar-item img {
-  width: 50px;  /* Set a fixed size */
+  width: 100px;  /* Set a fixed size */
   height: auto; /* Maintain aspect ratio */
   max-width: 100%; /* Prevent image from exceeding its container's width */
   vertical-align: middle; /* Align image with text or button */
@@ -28,26 +28,21 @@
   margin: 0;
   padding: 0;
   display: inline-flex;
-  gap: 5px;
 }
 
 .navbar-item {
   display: inline-block;
-  padding: 12px 25px;
   transition: background-color 0.3s ease;
+  margin-left: 10px;
 }
 
 .navbar-item a {
   text-decoration: none;
   color: #000;
   font-weight: bold;
+  width: 100%;
 }
 
 .navbar-item:hover {
   background-color: #999;
-}
-
-.plus {
-  font-size: 20px;
-  padding: 12px 25px;
 }
