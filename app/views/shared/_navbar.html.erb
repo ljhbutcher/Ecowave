@@ -1,6 +1,11 @@
 <nav class="navbar">
       <ul class="navbar-items">
         <li class="navbar-item">
+          <a href="/home">
+            <%= image_tag "home.png" %>
+          </a>
+        </li>
+        <li class="navbar-item">
           <a href="/materials">
             <%= image_tag "textile.png" %>
           </a>
@@ -11,9 +16,11 @@
           </a>
         </li>
         <li class="navbar-item">
-          <a href="/materials/new">
-            <%= image_tag "plus.png" %>
-          </a>
+          <% if current_page?(projects_path) %>
+            <a href="/projects/new"><%= image_tag "plus.png" %></a>
+          <% else %>
+            <a href="/materials/new"><%= image_tag "plus.png" %></a>
+          <% end %>
         </li>
         <li class="navbar-item">
           <a href="/ai">
@@ -25,8 +32,5 @@
           <%= image_tag "log-out.png", alt: "Log Out" %>
           <% end %>
         </li>
-
-
-
       </ul>
 </nav>

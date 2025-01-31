@@ -46,15 +46,14 @@
   display: flex;
   align-items: center;
   border-bottom: 1px solid #eee;
-  padding: 10px;
 }
 
 .project-img {
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .project-info a {
@@ -62,14 +61,43 @@
   color: black;
 }
 
+.project-info {
+  margin: 20px auto;
+  padding-left: 20px;
+}
+
+.project-info p {
+  margin: 0px;
+}
+
 .btn-delete {
   background: none;
   border: none;
   cursor: pointer;
   font-size: 1.2rem;
+  margin-right: 10px;
 }
 
 .btn-delete img {
   width: 20px;
   height: auto;
+}
+
+.add-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.add {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: white;
+  text-decoration: none;
+  color: black;
+  padding-left: 40px;
+  padding-right: 40px;
 }

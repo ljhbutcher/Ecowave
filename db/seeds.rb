@@ -1,108 +1,89 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-
-# Seed data for the materials table (fabrics)
+# Clear existing data to avoid duplication
 Material.destroy_all
+Project.destroy_all
 
-puts "creating seed files"
+puts "Seeding materials..."
 
 Material.create!([
   {
-    name: "Cotton",
-    weight: 500.0,
-    supplier: "EcoTextiles Co.",
+    fabric_type: "Cotton",
+    fiber: "100% Cotton",
+    length: 50.0,
+    width: 150.0,
+    grams_per_square_meter: 500.0,
+    colour: "White",
+    texture: "Smooth",
     origin: "India",
+    supplier: "EcoTextiles Co.",
+    product_code: "COT-123",
     purchase_location: "Mumbai, India",
-    CO2: 250.0,
+    purchase_date: Date.new(2023, 5, 15),
+    price_per_meter: 12.99,
+    certifications: "GOTS Certified",
+    co2: 250.0,
     water_usage: 1500.0,
     electricity_used: 300.0,
-    created_at: Time.now,
-    updated_at: Time.now
+    notes: "Organic cotton with high durability."
   },
   {
-    name: "Polyester",
-    weight: 300.0,
-    supplier: "Global Fabrics Ltd.",
+    fabric_type: "Polyester",
+    fiber: "100% Polyester",
+    length: 75.0,
+    width: 140.0,
+    grams_per_square_meter: 300.0,
+    colour: "Black",
+    texture: "Glossy",
     origin: "China",
+    supplier: "Global Fabrics Ltd.",
+    product_code: "POL-456",
     purchase_location: "Shanghai, China",
-    CO2: 800.0,
+    purchase_date: Date.new(2023, 6, 20),
+    price_per_meter: 8.99,
+    certifications: "OEKO-TEX Standard 100",
+    co2: 800.0,
     water_usage: 500.0,
     electricity_used: 1200.0,
-    created_at: Time.now,
-    updated_at: Time.now
+    notes: "Recycled polyester suitable for activewear."
   },
   {
-    name: "Silk",
-    weight: 100.0,
-    supplier: "Luxury Threads",
+    fabric_type: "Silk",
+    fiber: "100% Silk",
+    length: 30.0,
+    width: 120.0,
+    grams_per_square_meter: 100.0,
+    colour: "Ivory",
+    texture: "Soft",
     origin: "Thailand",
+    supplier: "Luxury Threads",
+    product_code: "SLK-789",
     purchase_location: "Bangkok, Thailand",
-    CO2: 150.0,
+    purchase_date: Date.new(2023, 7, 10),
+    price_per_meter: 45.99,
+    certifications: "Natural Silk Association Certified",
+    co2: 150.0,
     water_usage: 200.0,
     electricity_used: 400.0,
-    created_at: Time.now,
-    updated_at: Time.now
-  },
-  {
-    name: "Wool",
-    weight: 400.0,
-    supplier: "Shepherd Supplies",
-    origin: "New Zealand",
-    purchase_location: "Auckland, New Zealand",
-    CO2: 300.0,
-    water_usage: 800.0,
-    electricity_used: 250.0,
-    created_at: Time.now,
-    updated_at: Time.now
-  },
-  {
-    name: "Linen",
-    weight: 200.0,
-    supplier: "Natural Fabrics Co.",
-    origin: "Belgium",
-    purchase_location: "Brussels, Belgium",
-    CO2: 100.0,
-    water_usage: 400.0,
-    electricity_used: 150.0,
-    created_at: Time.now,
-    updated_at: Time.now
-  },
-  {
-    name: "Rayon",
-    weight: 250.0,
-    supplier: "Sustainable Textiles",
-    origin: "Indonesia",
-    purchase_location: "Jakarta, Indonesia",
-    CO2: 500.0,
-    water_usage: 1000.0,
-    electricity_used: 700.0,
-    created_at: Time.now,
-    updated_at: Time.now
+    notes: "Premium grade silk for luxury garments."
   }
 ])
 
-Project.create! ([
+puts "#{Material.count} materials created!"
+
+puts "Seeding projects..."
+
+Project.create!([
   {
-    name: "Summer collection",
-    description: "exploring pink tones"
+    name: "Summer Collection",
+    description: "Exploring pink tones"
   },
   {
     name: "Winter Collection",
-    description: "coats and knits"
+    description: "Coats and knits"
   },
-
   {
     name: "Evening Dresses",
-    description: "range of dark colours"
+    description: "Range of dark colors"
   }
 ])
 
-
-puts "#{Material.count} seed files created"
+puts "#{Project.count} projects created!"
