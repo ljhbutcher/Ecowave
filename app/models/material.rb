@@ -3,7 +3,7 @@ class Material < ApplicationRecord
   has_many :project_materials, dependent: :destroy
   has_one_attached :photo
 
-  validates :type, :fiber, :colour, presence: true
+  validates :fabric_type, :fiber, :colour, presence: true
 
   # validates :length, numericality: { greater_than: 0 }, allow_nil: true
   # validates :width, numericality: { greater_than: 0 }, allow_nil: true
