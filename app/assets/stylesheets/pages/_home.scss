@@ -1,4 +1,13 @@
-// Specific CSS for your home-page
+.homepage-background {
+  background: url('https://i.gifer.com/JcC.gif') no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+}
+
+.homepage-info {
+  font-size: 150%;
+}
+
 .homepage-p{
   text-align: center;
  }
@@ -42,7 +51,11 @@
   right: 0;
 }
 
-p{
+p {
   text-transform: uppercase;
   color: black;
+}
+
+.ldBar label-center {
+  
 }

@@ -1,6 +1,5 @@
 <div class="project-container">
 
-
   <div class="search-container">
     <%= form_with url: projects_path, method: :get, local: true, class: "search-form" do %>
     <%= text_field_tag :query, params[:query], placeholder: "SEARCH", class: "search-input", autocomplete: "off" %>
@@ -8,27 +7,23 @@
     <% end %>
   </div>
 
-
     <ul class="project-list">
       <% @projects.each do |project| %>
         <li class="project-item">
-          <%= image_tag "project-management.png", class: "project-img" %>
+          <%= image_tag "https://i.guim.co.uk/img/media/7863867c40c8715a756d7fbd08c8e33bc5ac6ffb/0_221_4134_2480/master/4134.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=88bd9bc16c79306542c5ac7741148042", class: "project-img" %>
           <div class="project-info">
             <p>PROJECT: <%= link_to project.name, project_path(project) %></p>
             <p>DEADLINE: 22/09/2025</p>
             <p>SCORE: 80/100</p>
           </div>
-
-
           <%= button_to project_path(project), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-delete" do %>
           <%= image_tag "bin.png", alt: "Delete" %>
           <% end %>
-
-
         </li>
       <% end %>
     </ul>
 </div>
+
 <%= link_to home_path, class: "btn-home" do %>
-   <i class="fa-solid fa-home"></i>
+   <i class="d-flex justify-content-center fa-solid fa-home"></i>
 <% end %>
