@@ -13,6 +13,8 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project_materials = @project.project_materials.includes(:material)
     @project_material = ProjectMaterial.new
+
+
   end
 
 
@@ -34,8 +36,16 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    @project = Project.find(params[:id])
 
+    @project = Project.find(params[:id])
+    if @project.update(project_params)
+      respond_to do |format|
+        format.html { redirect_to @project, notice: "Summary updated successfully." }
+        format.json { render json: { summary: @project.summary, notes: @project.notes} }
+      end
+    else
+      render :show, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -47,7 +57,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :description)
+    params.require(:project).permit(:name, :description, :summary, :notes)
   end
 
 end

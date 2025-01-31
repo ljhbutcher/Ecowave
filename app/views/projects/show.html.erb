@@ -1,19 +1,64 @@
 <h1 class="hr-lines">E C O W A V E</h1>
-<h2>Project information</h2>
-<h3>This collection includes the following fabrics:</h3>
-<ul>
-  <% @project_materials.each do |project_material| %>
-    <li><%= project_material.material.name %> </li>
+<h2><%= @project.name %></h2>
+
+
+
+<div id="summary-section" data-controller="summary">
+  <!-- Display summary text -->
+  <p data-summary-target="text">
+    <%= @project.summary.presence || "Add summary" %>
+  </p>
+
+  <!-- Form should be hidden by default -->
+  <%= form_with model: @project, url: project_path(@project), method: :patch, local: true, data: { summary_target: "form", action: "submit->summary#save" }, style: "display: none;" do |f| %>
+    <%= f.text_area :summary, rows: 5, class: "form-control", data: { summary_target: "textarea" } %>
+    <br>
+    <%= f.submit "Save", class: "btn btn-primary" %>
+    <button type="button" data-action="summary#cancel" class="btn btn-secondary">Cancel</button>
   <% end %>
-</ul>
 
+  <!-- Edit button -->
+  <button data-summary-target="editButton" data-action="click->summary#edit" class="btn btn-outline-primary">Edit</button>
+</div>
+
+<div class="fabrics-score">
+
+</div>
+
+
+<div class="selected-fabrics">
+  <h6>Selected Fabrics</h6>
+  <ul>
+    <% @project_materials.each do |project_material| %>
+      <li><%= project_material.material.name %> </li>
+    <% end %>
+  </ul>
+
+  <div id="notes-section" data-controller="notes">
+    <h6>Notes:</h6>
+  <!-- Display Notes -->
+  <p data-notes-target="text">
+    <%= @project.notes.presence || "Click 'Edit' to add notes..." %>
+  </p>
+
+  <!-- Editable Form for Notes -->
+  <%= form_with model: @project, url: project_path(@project), method: :patch, local: true, data: { notes_target: "form", action: "submit->notes#save" }, style: "display: none;" do |f| %>
+    <%= f.text_area :notes, rows: 5, class: "form-control", data: { notes_target: "textarea" } %>
+    <br>
+    <%= f.submit "Save", class: "btn btn-primary" %>
+    <button type="button" data-action="notes#cancel" class="btn btn-secondary">Cancel</button>
+  <% end %>
+
+  <!-- Edit Button -->
+  <button data-notes-target="editButton" data-action="click->notes#edit" class="btn btn-outline-primary">Edit</button>
+</div>
+
+
+
+
+
+
+
+<%= button_to "Delete Project", project_path(@project), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-dark" %>
 <%= link_to "Back", projects_path %>
-
-
-
-<%= link_to "Add new material",  new_project_project_material_path(@project) %>
-
-
-
-
-<%= link_to "Edit " %>
+<%= link_to "Add fabrics",  new_project_project_material_path(@project) %>

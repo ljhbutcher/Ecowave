@@ -16,6 +16,10 @@
     <%= f.input :photo, label: false, as: :file, input_html: { id: "material_photo", class: "d-none" } %>
   </div>
 
+<%= form_with model: @material do |f| %>
+  <%= f.label :type %>
+  <%= f.text_field :name %>
+  <!-- Dynamic Quantity Display -->
   <!-- Dynamic Quantity & Fabric Type Display -->
   <div class="fabric-name">
     <h2 id="fabric-type-display"><%= @material.fabric_type.presence || "FABRIC TYPE" %></h2>
