@@ -14,10 +14,22 @@ class MaterialsController < ApplicationController
 
   def create
     @material = Material.new(material_params)
+
     if @material.save
-      redirect_to material_path(@material)
+      redirect_to process_ai_material_path(@material)
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def process_ai
+    @material = Material.find(params[:id])
+    metrics = @material.calculate_environmental_metrics
+
+    if @material.update(metrics)
+      redirect_to @material, notice: 'Material created with AI analysis'
+    else
+      redirect_to materials_path, alert: 'Error processing AI metrics'
     end
   end
 
@@ -43,6 +55,10 @@ class MaterialsController < ApplicationController
   private
 
   def material_params
-    params.require(:material).permit(:name, :weight, :amount, :supplier, :origin_production, :purchase_location, :photo)
+    params.require(:material).permit(
+      :fabric_type, :fiber, :length, :width, :grams_per_square_meter,
+      :colour, :texture, :origin, :supplier, :product_code, :purchase_location,
+      :purchase_date, :price_per_meter, :certifications, :notes, :photo
+    )
   end
 end

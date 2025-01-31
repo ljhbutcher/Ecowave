@@ -7,84 +7,93 @@ class Material < ApplicationRecord
   validates :grams_per_square_meter, numericality: { greater_than: 0 }, allow_nil: true
 
 
-  def content
+  # -------------------------------
+  # 1) AI Method to fetch metrics
+  # -------------------------------
+  def calculate_environmental_metrics
     client = OpenAI::Client.new
-    chatgpt_response = client.chat(parameters: {
-      model: "gpt-4o-mini",
-      messages: [
-        {
-          role: "user",
-          content: "
-            Based on the latest environmental regulations
-            from the European Commission and the Paris Climate Accord,
-            estimate the environmental impact of the following fabric:
+    response = client.chat(
+      parameters: {
+        model: "gpt-4o-mini",
+        messages: [
+          {
+            role: "user",
+            content: gpt_prompt
+          }
+        ]
+      }
+    )
 
-            - **Fabric Type:** #{name}
-            - **Fiber Composition:**
-            - **Weight:** #{weight}
-            - **Supplier:** #{supplier}
-            - **Dimensions:** Length: in cm, Width: in cm, Weight in g/m²
-            - **Amount:** #{amount}
-            - **Color:**
-            - **Origin:** #{origin_production}
-            - **Purchase Location:** #{purchase_location}
-            - **Certifications:**
-             Only give me details for:
-            - Water usage (liters per m²)
-            - CO₂ emissions (kg per m²)
-            - Electricity consumption (kWh per m²)
-            Give me only the metrics without any bullet points,
-            titles, symbols, followed by a 300-character summary of the fabric.
-          "
-        }
-      ]
-    })
+    raw_content = response.dig("choices", 0, "message", "content").to_s.strip
+    data_parts  = raw_content.split(",").map(&:strip)
 
-    # Extract raw content from the API response
-    raw_content = chatgpt_response["choices"][0]["message"]["content"].strip
-
-    # Split the raw content into lines
-    lines = raw_content.split("\n").map(&:strip)
-
-    # Create a hash with parsed values
-    metrics = {
-      water_usage: parse_value(lines[0]),
-      co2_emissions: parse_value(lines[1]),
-      electricity_consumption: parse_value(lines[2]),
-      summary: lines[3..].join(" ").strip
+    # Return a hash matching your DB columns
+    {
+      water_usage:       data_parts[0][/(\d+(\.\d+)?)/, 1].to_f,
+      co2:               data_parts[1][/(\d+(\.\d+)?)/, 1].to_f,
+      electricity_used:  data_parts[2][/(\d+(\.\d+)?)/, 1].to_f,
+      summary:           data_parts[3..].join(" ").strip
     }
-    format_string(metrics)
   end
 
+  # -------------------------------
+  # 2) Private GPT Prompt Method
+  # -------------------------------
   private
 
-  # Parse numeric value from the line
-  def parse_value(line)
-    return nil if line.nil?
+  def gpt_prompt
+    <<~PROMPT
+      You are an advanced environmental Life Cycle Assessment (LCA) expert
+      with knowledge of average impacts across all known fabric types
+      (natural, synthetic, semi-synthetic, etc.).
 
-    # Extract the first numeric value and unit from the line
-    match = line.match(/(\d+(\.\d+)?)(\s?[a-zA-Z]+\/m²)?/)
-    if match
-      value = match[1].to_f
-      unit = match[3] # captures unit (L/m², kg/m², etc.)
-      value
-    else
-      nil
-    end
+      When assessing each fabric, keep in mind the following
+      "bad score thresholds" for 1m² of fabric:
+        - Water usage: ~2,000 L/m² (e.g., conventional cotton can be very water-intensive)
+        - CO₂ emissions: ~2 kg CO₂/m² (e.g., polyester or heavily processed fibers can be high)
+        - Electricity usage: ~1 kWh/m² (synthetic fibers or high-energy processes)
+
+      Additionally, account for:
+        - Distance between the fabric's origin and its purchase location
+          (transportation adds to CO₂).
+        - The presence (or absence) of polyester or other synthetics in the fiber composition.
+        - Any known certifications (e.g., GOTS, OEKO-TEX) that can lower impact or add disclaimers.
+        - The type of fiber, color, weight (grams per square meter), and any relevant production details.
+
+      Based on the data:
+        - Fabric Type: #{fabric_type}
+        - Fiber Composition: #{fiber}
+        - Dimensions: Length: #{length}m, Width: #{width}cm, Weight: #{grams_per_square_meter} g/m²
+        - Color: #{colour}
+        - Origin: #{origin}
+        - Purchase Location: #{purchase_location}
+        - Certifications: #{certifications}
+
+      Provide a realistic estimation of:
+        1) Water usage in liters per m²
+        2) CO₂ emissions in kg per m²
+        3) Electricity consumption in kWh per m²
+        4) A summary of up to 300 characters describing the fabric's environmental impact
+
+      If you lack sufficient data to be precise, disclaim uncertainty rather than inventing data.
+      Format the final answer without bullet points, symbols, or headings, using exactly
+      the following structure (comma-separated):
+
+      water_usage_value L/m², co2_value kg/m², electricity_value kWh/m², summary_text
+
+      Example format (with made-up numbers):
+      "120 L/m², 1.5 kg/m², 0.7 kWh/m², The fabric has a moderate environmental impact..."
+    PROMPT
   end
 
-  # Method to format the output
-  def format_string(metrics)
-    <<~OUTPUT
-      <ul>
-        <li>Water_usage: #{metrics[:water_usage]} L/m²</li>
-        <li>Co2_emissions: #{metrics[:co2_emissions]} kg/m²</li>
-        <li>Electricity_consumption: #{metrics[:electricity_consumption]} kWh/m²</li>
-        <li>Summary: #{metrics[:summary]}</li>
-      </ul>
-    OUTPUT
-  end
-  
+
+  # -------------------------------
+  # 3) Validations & Aggregators
+  # -------------------------------
+  validates :length, numericality: { greater_than: 0 }, allow_nil: true
+  validates :width,  numericality: { greater_than: 0 }, allow_nil: true
+  validates :grams_per_square_meter, numericality: { greater_than: 0 }, allow_nil: true
+
   def self.avg_electricity
     average(:electricity_used)
   end
@@ -94,7 +103,6 @@ class Material < ApplicationRecord
   end
 
   def self.avg_co2
-    average(:CO2)
+    average(:co2)
   end
-
 end
