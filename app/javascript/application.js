@@ -4,3 +4,5 @@ import "controllers"
 import "@popperjs/core"
 import "bootstrap"
 import "./loading_bar.js"
+// import Rails from "@rails/ujs"
+// Rails.start()
