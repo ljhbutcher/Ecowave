@@ -1,0 +1,71 @@
+.chatbot {
+  background: white;
+  margin-top: 9px;
+  height: calc(100vh - 75px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+
+  h1 {
+    border-bottom: 1px solid $gray-200;
+    margin-bottom: 0;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  #questions {
+    height: 100%;
+    overflow: scroll;
+    padding: 1rem;
+  }
+
+  .question {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .user-question, .ai-answer {
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    max-width: 70%;
+    width: fit-content;
+    word-wrap: break-word;
+  }
+
+  .user-question {
+    align-self: flex-start;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+  }
+
+  .ai-answer {
+    align-self: flex-end;
+    background: $gray-200;
+  }
+
+  #new_question {
+    border-top: 1px solid $gray-200;
+    padding: 1rem;
+
+    .form-group {
+      margin-bottom: 0;
+    }
+  }
+
+  .chat-messages {
+    /* All caps. You can do "capitalize" or remove it if you only want normal text */
+    text-transform: uppercase;
+
+    /* Justified or left, pick your preference */
+    // text-align: justify;
+    /* text-align: justify; */
+
+    letter-spacing: 1.9px;
+    line-height: 2;
+    font-weight: 300;
+    font-size: 13px;
+  }
+}

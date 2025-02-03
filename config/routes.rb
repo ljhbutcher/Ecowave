@@ -18,4 +18,6 @@ Rails.application.routes.draw do
       patch :update_quantity
     end
   end
+
+  resources :questions, only: [:index, :create]
 end
