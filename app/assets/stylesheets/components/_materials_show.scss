@@ -67,10 +67,14 @@
 /* MATERIAL PHOTO TOGGLE OVERLAY          */
 /******************************************/
 .material-photo-container {
-  position: relative;         /* For absolute positioning of the toggle */
-  display: block;             /* Ensure the container is a block element */
-  margin: 0 auto;             /* Center the container horizontally */
+  display: flex;              /* Use flexbox for alignment */
+  justify-content: center;    /* Centers the photo horizontally */
+  align-items: center;        /* Centers the photo vertically if needed */
+  width: 100%;                /* Ensure the container spans the full width */
+  margin-bottom: 2.5vh;       /* Space below the image */
+  position: relative;         /* For the toggle button positioning */
 }
+
 
 .quantity-toggle {
   position: absolute;
@@ -337,32 +341,29 @@
 /******************************************/
 /* 8) BUTTONS                             */
 /******************************************/
+.interface-black-button,
 .interface-white-button {
-  display: block;
-  max-width: 350px;
-  margin: 10px auto;
+  display: block; /* Make both buttons behave the same */
+  width: 100%; /* Ensure it matches the white button */
+  max-width: 350px; /* Limit the width */
+  margin: 10px auto; /* Centering */
   padding: 5px;
-  border: 1px solid #000;
-  border-radius: 30px;
-  background-color: #fff;
-  color: #000;
-  font-weight: 300;
-  font-size: 1rem;
   text-align: center;
+  font-size: 1rem;
+  font-weight: 300;
+  border-radius: 30px;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .interface-black-button {
-  display: block;
-  max-width: 350px;
-  margin: 10px auto;
-  padding: 5px;
-  border: 1px solid #000;
-  border-radius: 30px;
   background-color: #000;
   color: #fff;
-  font-weight: 300;
-  font-size: 1rem;
-  text-align: center;
-  text-decoration: none;
+  border: 1px solid #000;
+}
+
+.interface-white-button {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
 }
