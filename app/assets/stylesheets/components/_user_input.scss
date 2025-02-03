@@ -1,0 +1,132 @@
+/******************************************/
+/* FORM INPUT STYLING FOR MATERIALS NEW   */
+/******************************************/
+
+/* Container for all inputs inside the details card */
+.details-input-container {
+  padding: 22px 15px 1px 15px; /* Adds padding inside the dark grey card */
+}
+
+/* General styling for input fields */
+.details-card .details-input-container .material-input input,
+.details-card .details-input-container .material-input-small input {
+  width: 100%;
+  padding: 5px; /* Consistent padding with buttons */
+  font-family: 'Exo', sans-serif;
+  font-size: 1rem;
+  border: 1px solid #adb5bd;
+  border-radius: 20px; /* Rounded corners */
+  background-color: #fff; /* Fully white background */
+  color: #333;
+  transition: border-color 0.3s ease;
+
+  margin-bottom: 22px;
+  text-align: center; /* Centered text inside inputs */
+
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+  }
+}
+
+/******************************************/
+/* DIMENSIONS FLEXBOX STYLING             */
+/******************************************/
+
+/* Wrapper to keep label and inputs aligned */
+.dimensions-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Space between label and inputs */
+  flex-wrap: nowrap; /* Prevents wrapping */
+}
+
+/* Dimensions label styling */
+.dimensions-label {
+  font-size: 1rem;
+  font-weight: 300;
+  color: white;
+  white-space: nowrap;
+  padding-bottom: 15px;
+  padding-left: 5px;
+}
+
+/* Flexbox container for dimensions inputs */
+.dimensions-container {
+  display: flex;
+  justify-content: flex-start; /* Aligns inputs properly */
+  align-items: center;
+  gap: 8px; /* Adjust spacing between inputs */
+}
+
+/* Small inputs for dimensions */
+.details-card .details-input-container .dimensions-container .material-input-small input {
+  width: 30%; /* Makes inputs evenly sized */
+  flex-grow: 1; /* Allows them to scale proportionally */
+  min-width: 70px; /* Prevents them from becoming too small */
+}
+
+/* Override Simple Form’s .mb-3 ONLY inside .dimensions-container */
+.details-card .details-input-container .dimensions-container .mb-3 {
+  margin-bottom: 0px !important; /* Forces it to 0 */
+}
+
+// /* Fix NOTES (Textarea inside .details-notes) */
+// .details-notes .material-input textarea.form-control {
+//   width: 100%;
+//   padding: 5px !important; /* Consistent padding */
+//   font-family: 'Exo', sans-serif;
+//   font-size: 1rem;
+//   border: 1px solid #adb5bd !important;
+//   border-radius: 20px !important; /* Rounded corners */
+//   background-color: #fff !important; /* Fully white */
+//   color: #333 !important;
+//   text-align: center;
+//   min-height: 70px; /* Slightly taller */
+//   resize: none; /* Prevent resizing */
+
+//   &::placeholder {
+//     color: rgba(0, 0, 0, 0.5);
+//     text-align: center;
+//   }
+// }
+
+/* Fix NOTES (Textarea inside .details-notes) */
+.details-notes .material-input textarea.form-control {
+  width: 100%;
+  padding: 5px !important; /* Consistent padding */
+  font-family: 'Exo', sans-serif;
+  font-size: 1rem;
+  border: 1px solid #adb5bd !important;
+  border-radius: 20px !important; /* Rounded corners */
+  background-color: #fff !important; /* Fully white */
+  color: #333 !important;
+  text-align: center;
+
+  height: 40px !important; /* Force height */
+  min-height: 40px !important; /* Prevent Simple Form from setting min-height */
+  max-height: 45px !important; /* Prevent unnecessary stretching */
+  line-height: 1.2 !important; /* Keep text from making the input taller */
+
+  resize: none; /* Prevent resizing */
+
+  &::placeholder {
+    padding-top: 5px;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+  }
+}
+
+
+/* Fix DATE input */
+.details-input-container .material-input input[type="date"].form-control {
+  width: 100%;
+  padding: 5px !important;
+  font-family: 'Exo', sans-serif;
+  font-size: 1rem;
+  border: 1px solid #adb5bd !important;
+  border-radius: 20px !important;
+  background-color: #fff !important;
+  color: #333 !important;
+  text-align: center;
+}
