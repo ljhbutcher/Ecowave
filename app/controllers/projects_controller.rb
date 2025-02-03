@@ -11,10 +11,10 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @materials = @project.materials
+    @material = @materials.first
     @project_materials = @project.project_materials.includes(:material)
     @project_material = ProjectMaterial.new
-
-
   end
 
 

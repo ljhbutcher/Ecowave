@@ -2,20 +2,18 @@
 <h2><%= @project.name %></h2>
 
 
- <div class="project-photo-container">
-    <%= link_to edit_quantity_material_path(@material), class: "material-photo-link" do %>
-      <%= cl_image_tag @project.photo.key, class: "project-photo", crop: :fill, alt: "Project Photo" %>
+ <div class="material-photo-container">
+    <%= link_to edit_project_path(@project), class: "material-photo-link" do %>
+    <% if @project.photo.attached? %>
+      <%= cl_image_tag @project.photo.key, class: "material-photo", crop: :fill, alt: "Material Photo" %>
+    <% else %>
+      <p>No image available</p>
+    <% end %>
       <div class="quantity-toggle">
         +/-
       </div>
     <% end %>
   </div>
-
-
-
-
-
-
 
 
 
@@ -36,45 +34,148 @@
 </div>
 
 
+ <!-- Environmental Score Heading -->
+  <h2 class="env-score-heading">ENVIRONMENTAL SCORE</h2>
 
+<% if @materials.any? %>
+  <% @materials.each do |material| %>
+    <div class="material-summary">
+      <h3><%= material.name %></h3>
+      <p><%= material.summary.presence || "No summary provided." %></p>
+    </div>
 
-<div class="fabrics-score">
+    <!-- Circular Charts for Each Material -->
+    <div class="materials-show-flex-wrapper">
+      <!-- Water Usage -->
+      <div class="materials-show-single-chart">
+        <% water = material.water_usage %>
+        <% water_threshold = 2000.0 %>
+        <% water_ratio = water.present? ? [(water / water_threshold) * 100, 100].min : 0 %>
 
-</div>
+        <svg viewBox="0 0 36 36" class="materials-show-circular-chart materials-show-water-chart">
+          <path class="materials-show-circle-bg"
+            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+          />
+          <path class="materials-show-circle"
+            stroke-dasharray="<%= water_ratio.round(1) %>, 100"
+            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+          />
+          <text x="18" y="20.35" class="materials-show-percentage">
+            <% if water.present? %>
+              <%= "#{water.round(1)} L/m²" %>
+            <% else %>
+              Not Provided
+            <% end %>
+          </text>
+        </svg>
+        <p class="materials-show-chart-label">Water</p>
+      </div>
 
+      <!-- CO2 Emissions -->
+      <div class="materials-show-single-chart">
+        <% co2 = material.co2 %>
+        <% co2_threshold = 2.0 %>
+        <% co2_ratio = co2.present? ? [(co2 / co2_threshold) * 100, 100].min : 0 %>
 
+        <svg viewBox="0 0 36 36" class="materials-show-circular-chart materials-show-co2-chart">
+          <path class="materials-show-circle-bg"
+            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+          />
+          <path class="materials-show-circle"
+            stroke-dasharray="<%= co2_ratio.round(1) %>, 100"
+            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+          />
+          <text x="18" y="20.35" class="materials-show-percentage">
+            <% if co2.present? %>
+              <%= "#{co2.round(2)} kg/m²" %>
+            <% else %>
+              Not Provided
+            <% end %>
+          </text>
+        </svg>
+        <p class="materials-show-chart-label">CO₂</p>
+      </div>
 
+      <!-- Electricity Usage -->
+      <div class="materials-show-single-chart">
+        <% electricity = material.electricity_used %>
+        <% electricity_threshold = 1.0 %>
+        <% electricity_ratio = electricity.present? ? [(electricity / electricity_threshold) * 100, 100].min : 0 %>
 
-<div class="selected-fabrics">
-  <h6>Selected Fabrics</h6>
-  <ul>
-    <% @project_materials.each do |project_material| %>
-      <li><%= project_material.material.name %> </li>
-    <% end %>
-  </ul>
-
-  <div id="notes-section" data-controller="notes">
-    <h6>Notes:</h6>
-  <!-- Display Notes -->
-  <p data-notes-target="text" data-action="click->notes#edit" >
-    <%= @project.notes.presence || "Click here to add notes" %>
-  </p>
-
-  <!-- Editable Form for Notes -->
-  <%= form_with model: @project, url: project_path(@project), method: :patch, local: true, data: { notes_target: "form", action: "submit->notes#save" }, style: "display: none;" do |f| %>
-    <%= f.text_area :notes, rows: 5, class: "form-control", data: { notes_target: "textarea" } %>
-    <br>
-    <%= f.submit "Save", class: "btn btn-primary" %>
-    <button type="button" data-action="notes#cancel" class="btn btn-secondary">Cancel</button>
+        <svg viewBox="0 0 36 36" class="materials-show-circular-chart materials-show-electricity-chart">
+          <path class="materials-show-circle-bg"
+            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+          />
+          <path class="materials-show-circle"
+            stroke-dasharray="<%= electricity_ratio.round(1) %>, 100"
+            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+          />
+          <text x="18" y="20.35" class="materials-show-percentage">
+            <% if electricity.present? %>
+              <%= "#{electricity.round(2)} kWh/m²" %>
+            <% else %>
+              Not Provided
+            <% end %>
+          </text>
+        </svg>
+        <p class="materials-show-chart-label">Electricity</p>
+      </div>
+    </div>
   <% end %>
+<% else %>
+  <p>No materials added to this project yet.</p>
+<% end %>
+
+
+  <!-- Material Details Card -->
+  <div class="details-card">
+    <h2 class="details-card-header">SELECTED FABRICS</h2>
+
+<div class="material-list">
+  <% @project.materials.each do |material| %>
+    <div class="material-item">
+      <!-- Material Image -->
+      <%# <div class="material-image">
+        <%= image_tag material.image.url, alt: material.name, class: "material-image" if material.image.attached? %>
+      <%# </div>  %>
+
+      <!-- Material Info -->
+      <div class="material-info">
+        <h3 class="material-name"><%= material.name %></h3>
+        <p>Quantity: <%= material.length %></p>
+        <%# <p>Environmental Score: <%= material.water %>
+      </div>
+
+      <!-- Bin Icon to Remove Material -->
+     <div class="material-remove">
+        <%= button_to project_material_path(@project, material), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-delete" do %>
+          <%= image_tag "bin-white.png", alt: "Delete" %>
+          <% end %>
+      </div>
+    </div>
+  <% end %>
+
+</div>
+    <!-- NOTES at the Bottom -->
+    <div id="notes-section" class="details-notes" data-controller="notes">
+      NOTES:
+      <p data-notes-target="text" data-action="click->notes#edit" >
+       <%= @project.notes.presence || "Click here to add notes" %>
+     </p>
+
+    <!-- Editable Form for Notes -->
+    <%= form_with model: @project, url: project_path(@project), method: :patch, local: true, data: { notes_target: "form", action: "submit->notes#save" }, style: "display: none;" do |f| %>
+      <%= f.text_area :notes, rows: 5, class: "form-control", data: { notes_target: "textarea" } %>
+      <br>
+      <%= f.submit "Save", class: "btn btn-primary" %>
+      <button type="button" data-action="notes#cancel" class="btn btn-secondary">Cancel</button>
+    <% end %>
+    </div>
+  </div>
 </div>
 
 
 
-
-
-
-
-<%= button_to "Delete Project", project_path(@project), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-dark" %>
-<%= link_to "Back", projects_path %>
-<%= link_to "Add fabrics",  new_project_project_material_path(@project) %>
+<%= button_to "DELETE PROJECT", project_path(@project), method: :delete, data: { confirm: "Are you sure?" }, class: "interface-black-button" %>
+<%= link_to "BACK", projects_path %>
+<%= link_to "ADD FABRICS",  new_project_project_material_path(@project), class: "interface-white-button"  %>
