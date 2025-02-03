@@ -2,11 +2,16 @@
 <h2>Add a new project</h2>
 
 <%= simple_form_for @project do |f| %>
-  <%= f.input :name, label: "Project Name" %>
+  <%= f.input :name, label: "Name" %>
+  <%= f.input :deadline,
+            as: :string,
+            input_html: { data: { controller: "datepicker" },
+                          placeholder: "📅 dd/mm/yyyy" },
+            label: "Deadline" %>
 
-   <%= f.input :deadline, label: "Deadline", as: :datetime %>
+
    <%= f.input :description, label: "Description", as: :text %>
 
-  <%= f.button :submit, "Create Project" %>
+  <%= f.button :submit, "Add Project" %>
+  <div>  <%= link_to "Cancel", projects_path, class: "btn-cancel" %> </div>
 <% end %>
-

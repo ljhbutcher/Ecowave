@@ -9,23 +9,23 @@
     <%= f.input :email,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "email", class: "sign-in" },
+                input_html: { autocomplete: "email", class: "session-input" },
                     placeholder: "EMAIL",
                     label: false %>
     <%= f.input :password,
                 required: true,
-                input_html: { autocomplete: "new-password", class: "sign-in" },
+                input_html: { autocomplete: "new-password", class: "session-input" },
                 placeholder: "PASSWORD",
                 label: false %>
     <%= f.input :password_confirmation,
                 required: true,
-                input_html: { autocomplete: "new-password", class: "sign-in" },
+                input_html: { autocomplete: "new-password", class: "session-input" },
                 placeholder: "CONFIRM PASSWORD",
                 label: false %>
   </div>
 
         <div class="session-btn-container">
-          <%= f.button :submit, "SIGN UP", class: "sign-in" %>
+          <%= f.button :submit, "SIGN UP", class: "session-btn btn-login" %>
         </div>
       <% end %>
 
