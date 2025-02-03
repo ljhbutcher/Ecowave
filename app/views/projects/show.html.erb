@@ -130,32 +130,26 @@
   <!-- Material Details Card -->
   <div class="details-card">
     <h2 class="details-card-header">SELECTED FABRICS</h2>
-
-<div class="material-list">
-  <% @project.materials.each do |material| %>
-    <div class="material-item">
-      <!-- Material Image -->
-      <%# <div class="material-image">
-        <%= image_tag material.image.url, alt: material.name, class: "material-image" if material.image.attached? %>
-      <%# </div>  %>
-
-      <!-- Material Info -->
-      <div class="material-info">
-        <h3 class="material-name"><%= material.name %></h3>
-        <p>Quantity: <%= material.length %></p>
-        <%# <p>Environmental Score: <%= material.water %>
+      <div class="material-list">
+        <% @project.materials.each do |material| %>
+          <div class="material-item">
+            <div class="material-info">
+              <div class="material-header">
+                <h3 class="material-name"><%= material.name %></h3>
+                <div class="material-remove">
+                  <%= button_to project_material_path(@project, material), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-delete" do %>
+                    <%= image_tag "bin.png", alt: "Delete", class: "bin-icon" %>
+                  <% end %>
+                </div>
+              </div>
+              <p>Quantity: <%= material.length %></p>
+              <p>Environmental score: </p>
+            </div>
+          </div>
+        <% end %>
       </div>
 
-      <!-- Bin Icon to Remove Material -->
-     <div class="material-remove">
-        <%= button_to project_material_path(@project, material), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-delete" do %>
-          <%= image_tag "bin-white.jpg", alt: "Delete" %>
-          <% end %>
-      </div>
-    </div>
-  <% end %>
 
-</div>
     <!-- NOTES at the Bottom -->
     <div id="notes-section" class="details-notes" data-controller="notes">
       NOTES:
@@ -175,7 +169,6 @@
 </div>
 
 
-
-<%= button_to "DELETE PROJECT", project_path(@project), method: :delete, data: { confirm: "Are you sure?" }, class: "interface-black-button" %>
-<%= link_to "BACK", projects_path %>
 <%= link_to "ADD FABRICS",  new_project_project_material_path(@project), class: "interface-white-button"  %>
+<%= link_to "DELETE PROJECT", project_path(@project), method: :delete, data: { confirm: "Are you sure?" }, class: "interface-black-button" %>
+<%= link_to "BACK", projects_path, class: "interface-white-button" %>

@@ -1,14 +1,19 @@
 <h1 class="ecowave-header">EcoWave</h1>
 <div class="materials-show-container">
 
-  <div class="material-photo-container">
-    <%= link_to edit_quantity_material_path(@material), class: "material-photo-link" do %>
+ <div class="material-photo-container">
+  <%= link_to edit_quantity_material_path(@material), class: "material-photo-link" do %>
+    <% if @material.photo.attached? %>
       <%= cl_image_tag @material.photo.key, class: "material-photo", crop: :fill, alt: "Fabric Photo" %>
-      <div class="quantity-toggle">
-        +/-
-      </div>
+    <% else %>
+      <p>No image available</p>
     <% end %>
-  </div>
+    <div class="quantity-toggle">
+      +/-
+    </div>
+  <% end %>
+</div>
+
 
   <!-- Fabric Title and Quantity -->
   <h2 class="fabric-title">

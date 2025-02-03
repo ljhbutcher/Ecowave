@@ -2,3 +2,19 @@
 color: white;
 
 }
+
+.material-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.material-remove {
+  margin-left: 10px; /* Space between name and bin icon */
+}
+
+.bin-icon {
+  width: 20px;  /* Adjust size */
+  height: 20px;
+  cursor: pointer;
+}
