@@ -1,0 +1,110 @@
+/******************************************/
+/* 1) CONTAINER FOR THE SHOW PAGE         */
+/******************************************/
+.materials-show-container {
+  /* Keep your content from stretching edge-to-edge */
+  max-width: 900px;      /* Adjust as desired */
+  margin: 0 auto;        /* Center horizontally */
+  padding: 0 15px;       /* Some side padding for smaller screens */
+}
+
+/******************************************/
+/* 2) CIRCULAR CHART STYLES               */
+/******************************************/
+.materials-show-flex-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  gap: 30px;
+  margin: 20px 0;
+}
+
+.materials-show-single-chart {
+  width: 120px;
+  text-align: center;
+}
+
+.materials-show-circular-chart {
+  display: block;
+  margin: 10px auto;
+  max-width: 100%;
+  max-height: 120px;
+}
+
+/* The dark grey ring */
+.materials-show-circle-bg {
+  fill: none;
+  stroke: #333; /* very dark grey */
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+/* The white stroke for the "progress" portion */
+.materials-show-circle {
+  fill: none;
+  stroke: #fff; /* white */
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  animation: matShowProgress 1s ease-out forwards;
+}
+
+/* Animate from 0% to the final stroke-dasharray */
+@keyframes matShowProgress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+/* The text inside the circle */
+.materials-show-percentage {
+  fill: black;
+  font-family: sans-serif;
+  font-size: 0.35em;
+  text-anchor: middle;
+}
+
+.materials-show-chart-label {
+  margin-top: 10px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Optional different colors per chart */
+.materials-show-water-chart .materials-show-circle {
+  stroke: #fff; /* or #00adee for a watery blue */
+}
+.materials-show-co2-chart .materials-show-circle {
+  stroke: #fff; /* or #ff4c4c for red */
+}
+.materials-show-electricity-chart .materials-show-circle {
+  stroke: #fff; /* or #ffe600 for bright yellow */
+}
+
+/******************************************/
+/* 3) MATERIAL PHOTO SIZING               */
+/******************************************/
+.material-photo {
+  display: block;
+  margin: 0 auto;
+  border-radius: 50%;
+  object-fit: cover;
+  width: 175px;
+  height: 175px;
+  margin-bottom: 30px;
+}
+
+/* Optional variant classes for different sizes */
+.material-photo--sm {
+  width: 150px;
+  height: 150px;
+}
+
+.material-photo--md {
+  width: 200px;
+  height: 200px;
+}
+
+.material-photo--lg {
+  width: 400px;
+  height: 400px;
+}

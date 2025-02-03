@@ -1,2 +1,11 @@
 <h1 class="hr-lines">E C O W A V E</h1>
 <h2>Add a new project</h2>
+
+<%= simple_form_for @project do |f| %>
+  <%= f.input :name, label: "Project Name" %>
+
+   <%= f.input :deadline, label: "Deadline", as: :datetime %>
+   <%= f.input :description, label: "Description", as: :text %>
+
+  <%= f.button :submit, "Create Project" %>
+<% end %>

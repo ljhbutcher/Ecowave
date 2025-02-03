@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_31_114223) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_31_144737) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -83,6 +83,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_31_114223) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "summary"
+    t.text "notes"
+    t.datetime "deadline"
   end
 
   create_table "solid_cable_messages", force: :cascade do |t|
@@ -105,6 +108,18 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_31_114223) do
     t.index ["key_hash"], name: "index_solid_cache_entries_on_key_hash", unique: true
   end
 
+  create_table "summaries", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.bigint "project_id", null: false
+    t.bigint "material_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["material_id"], name: "index_summaries_on_material_id"
+    t.index ["project_id"], name: "index_summaries_on_project_id"
+    t.index ["user_id"], name: "index_summaries_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -121,4 +136,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_31_114223) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "project_materials", "materials"
   add_foreign_key "project_materials", "projects"
+  add_foreign_key "summaries", "materials"
+  add_foreign_key "summaries", "projects"
+  add_foreign_key "summaries", "users"
 end

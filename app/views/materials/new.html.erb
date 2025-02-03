@@ -1,4 +1,5 @@
 <h1 class="hr-lines">E C O W A V E</h1>
+
 <%= simple_form_for(@material, url: materials_path, html: { multipart: true, id: "fabric-form" }) do |f| %>
   <!-- Image Upload Circle -->
   <div class="image-upload">
@@ -15,9 +16,13 @@
     <%= f.input :photo, label: false, as: :file, input_html: { id: "material_photo", class: "d-none" } %>
   </div>
 
+<%= form_with model: @material do |f| %>
+  <%= f.label :type %>
+  <%= f.text_field :name %>
   <!-- Dynamic Quantity Display -->
+  <!-- Dynamic Quantity & Fabric Type Display -->
   <div class="fabric-name">
-    <h2>FABRIC TYPE</h2>
+    <h2 id="fabric-type-display"><%= @material.fabric_type.presence || "FABRIC TYPE" %></h2>
     <p>QUANTITY: <span id="quantity-display"><%= @material.length || '...' %></span>M</p>
   </div>
 
@@ -25,11 +30,11 @@
   <div class="details-box">
     <h3>DETAILS</h3>
 
-    <%= f.input :fabric_type, label: "Fabric Type" %>
+    <%= f.input :fabric_type, label: "Fabric Type", input_html: { id: "material_fabric_type" } %>
     <%= f.input :fiber, label: "Fiber Composition" %>
 
     <div class="input-group dimensions">
-      <%= f.input :length, label: "L (m)", input_html: { step: 0.01 } %>
+      <%= f.input :length, label: "L (m)", input_html: { step: 0.01, id: "material_length" } %>
       <%= f.input :width, label: "W (cm)", input_html: { step: 0.1 } %>
       <%= f.input :grams_per_square_meter, label: "G/M²", input_html: { step: 0.1 } %>
     </div>
@@ -118,6 +123,15 @@
     lengthInput.addEventListener('input', function(e) {
       const quantityDisplay = document.getElementById('quantity-display');
       quantityDisplay.textContent = e.target.value || '...';
+    });
+  }
+
+  // Dynamic fabric type update
+  const fabricTypeInput = document.getElementById('material_fabric_type');
+  if (fabricTypeInput) {
+    fabricTypeInput.addEventListener('input', function(e) {
+      const fabricTypeDisplay = document.getElementById('fabric-type-display');
+      fabricTypeDisplay.textContent = e.target.value || 'FABRIC TYPE';
     });
   }
 </script>

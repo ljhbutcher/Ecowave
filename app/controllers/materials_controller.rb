@@ -53,6 +53,9 @@ class MaterialsController < ApplicationController
   end
 
   private
+  def materials_params
+    params.require(:material).permit(:name, :weight, :supplier, :amount, :fiber, :colour, :origin, :purchase_location, :certifications, :length, :width, :weight)
+  end
 
   def material_params
     params.require(:material).permit(
