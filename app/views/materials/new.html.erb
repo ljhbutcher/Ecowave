@@ -16,11 +16,7 @@
     <%= f.input :photo, label: false, as: :file, input_html: { id: "material_photo", class: "d-none" } %>
   </div>
 
-<%= form_with model: @material do |f| %>
-  <%= f.label :type %>
-  <%= f.text_field :name %>
   <!-- Dynamic Quantity Display -->
-  <!-- Dynamic Quantity & Fabric Type Display -->
   <div class="fabric-name">
     <h2 id="fabric-type-display"><%= @material.fabric_type.presence || "FABRIC TYPE" %></h2>
     <p>QUANTITY: <span id="quantity-display"><%= @material.length || '...' %></span>M</p>
@@ -53,7 +49,7 @@
 
   <!-- Form Buttons -->
   <div class="button-group">
-    <%= f.button :button, "ADD FABRIC", type: :submit, class: "add-fabric" %>
+    <%= f.button :submit, "ADD FABRIC", class: "add-fabric" %>
     <%= link_to "CANCEL", materials_path, class: "cancel-btn" %>
   </div>
 <% end %>
