@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["text", "form", "editButton", "textarea"];
+  static targets = ["text", "form", "textarea"];
 
   connect() {
     this.resetForm(); // Ensures correct visibility on page load
@@ -10,7 +10,6 @@ export default class extends Controller {
   edit() {
     this.textTarget.style.display = "none";
     this.formTarget.style.display = "block";
-    this.editButtonTarget.style.display = "none";
     this.textareaTarget.focus();
   }
 
@@ -49,6 +48,5 @@ export default class extends Controller {
   resetForm() {
     this.textTarget.style.display = "block";
     this.formTarget.style.display = "none";
-    this.editButtonTarget.style.display = "inline-block";
   }
 }
