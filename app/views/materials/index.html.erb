@@ -1,30 +1,60 @@
-<h1 class="ecowave-header">EcoWave</h1>
-<h2>Inventory</h2>
+<div class="project-container">
 
-<div>
-  <% @materials.each do |material| %>
-    <!-- Only display an image if the material has one attached -->
-    <% if material.photo.attached? %>
-      <%= cl_image_tag material.photo.key, height: 200, width: 300, crop: :fill %>
+  <!-- SEARCH BAR -->
+  <div class="search-container">
+    <%= form_with url: materials_path, method: :get, class: "search-form", local: true do |f| %>
+      <%= f.search_field :query, placeholder: "Search materials...", class: "search-input" %>
+      <button type="submit"><i class="fas fa-search"></i></button>
     <% end %>
+  </div>
+  <ul class="project-list">
+    <% @materials.each do |material| %>
+      <li class="project-item">
 
-    <!-- Link to the material's show page -->
-    <%= link_to material.name, material_path(material) %>
+        <!-- Material Image -->
+        <% if material.photo.attached? %>
+          <%= link_to material_path(material) do %>
+            <%= cl_image_tag material.photo.key, class: "project-img", crop: :fill, alt: material.name %>
+          <% end %>
+        <% end %>
 
-    <!-- Delete button -->
-    <%= button_to "Delete",
-                  material_path(material),
-                  method: :delete,
-                  data: { confirm: "Are you sure?", turbo: false },
-                  class: "btn-delete" %>
+        <!-- Material Information -->
+        <div class="project-info">
+          <p><strong>NAME:</strong> <%= material.fabric_type.presence || "Not Provided" %></p>
+          <p><strong>QUANTITY:</strong> <%= material.length.present? ? "#{material.length}m" : "Not Provided" %></p>
 
-    <!-- Button or link to add this material to a project (requires valid project_id) -->
-    <%= link_to new_project_project_material_path(:project_id), class: "btn-add-material" do %>
-      <i class="fa-solid fa-plus"></i>
+          <!-- Sustainability Score Calculation -->
+          <%
+            water = material.water_usage.to_f
+            co2 = material.co2.to_f
+            electricity = material.electricity_used.to_f
+
+            # Define thresholds for normalization
+            water_threshold = 2000.0
+            co2_threshold = 2.0
+            electricity_threshold = 1.0
+
+            # Normalize values
+            water_score = water > 0 ? [(100 - ((water / water_threshold) * 100)), 0].max : 100
+            co2_score = co2 > 0 ? [(100 - ((co2 / co2_threshold) * 100)), 0].max : 100
+            electricity_score = electricity > 0 ? [(100 - ((electricity / electricity_threshold) * 100)), 0].max : 100
+
+            # Calculate overall score
+            total_score = ((water_score + co2_score + electricity_score) / 3).round
+          %>
+
+          <p><strong>SCORE:</strong> <%= total_score %>/100</p>
+        </div>
+
+        <!-- Delete Button -->
+        <%= button_to material_path(material),
+                      method: :delete,
+                      data: { confirm: "Are you sure?", turbo: false },
+                      class: "btn-delete" do %>
+          <i class="fas fa-trash"></i>
+        <% end %>
+
+      </li>
     <% end %>
-
-  <% end %> <!-- closes the each loop -->
+  </ul>
 </div>
-
-<!-- Link to create new material -->
-<%= link_to "Add to Inventory", new_material_path %>
