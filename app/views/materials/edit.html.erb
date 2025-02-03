@@ -1,0 +1,7 @@
+<h1>Edit Material</h1>
+<%= simple_form_for(@material) do |f| %>
+  <%= f.input :fabric_type %>
+  <%= f.input :fiber %>
+  <!-- etc. all your fields -->
+  <%= f.button :submit, "Update" %>
+<% end %>

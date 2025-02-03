@@ -40,9 +40,23 @@ class MaterialsController < ApplicationController
   def update
     @material = Material.find(params[:id])
     if @material.update(material_params)
-      redirect_to material_path(@material)
+      redirect_to @material, notice: 'Material updated successfully.'
     else
-      render :edit, status: :unprocessable_entity
+      render :edit
+    end
+  end
+
+  def edit_quantity
+    @material = Material.find(params[:id])
+    # Render edit_quantity.html.erb (you can include a form for adjusting quantity)
+  end
+
+  def update_quantity
+    @material = Material.find(params[:id])
+    if @material.update(quantity_params)
+      redirect_to @material, notice: 'Quantity updated successfully.'
+    else
+      render :edit_quantity
     end
   end
 
@@ -53,6 +67,7 @@ class MaterialsController < ApplicationController
   end
 
   private
+
   def materials_params
     params.require(:material).permit(:name, :weight, :supplier, :amount, :fiber, :colour, :origin, :purchase_location, :certifications, :length, :width, :weight)
   end
@@ -63,5 +78,9 @@ class MaterialsController < ApplicationController
       :colour, :texture, :origin, :supplier, :product_code, :purchase_location,
       :purchase_date, :price_per_meter, :certifications, :notes, :photo
     )
+  end
+
+  def quantity_params
+    params.require(:material).permit(:length)  # or whatever attribute represents quantity
   end
 end

@@ -1,9 +1,14 @@
+<h1 class="ecowave-header">EcoWave</h1>
 <div class="materials-show-container">
-  <h1 class="hr-lines">E C O W A V E</h1>
 
-  <% if @material.photo.attached? %>
-    <%= cl_image_tag @material.photo.key, class: "material-photo", crop: :fill, alt: "Fabric Photo" %>
-  <% end %>
+  <div class="material-photo-container">
+    <%= link_to edit_quantity_material_path(@material), class: "material-photo-link" do %>
+      <%= cl_image_tag @material.photo.key, class: "material-photo", crop: :fill, alt: "Fabric Photo" %>
+      <div class="quantity-toggle">
+        +/-
+      </div>
+    <% end %>
+  </div>
 
   <!-- Fabric Title and Quantity -->
   <h2 class="fabric-title">
@@ -61,7 +66,7 @@
           <% end %>
         </text>
       </svg>
-      <p class="materials-show-chart-label">Water Usage</p>
+      <p class="materials-show-chart-label">Water</p>
     </div>
 
     <!-- CO2 EMISSIONS -->
@@ -97,7 +102,7 @@
           <% end %>
         </text>
       </svg>
-      <p class="materials-show-chart-label">CO₂ Emissions</p>
+      <p class="materials-show-chart-label">CO₂</p>
     </div>
 
     <!-- ELECTRICITY USED -->
@@ -133,39 +138,69 @@
           <% end %>
         </text>
       </svg>
-      <p class="materials-show-chart-label">Electricity Used</p>
+      <p class="materials-show-chart-label">Electricity</p>
     </div>
   </div>
 
-  <!-- Material Details Section -->
-  <div class="material-info">
-    <h2>Details</h2>
-    <ul>
-      <li>Fiber Composition: <%= @material.fiber.presence || "Not Provided" %></li>
-      <li>Length: <%= @material.length.present? ? "#{@material.length}m" : "Not Provided" %></li>
-      <li>Width: <%= @material.width.present? ? "#{@material.width}cm" : "Not Provided" %></li>
-      <li>Weight (G/M²): <%= @material.grams_per_square_meter.present? ? @material.grams_per_square_meter : "Not Provided" %></li>
-      <li>Color: <%= @material.colour.presence || "Not Provided" %></li>
-      <li>Texture: <%= @material.texture.presence || "Not Provided" %></li>
-      <li>Origin: <%= @material.origin.presence || "Not Provided" %></li>
-      <li>Supplier: <%= @material.supplier.presence || "Not Provided" %></li>
-      <li>Product Code: <%= @material.product_code.presence || "Not Provided" %></li>
-      <li>Purchase Location: <%= @material.purchase_location.presence || "Not Provided" %></li>
-      <li>Purchase Date: <%= @material.purchase_date.present? ? @material.purchase_date : "Not Provided" %></li>
-      <li>Price per Meter: <%= @material.price_per_meter.present? ? @material.price_per_meter : "Not Provided" %></li>
-      <li>Certifications: <%= @material.certifications.presence || "Not Provided" %></li>
-      <li>Notes: <%= @material.notes.present? ? @material.notes : "Not Provided" %></li>
-    </ul>
+  <!-- Material Details Card -->
+  <div class="details-card">
+    <h2 class="details-card-header">DETAILS</h2>
+
+    <div class="details-row">
+      <!-- LEFT COLUMN -->
+      <div class="details-column">
+        <ul>
+          <li>TYPE: <%= @material.fabric_type.presence || "Not Provided" %></li>
+          <li>FIBER COMPOSITION: <%= @material.fiber.presence || "Not Provided" %></li>
+          <li>DIMENSION:
+            <ul>
+              <li>LENGTH: <%= @material.length.present? ? "#{@material.length}m" : "Not Provided" %></li>
+              <li>WIDTH: <%= @material.width.present? ? "#{@material.width}cm" : "Not Provided" %></li>
+              <li>WEIGHT: <%= @material.grams_per_square_meter.present? ? "#{@material.grams_per_square_meter} g/m²" : "Not Provided" %></li>
+            </ul>
+          </li>
+          <li>COLOR: <%= @material.colour.presence || "Not Provided" %></li>
+          <li>TEXTURE: <%= @material.texture.presence || "Not Provided" %></li>
+        </ul>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="details-column">
+        <ul>
+          <li>ORIGIN: <%= @material.origin.presence || "Not Provided" %></li>
+          <li>SUPPLIER: <%= @material.supplier.presence || "Not Provided" %></li>
+          <li>PRODUCT CODE: <%= @material.product_code.presence || "Not Provided" %></li>
+          <li>PURCHASE LOCATION: <%= @material.purchase_location.presence || "Not Provided" %></li>
+          <li>PURCHASE DATE: <%= @material.purchase_date.present? ? @material.purchase_date : "Not Provided" %></li>
+          <li>PRICE PER METER: <%= @material.price_per_meter.present? ? @material.price_per_meter : "Not Provided" %></li>
+          <li>CERTIFICATIONS: <%= @material.certifications.presence || "Not Provided" %></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- NOTES at the Bottom -->
+    <div class="details-notes">
+      NOTES:
+      <%= @material.notes.present? ? @material.notes : "Not Provided" %>
+    </div>
   </div>
 
-  <!-- Back / Add to Project -->
-  <%= link_to "Back", materials_path, class: "btn-back" %>
+
+  <!-- ADD TO PROJECT (White Button) -->
   <% if @project %>
-    <%= link_to project_project_material_path(@project, @material), class: "btn-add-material" do %>
-      <i class="fa-solid fa-plus"></i> Add to Project
-    <% end %>
+    <%= link_to "ADD TO PROJECT",
+                project_project_material_path(@project, @material),
+                class: "interface-white-button" %>
   <% else %>
-    <p>Select a project to add this material.</p>
-    <%= link_to "Select a Project", projects_path, class: "btn-add-material" %>
+    <%= link_to "ADD TO PROJECT", projects_path, class: "interface-white-button" %>
   <% end %>
-</div>
+
+  <!-- EDIT (White Button) -->
+  <%= link_to "EDIT", edit_material_path(@material),
+              class: "interface-white-button" %>
+
+  <!-- DELETE (Black Button) -->
+  <%= link_to "DELETE", material_path(@material),
+              method: :delete,
+              data: { confirm: "Are you sure?" },
+              class: "interface-black-button" %>

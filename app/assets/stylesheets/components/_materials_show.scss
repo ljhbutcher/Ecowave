@@ -2,21 +2,177 @@
 /* 1) CONTAINER FOR THE SHOW PAGE         */
 /******************************************/
 .materials-show-container {
-  /* Keep your content from stretching edge-to-edge */
-  max-width: 900px;      /* Adjust as desired */
-  margin: 0 auto;        /* Center horizontally */
-  padding: 0 15px;       /* Some side padding for smaller screens */
+  max-width: 900px; /* Adjust as desired */
+  margin: 0 auto;   /* Center horizontally */
+  padding: 0 15px;
+  margin-bottom: 11.1vh; /* Additional bottom space if you have a fixed navbar */
+}
+/******************************************/
+/* ECO WAVE HEADER STYLING                */
+/******************************************/
+.ecowave-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  margin-bottom: 25px; /* Adjust this value to control the bottom margin */
+  font-family: 'Exo', sans-serif; /* Make sure Exo is imported in your project */
+  font-weight: 300; /* Weight for a sleek appearance */
+  font-size: 1.8rem; /* Adjust font size as needed */
+  letter-spacing: 0.2em; /* Adjust this for letter spacing */
+  left: 5px;
+  position: relative;
+  gap: 10px;
+
+  /* Lines on either side of the text */
+  &::before,
+  &::after {
+    content: "";
+    flex: 1; /* Make the lines take up available space */
+    border-bottom: 1px solid #000; /* Thin line; adjust thickness and color if needed */
+    position: relative;
+    left: -5px;
+  }
+
+  .ecowave-header::before {
+    left: 0;
+  }
+
+  .ecowave-header::after {
+    right: 0;
+  }
 }
 
 /******************************************/
-/* 2) CIRCULAR CHART STYLES               */
+/* 2) FABRIC PHOTO                        */
 /******************************************/
+.material-photo {
+  display: block;
+  margin: 0 auto;      /* Center the photo */
+  border-radius: 50%;  /* Make it circular */
+  object-fit: cover;
+  width: 165px;        /* Adjust as desired */
+  height: 165px;
+  border: 1.5px solid #000;
+  margin-bottom: 2.5vh;      /* Adjust as desired */
+}
+
+/* Optional size variants */
+.material-photo--sm {
+  width: 150px;
+  height: 150px;
+}
+
+/******************************************/
+/* MATERIAL PHOTO TOGGLE OVERLAY          */
+/******************************************/
+.material-photo-container {
+  position: relative;         /* For absolute positioning of the toggle */
+  display: block;             /* Ensure the container is a block element */
+  margin: 0 auto;             /* Center the container horizontally */
+}
+
+.quantity-toggle {
+  position: absolute;
+  top: 14px;     /* Adjusted so roughly half overlaps the top of the image */
+  right: 97px;   /* Adjusted so roughly half overlaps the right side */
+  width: 30px;    /* Size of the toggle circle */
+  height: 30px;
+  background-color: #3f3f3f; /* White background */
+  border: 1px solid #000; /* Black border */
+  border-radius: 50%;     /* Make it a circle */
+  font-size: 1rem;
+  font-weight: 300;
+  color: white;            /* Black text */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;            /* Ensure it sits above the image */
+}
+
+/* Optionally, style the link wrapping the image to remove default styles */
+.material-photo-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/******************************************/
+/* 3) FABRIC TITLE                        */
+/******************************************/
+.fabric-title {
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  font-weight: 300;
+  font-size: 1.6rem;
+  margin-top: 10px;
+  border-bottom: 1px solid #000;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+/******************************************/
+/* 4) FABRIC QUANTITY                     */
+/******************************************/
+.fabric-quantity {
+  text-align: center;
+
+  /* Customize letter spacing, line-height, weight, size if desired */
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  font-weight: 300;
+  font-size: 1rem;
+
+  margin-bottom: 20px;
+}
+
+/******************************************/
+/* 5) FABRIC SUMMARY                      */
+/******************************************/
+.fabric-summary {
+  /* All caps. You can do "capitalize" or remove it if you only want normal text */
+  text-transform: uppercase;
+
+  /* Justified or left, pick your preference */
+  text-align: justify;
+  /* text-align: justify; */
+
+  letter-spacing: 1.9px;
+  line-height: 2.2;
+  font-weight: 300;
+  font-size: 13px;
+
+  margin-top: 22px; /* Space above the summary */
+  margin-bottom: 30px; /* Extra space below if needed */
+}
+
+/******************************************/
+/* 6) CIRCULAR CHART STYLES               */
+/******************************************/
+.env-score-heading {
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 300;
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+  border-bottom: 1px solid #000;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 0.5vh;
+}
 .materials-show-flex-wrapper {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   gap: 30px;
-  margin: 20px 0;
+  margin: 15px 0;
 }
 
 .materials-show-single-chart {
@@ -34,7 +190,7 @@
 /* The dark grey ring */
 .materials-show-circle-bg {
   fill: none;
-  stroke: #333; /* very dark grey */
+  stroke: #333;
   stroke-width: 2.5;
   stroke-linecap: round;
 }
@@ -42,20 +198,19 @@
 /* The white stroke for the "progress" portion */
 .materials-show-circle {
   fill: none;
-  stroke: #fff; /* white */
+  stroke: #fff;
   stroke-width: 2.5;
   stroke-linecap: round;
   animation: matShowProgress 1s ease-out forwards;
 }
 
-/* Animate from 0% to the final stroke-dasharray */
 @keyframes matShowProgress {
   0% {
     stroke-dasharray: 0 100;
   }
 }
 
-/* The text inside the circle */
+/* Text inside the circle */
 .materials-show-percentage {
   fill: black;
   font-family: sans-serif;
@@ -71,40 +226,143 @@
 
 /* Optional different colors per chart */
 .materials-show-water-chart .materials-show-circle {
-  stroke: #fff; /* or #00adee for a watery blue */
+  stroke: #fff; /* or #00adee, etc. */
 }
 .materials-show-co2-chart .materials-show-circle {
-  stroke: #fff; /* or #ff4c4c for red */
+  stroke: #fff; /* or #ff4c4c, etc. */
 }
 .materials-show-electricity-chart .materials-show-circle {
-  stroke: #fff; /* or #ffe600 for bright yellow */
+  stroke: #fff; /* or #ffe600, etc. */
 }
 
 /******************************************/
-/* 3) MATERIAL PHOTO SIZING               */
+/* 7) DETAILS CARD                        */
 /******************************************/
-.material-photo {
+.details-card {
+  position: relative;
+  z-index: 1;
+  background-color: #3f3f3f; /* Dark gray */
+  color: #fff;
+  border-radius: 20px;
+  margin: 30px 0;
+  padding: 0;
+
+  .details-card-header {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin: 0;
+    font-size: 1.2rem;
+    padding: 15px 15px 12px 15px;
+    border-bottom: 1px solid #fff;
+  }
+
+  .details-row {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 1px;
+      background: #fff;
+    }
+
+    .details-column {
+      flex: 1;
+      width: 50%;
+      box-sizing: border-box;
+      padding: 5px 15px;
+      font-size: 12.5px;
+      font-weight: 300;
+
+      &:first-child {
+        padding-right: 10px;
+      }
+      &:last-child {
+        padding-left: 10px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        > li {
+          margin: 12px 0;
+          line-height: 1.4;
+          position: relative;
+          padding-left: 10px;
+
+          &::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #fff;
+          }
+
+          ul {
+            margin-top: 5px;
+            li {
+              margin: 5px 0;
+              &::before {
+                content: "•";
+                position: absolute;
+                left: 10px;
+                color: #fff;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .details-notes {
+    border-top: 1px solid #fff;
+    border-radius: 0 0 20px 20px;
+    text-align: center;
+    padding: 14px 15px 15px 15px;
+    margin: 0;
+    font-weight: 300;
+  }
+}
+
+/******************************************/
+/* 8) BUTTONS                             */
+/******************************************/
+.interface-white-button {
   display: block;
-  margin: 0 auto;
-  border-radius: 50%;
-  object-fit: cover;
-  width: 175px;
-  height: 175px;
-  margin-bottom: 30px;
+  max-width: 350px;
+  margin: 10px auto;
+  padding: 5px;
+  border: 1px solid #000;
+  border-radius: 30px;
+  background-color: #fff;
+  color: #000;
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
 }
 
-/* Optional variant classes for different sizes */
-.material-photo--sm {
-  width: 150px;
-  height: 150px;
-}
-
-.material-photo--md {
-  width: 200px;
-  height: 200px;
-}
-
-.material-photo--lg {
-  width: 400px;
-  height: 400px;
+.interface-black-button {
+  display: block;
+  max-width: 350px;
+  margin: 10px auto;
+  padding: 5px;
+  border: 1px solid #000;
+  border-radius: 30px;
+  background-color: #000;
+  color: #fff;
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
 }
