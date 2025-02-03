@@ -2,11 +2,28 @@
 <h2><%= @project.name %></h2>
 
 
+ <div class="project-photo-container">
+    <%= link_to edit_quantity_material_path(@material), class: "material-photo-link" do %>
+      <%= cl_image_tag @project.photo.key, class: "project-photo", crop: :fill, alt: "Project Photo" %>
+      <div class="quantity-toggle">
+        +/-
+      </div>
+    <% end %>
+  </div>
+
+
+
+
+
+
+
+
+
 
 <div id="summary-section" data-controller="summary">
   <!-- Display summary text -->
-  <p data-summary-target="text">
-    <%= @project.summary.presence || "Add summary" %>
+  <p data-summary-target="text" data-action="click->summary#edit">
+    <%= @project.summary.presence || "Click to add summary" %>
   </p>
 
   <!-- Form should be hidden by default -->
@@ -16,14 +33,16 @@
     <%= f.submit "Save", class: "btn btn-primary" %>
     <button type="button" data-action="summary#cancel" class="btn btn-secondary">Cancel</button>
   <% end %>
-
-  <!-- Edit button -->
-  <button data-summary-target="editButton" data-action="click->summary#edit" class="btn btn-outline-primary">Edit</button>
 </div>
+
+
+
 
 <div class="fabrics-score">
 
 </div>
+
+
 
 
 <div class="selected-fabrics">
@@ -37,8 +56,8 @@
   <div id="notes-section" data-controller="notes">
     <h6>Notes:</h6>
   <!-- Display Notes -->
-  <p data-notes-target="text">
-    <%= @project.notes.presence || "Click 'Edit' to add notes..." %>
+  <p data-notes-target="text" data-action="click->notes#edit" >
+    <%= @project.notes.presence || "Click here to add notes" %>
   </p>
 
   <!-- Editable Form for Notes -->
@@ -48,9 +67,6 @@
     <%= f.submit "Save", class: "btn btn-primary" %>
     <button type="button" data-action="notes#cancel" class="btn btn-secondary">Cancel</button>
   <% end %>
-
-  <!-- Edit Button -->
-  <button data-notes-target="editButton" data-action="click->notes#edit" class="btn btn-outline-primary">Edit</button>
 </div>
 
 
