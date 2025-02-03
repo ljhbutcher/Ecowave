@@ -2,11 +2,24 @@
 
   <!-- SEARCH BAR -->
   <div class="search-container">
-    <%= form_with url: materials_path, method: :get, class: "search-form", local: true do |f| %>
-      <%= f.search_field :query, placeholder: "Search materials...", class: "search-input" %>
-      <button type="submit"><i class="fas fa-search"></i></button>
-    <% end %>
+  <!-- Left Black Line -->
+    <div class="search-line-container">
+      <span class="search-line"></span>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-bar-container">
+      <%= form_with url: materials_path, method: :get, class: "search-form", local: true do |f| %>
+        <%= f.search_field :query, placeholder: "SEARCH", class: "search-input" %>
+        <button type="submit" class="search-icon">
+          <img src="<%= asset_path('magnifying-glass.png') %>" alt="Search" class="search-img">
+        </button>
+      <% end %>
+    </div>
   </div>
+
+
+
   <ul class="project-list">
     <% @materials.each do |material| %>
       <li class="project-item">
