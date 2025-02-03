@@ -1,67 +1,98 @@
+/******************************************/
+/* LANDING PAGE STYLES                    */
+/******************************************/
+
 .landing-body {
+  /* Full white background filling the screen */
   background-color: #fff;
-  color: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 0;
+  padding: 0;
   height: 100vh;
+  width: 100vw;
   font-family: Arial, sans-serif;
-  background: url('https://i.gifer.com/JcC.gif') no-repeat center center fixed;
-  background-size: cover;
+  position: relative;
+  overflow: hidden;
 }
 
 .landing-container {
-  text-align: center;
+  /* Full-viewport container */
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
+/* EcoWave Title at the Very Top */
 .landing-logo {
-  font-size: 60px;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.5rem; /* or 60px if you prefer */
   letter-spacing: 4px;
-  margin-bottom: 300px;
-  margin-top: 60px;
+  margin: 0;
 }
 
+/* Logo Placeholder (centered, just below the title if you like) */
+.logo-placeholder {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  color: #000;
+  text-align: center;
+}
+
+/* Buttons near the bottom center */
 .landing-buttons {
-  margin-top: 40px;
-  margin-bottom: 40px;
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 }
 
-.input-field {
-  display: block;
+/* Base class for both buttons */
+.landing-btn {
+  display: inline-block;
   width: 150px;
   padding: 10px;
-  margin: 10px auto;
-  border-radius: 20px;
+  border-radius: 30px;
   text-decoration: none;
   text-align: center;
   font-weight: bold;
-  border: 2px solid black;
-  color: black;
+  font-size: 1rem;
+  border: 2px solid #000;
 }
 
-.btn sign-in {
-  display: block;
-  width: 150px;
-  padding: 10px;
-  margin: 10px auto;
-  border-radius: 5px;
-  text-decoration: none;
-  text-align: center;
-  font-weight: bold;
-  border: 2px solid black;
-  color: black;
+/* SIGN IN => white with black text */
+.btn-sign-in {
+  background-color: #fff;
+  color: #000;
 }
 
-.btn sign-up {
-  display: block;
-  width: 150px;
-  padding: 10px;
-  margin: 10px auto;
-  border-radius: 5px;
-  text-decoration: none;
-  text-align: center;
-  font-weight: bold;
-  background: black;
-  color: white;
-  margin-bottom: 250px;
+/* SIGN UP => black with white text */
+.btn-sign-up {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Day/Night Toggle at the very bottom center */
+.landing-toggle {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  border: 2px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-size: 1.2rem;
 }

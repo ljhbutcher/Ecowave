@@ -17,9 +17,12 @@
   </div>
 
   <!-- Dynamic Quantity Display -->
+  <!-- Dynamic Quantity & Fabric Type Display -->
   <div class="fabric-name">
     <h2 id="fabric-type-display"><%= @material.fabric_type.presence || "FABRIC TYPE" %></h2>
-    <p>QUANTITY: <span id="quantity-display"><%= @material.length || '...' %></span>M</p>
+    <p>
+      QUANTITY: <span id="quantity-display"><%= @material.length || '...' %></span>m
+    </p>
   </div>
 
   <!-- Details Section -->
@@ -30,8 +33,8 @@
     <%= f.input :fiber, label: "Fiber Composition" %>
 
     <div class="input-group dimensions">
-      <%= f.input :length, label: "L (m)", input_html: { step: 0.01, id: "material_length" } %>
-      <%= f.input :width, label: "W (cm)", input_html: { step: 0.1 } %>
+      <%= f.input :length, label: "Length (m)", input_html: { step: 0.01, id: "material_length" } %>
+      <%= f.input :width, label: "Width (cm)", input_html: { step: 0.1 } %>
       <%= f.input :grams_per_square_meter, label: "G/M²", input_html: { step: 0.1 } %>
     </div>
 
@@ -53,7 +56,10 @@
     <%= link_to "CANCEL", materials_path, class: "cancel-btn" %>
   </div>
 <% end %>
-
+<br>
+    <br>
+    <br>
+    <br>
 <style>
   .image-upload .upload-box {
     width: 200px;
