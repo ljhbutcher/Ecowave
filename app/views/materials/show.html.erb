@@ -22,7 +22,7 @@
   <p class="fabric-quantity">
     QUANTITY:
     <% if @material.length.present? %>
-      <%= "#{@material.length}m" %>
+      <%= "#{@material.length.to_i}m" %>
     <% else %>
       Not Provided
     <% end %>

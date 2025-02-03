@@ -1,17 +1,14 @@
-<h1 class="hr-lines">E C O W A V E</h1>
+<h1 class="ecowave-header">EcoWave</h1>
+<div class="materials-show-container">
 
-<%= simple_form_for(@material, url: materials_path, html: { multipart: true, id: "fabric-form" }) do |f| %>
-  <!-- Image Upload Circle -->
-  <div class="image-upload">
-    <label for="material_photo">
-      <div class="upload-box">
-        <% if @material.photo.attached? %>
-          <%= image_tag @material.photo, class: "preview-img" %>
-        <% else %>
-          <i class="fas fa-plus"></i>
-          <p>Upload Image</p>
-        <% end %>
-      </div>
+  <%= simple_form_for(@material, url: materials_path, html: { multipart: true, id: "fabric-form" }) do |f| %>
+
+  <div class="material-photo-container">
+    <label for="material_photo" class="material-photo-label">
+      <%= image_tag(@material.photo.attached? ? @material.photo : "placeholder-image.png",
+                    class: "material-photo",
+                    alt: "Upload Fabric Photo") %>
+      <div class="quantity-toggle">+</div>
     </label>
     <%= f.input :photo, label: false, as: :file, input_html: { id: "material_photo", class: "d-none" } %>
   </div>
@@ -25,31 +22,60 @@
     </p>
   </div>
 
-  <!-- Details Section -->
-  <div class="details-box">
-    <h3>DETAILS</h3>
-
-    <%= f.input :fabric_type, label: "Fabric Type", input_html: { id: "material_fabric_type" } %>
-    <%= f.input :fiber, label: "Fiber Composition" %>
-
-    <div class="input-group dimensions">
-      <%= f.input :length, label: "Length (m)", input_html: { step: 0.01, id: "material_length" } %>
-      <%= f.input :width, label: "Width (cm)", input_html: { step: 0.1 } %>
-      <%= f.input :grams_per_square_meter, label: "G/M²", input_html: { step: 0.1 } %>
+    <!-- FABRIC TYPE & QUANTITY -->
+    <div class="fabric-info-wrapper">
+      <h2 id="fabric-type-display" class="fabric-title"><%= @material.fabric_type.presence || "FABRIC TYPE" %></h2>
+      <p class="fabric-quantity">
+        QUANTITY: <span id="quantity-display"><%= @material.length || '...' %></span>m
+      </p>
     </div>
 
-    <%= f.input :colour, label: "Colour" %>
-    <%= f.input :texture, label: "Texture" %>
-    <%= f.input :origin, label: "Origin" %>
-    <%= f.input :supplier, label: "Supplier" %>
-    <%= f.input :product_code, label: "Product Code" %>
-    <%= f.input :purchase_location, label: "Purchase Location" %>
-    <%= f.input :purchase_date, label: "Purchase Date", as: :date %>
-    <%= f.input :price_per_meter, label: "Price per Meter", input_html: { step: 0.01 } %>
-    <%= f.input :certifications, label: "Certifications" %>
-    <%= f.input :notes, label: "Notes", as: :text %>
+    <!-- DETAILS FORM -->
+    <div class="details-card">
+      <h2 class="details-card-header">DETAILS</h2>
+
+      <div class="details-input-container"> <!-- Added this container -->
+        <%= f.input :fabric_type, label: false, placeholder: "TYPE", wrapper_html: { class: "material-input" } %>
+        <%= f.input :fiber, label: false, placeholder: "FIBER", wrapper_html: { class: "material-input" } %>
+
+        <div class="dimensions-wrapper">
+          <span class="dimensions-label">DIMENSIONS:</span>
+          <div class="dimensions-container">
+            <%= f.input :length, label: false, placeholder: "L(m)", wrapper_html: { class: "material-input-small" } %>
+            <%= f.input :width, label: false, placeholder: "W(cm)", wrapper_html: { class: "material-input-small" } %>
+            <%= f.input :grams_per_square_meter, label: false, placeholder: "G/M²", wrapper_html: { class: "material-input-small" } %>
+          </div>
+        </div>
+
+        <%= f.input :colour, label: false, placeholder: "COLOR", wrapper_html: { class: "material-input" } %>
+        <%= f.input :texture, label: false, placeholder: "TEXTURE", wrapper_html: { class: "material-input" } %>
+        <%= f.input :origin, label: false, placeholder: "ORIGIN", wrapper_html: { class: "material-input" } %>
+        <%= f.input :supplier, label: false, placeholder: "SUPPLIER", wrapper_html: { class: "material-input" } %>
+        <%= f.input :product_code, label: false, placeholder: "PRODUCT CODE", wrapper_html: { class: "material-input" } %>
+        <%= f.input :purchase_location, label: false, placeholder: "PURCHASE LOCATION", wrapper_html: { class: "material-input" } %>
+        <div class="details-date">
+          <%= f.input :purchase_date,as: :string, label: false, input_html: { data: { controller: "datepicker" }, placeholder: "PURCHASE DATE" }, wrapper_html: { class: "material-input" } %>
+
+          <!--<%= f.input :purchase_date, label: false, placeholder: "PURCHASE DATE", as: :date, wrapper_html: { class: "material-input" } %>-->
+        </div>
+        <%= f.input :price_per_meter, label: false, placeholder: "PRICE PER METER", wrapper_html: { class: "material-input" } %>
+        <%= f.input :certifications, label: false, placeholder: "CERTIFICATIONS", wrapper_html: { class: "material-input" } %>
+      </div>
+
+      <div class="details-notes">
+        <%= f.input :notes, label: false, placeholder: "NOTES", wrapper_html: { class: "material-input" } %>
+      </div>
+    </div>
+
+
+
+    <!-- FORM BUTTONS -->
+  <div class="form-buttons">
+    <%= f.submit "ADD FABRIC", class: "interface-white-button" %>
+    <%= link_to "CANCEL", materials_path, class: "interface-black-button" %>
   </div>
 
+<<<<<<< HEAD
   <!-- Form Buttons -->
   <div class="button-group">
     <%= f.button :submit, "ADD FABRIC", class: "add-fabric" %>
@@ -137,3 +163,7 @@
     });
   }
 </script>
+=======
+  <% end %>
+</div>
+>>>>>>> master
