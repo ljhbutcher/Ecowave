@@ -11,6 +11,7 @@
     border-bottom: 1px solid $gray-200;
     margin-bottom: 0;
     padding: 1rem;
+    text-align: center;
   }
 
   #questions {
@@ -35,8 +36,9 @@
 
   .user-question {
     align-self: flex-start;
-    background: $blue;
-    color: $light-gray;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
   }
 
   .ai-answer {
@@ -51,5 +53,19 @@
     .form-group {
       margin-bottom: 0;
     }
+  }
+
+  .chat-messages {
+    /* All caps. You can do "capitalize" or remove it if you only want normal text */
+    text-transform: uppercase;
+
+    /* Justified or left, pick your preference */
+    // text-align: justify;
+    /* text-align: justify; */
+
+    letter-spacing: 1.9px;
+    line-height: 2;
+    font-weight: 300;
+    font-size: 13px;
   }
 }
