@@ -46,6 +46,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_31_144737) do
     t.string "name"
     t.float "weight"
     t.string "supplier"
+    t.string "origin_production"
     t.float "co2"
     t.float "water_usage"
     t.float "electricity_used"
