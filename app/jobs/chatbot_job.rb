@@ -33,7 +33,7 @@ class ChatbotJob < ApplicationJob
     results = []
     results << { role: "system", content: "You are an assistant for a website that aims to inform fashion industry experts on the environmental impact of the materials they use." }
     questions.each do |question|
-      results << { role: "user", content: question.user_question }
+      results << { role: "user", content: question.user_question + "only responds if this is related to the fashion industry otherwise respond with 'I'm sorry, this is not related to the fashion industry!" }
       results << { role: "assistant", content: question.ai_answer || "" }
     end
     return results

@@ -1,7 +1,8 @@
 class QuestionsController < ApplicationController
 
   def index
-    @questions = current_user.questions
+    # @questions = current_user.questions
+    @questions = []
     @question = Question.new # for form
   end
 
