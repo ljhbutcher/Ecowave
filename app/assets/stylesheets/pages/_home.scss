@@ -55,3 +55,37 @@ p {
   text-transform: uppercase;
   color: black;
 }
+
+.details-notes {
+  border-top: 1px solid #fff;
+  border-radius: 0 0 20px 20px;
+  text-align: center;
+  padding: 14px 15px 15px 15px;
+  margin: 0;
+  font-weight: 300;
+}
+
+.details-notes {
+  color: white;
+
+  }
+  .material-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensures the bin icon stays to the right */
+    width: 100%;
+  }
+
+  .material-name {
+    margin: 0; /* Removes extra margin from the heading */
+  }
+
+  .material-remove {
+    margin-left: 10px; /* Adds spacing between name and bin */
+  }
+
+  .bin-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }

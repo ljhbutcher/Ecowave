@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   # delete "/sign_out", to: "sessions#destroy"
 
   resources :projects do
-    resources :project_materials, only: [:new, :create, :show, :destroy]
+    resources :project_materials, only: [:new, :create, :show,]
+    resources :materials, controller: 'project_materials', only: [:destroy]
   end
 
   resources :materials do
