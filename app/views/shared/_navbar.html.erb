@@ -2,7 +2,7 @@
       <ul class="navbar-items">
         <li class="navbar-item">
           <a href="/home">
-            <%= image_tag "home.png" %>
+            <%= image_tag "user.png" %>
           </a>
         </li>
         <li class="navbar-item">
@@ -11,16 +11,16 @@
           </a>
         </li>
         <li class="navbar-item">
-          <a href="/projects">
-            <%= image_tag "project-management.png" %>
-          </a>
-        </li>
-        <li class="navbar-item">
           <% if current_page?(projects_path) %>
             <a href="/projects/new"><%= image_tag "plus.png" %></a>
           <% else %>
             <a href="/materials/new"><%= image_tag "plus.png" %></a>
           <% end %>
+        </li>
+        <li class="navbar-item">
+          <a href="/projects">
+            <%= image_tag "project-management.png" %>
+          </a>
         </li>
         <li class="navbar-item">
           <a href="/questions">
@@ -33,4 +33,13 @@
           <% end %>
         </li>
       </ul>
+
+      <script>
+        document.getElementById("nav-icon").addEventListener("click", function() {
+          document.getElementById("icon1").classList.toggle("show");
+          document.getElementById("icon2").classList.toggle("show");
+        });
+      </script>
+
+
 </nav>
