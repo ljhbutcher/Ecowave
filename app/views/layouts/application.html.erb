@@ -9,16 +9,14 @@
     <%= javascript_importmap_tags %>
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
-    <%# <link rel="stylesheet" type="text/css" href="loading-bar.css"/> %>
-    <%# <script type="text/javascript" src="loading-bar.js"></script> %>
+    <%# <link rel="stylesheet" type="text/css" href="loading-bar.css"/>
+    <script type="text/javascript" src="loading-bar.js"></script> %>
   </head>
 
   <body>
-
-    <% if user_signed_in? %>
+    <% if user_signed_in? && request.path != "/materials/20/edit_quantity" %>
       <%= render "shared/navbar" %>
     <% end %>
-    <%# <%= render "shared/darkmode" %>
     <%= yield %>
   </body>
 </html>

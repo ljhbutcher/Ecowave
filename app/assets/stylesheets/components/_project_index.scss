@@ -5,37 +5,86 @@
 
 .search-container {
   display: flex;
-  justify-content: space-between; /* Push items to opposite ends */
-  align-items: center; /* Align vertically */
-  width: 100%; /* Full width */
-  padding: 10px;
-}
-
-.search-input {
-  flex: 1; /* Makes input take up available space */
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.search-form {
-  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Push everything to the right */
   width: 100%;
+  padding: 15px 0;
+  position: relative;
 }
 
-.search-form button {
-  background-color: white;
+/* Left Black Line Container */
+.search-line-container {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  max-width: 650px; /* Adjust width of the black line area */
+}
+
+/* The actual black line */
+.search-line {
+  flex-grow: 1;
+  border-bottom: 1.5px solid black; /* Adjust thickness */
+  margin-right: 10px; /* Less space between the line and search bar */
+  height: 1px;
+}
+
+/* Search Bar Container */
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Adjust spacing between input and icon */
+  max-width: 180px; /* Keep search box compact */
+}
+
+/* Search Input */
+.search-input {
+  font-family: 'Exo', sans-serif;
+  font-size: 1.3rem; /* Adjust placeholder font size */
+  font-weight: 300; /* Adjust placeholder weight */
+  letter-spacing: 0.2rem;
   border: none;
-  padding: 8px 15px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
+  outline: none;
+  background: transparent;
+  color: black;
+  text-align: right;
+  text-transform: uppercase; /* Force all uppercase */
+  width: 100%;
+  max-width: 130px;
+  margin-top: 5px;
+  padding-right: 5px;
+
+  &::placeholder {
+    font-size: 1.3rem;
+    font-weight: 300;
+    letter-spacing: 0.2rem;
+    color: rgb(0, 0, 0);
+    text-align: right;
+    padding-left: 3px; /* Minimal space between input and icon */
+  }
+
+  /* Remove blue "clear" button on Webkit browsers */
+  &::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+  }
 }
 
-.search-form button i {
-  font-size: 18px;
+/* Custom Search Icon */
+.search-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+
+  .search-img {
+    width: 33px;
+    height: auto;
+    margin-right: 5px;
+    padding-bottom: 5px;
+  }
 }
+
 
 .project-list {
   list-style: none;
@@ -45,7 +94,8 @@
 .project-item {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #eee;
+  padding: 10px; /* Ensures uniform spacing */
+  gap: 15px; /* Adds space between elements */
 }
 
 .project-img {
@@ -53,21 +103,28 @@
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  margin-left: 10px;
+  border: 1.5px solid #000;
+}
+
+.project-info {
+  flex-grow: 1; /* Allows the text section to take up available space */
+  min-width: 0; /* Prevents shrinking issues */
 }
 
 .project-info a {
   text-decoration: none;
   color: black;
-}
-
-.project-info {
-  margin: 20px auto;
-  padding-left: 20px;
+  display: block;
 }
 
 .project-info p {
-  margin: 0px;
+  margin: 0;
+  white-space: normal;
+  overflow-wrap: break-word;
+  font-size: 14.19px;
+  letter-spacing: 0.08em;
+  line-height: 1.7;
+  font-weight: 300;
 }
 
 .btn-delete {
@@ -75,7 +132,6 @@
   border: none;
   cursor: pointer;
   font-size: 1.2rem;
-  margin-right: 10px;
 }
 
 .btn-delete img {
@@ -87,17 +143,4 @@
   display: flex;
   justify-content: center;
   width: 100%;
-}
-
-.add {
-  display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  border: 1px solid black;
-  border-radius: 3px;
-  background-color: white;
-  text-decoration: none;
-  color: black;
-  padding-left: 40px;
-  padding-right: 40px;
 }

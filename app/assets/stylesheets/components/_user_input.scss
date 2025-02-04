@@ -103,12 +103,11 @@
   color: #333 !important;
   text-align: center;
 
-  height: 40px !important; /* Force height */
-  min-height: 40px !important; /* Prevent Simple Form from setting min-height */
-  max-height: 45px !important; /* Prevent unnecessary stretching */
-  line-height: 1.2 !important; /* Keep text from making the input taller */
-
-  resize: none; /* Prevent resizing */
+  height: 40px !important;
+  min-height: 40px !important;
+  max-height: 45px !important;
+  line-height: 1.2 !important;
+  resize: none;
 
   &::placeholder {
     padding-top: 5px;
