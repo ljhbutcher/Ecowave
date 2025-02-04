@@ -1,6 +1,12 @@
 class MaterialsController < ApplicationController
   def index
-    @materials = Material.all
+    if params[:query].present?
+      # Search for materials where the fabric type, fiber, or color matches the query
+      @materials = Material.where("fabric_type ILIKE ? OR fiber ILIKE ? OR colour ILIKE ?",
+                                  "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%")
+    else
+      @materials = Material.all
+    end
   end
 
   def show
