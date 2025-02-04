@@ -26,10 +26,8 @@ class ProjectMaterialsController < ApplicationController
   end
 
   def destroy
-    raise
-    @project_material = ProjectMaterial.find(params[:id])
-
-    # @project_material = ProjectMaterial.find_by(project: @project, material: @material)
+    @material = Material.find(params[:id])
+    @project_material = ProjectMaterial.find_by(project: @project, material: @material)
     @project_material.destroy
 
     redirect_to project_path(@project)

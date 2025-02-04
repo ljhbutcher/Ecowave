@@ -37,7 +37,6 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    raise
     if @project.update(photo: project_params[:photo])
       respond_to do |format|
         format.html { redirect_to @project, notice: "Summary updated successfully." }
