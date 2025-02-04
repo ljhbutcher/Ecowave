@@ -1,7 +1,14 @@
 class PagesController < ApplicationController
-  before_action :authenticate_user!
+  # Skip authentication only for the landing page
+  skip_before_action :authenticate_user!, only: [:landing_page]
+
+  # This action renders app/views/pages/landing_page.html.erb
+  def landing_page
+    # No authentication needed here—this is your public landing page.
+  end
 
   def home
+    # This action requires the user to be authenticated.
     materials = current_user.materials
     Rails.logger.debug "Current user has #{materials.count} materials."
 

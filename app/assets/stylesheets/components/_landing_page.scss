@@ -52,20 +52,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 17px;
+  margin-bottom: 15vh !important;
 }
+
 
 /* Base class for both buttons */
 .landing-btn {
   display: inline-block;
-  width: 150px;
-  padding: 10px;
+  width: 153px;
+  padding: 6.5px;
   border-radius: 30px;
   text-decoration: none;
   text-align: center;
-  font-weight: bold;
+  font-weight: 300;
   font-size: 1rem;
-  border: 2px solid #000;
+  border: 1px solid #000;
 }
 
 /* SIGN IN => white with black text */
@@ -96,3 +98,4 @@
   color: #000;
   font-size: 1.2rem;
 }
+// gg
