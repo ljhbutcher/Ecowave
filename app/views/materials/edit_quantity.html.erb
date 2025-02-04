@@ -29,8 +29,12 @@
     <button type="button" class="quantity-btn" onclick="increaseQuantity()">+</button>
   </div>
   <%= f.hidden_field :length, id: "material_length", value: @material.length.present? ? @material.length.to_i : 0 %>
-  <%= f.button :submit, "Update Quantity", class: "submit" %>
+  <%= f.button :submit, "UPDATE QUANTITY", class: "submit" %>
   <% end %>
+
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="<%= edit_history_material_path(@material) %>" class="submit" style="text-decoration: none;">ADJUSTMENT HISTORY</a>
+    </div>
 
     <script>
       function increaseQuantity() {

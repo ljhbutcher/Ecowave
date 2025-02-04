@@ -1,0 +1,30 @@
+<div class="background">
+  <h1 class="ecowave-header">EcoWave</h1>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>PREVIOUS</th>
+          <th>NEW</th>
+          <th>CHANGED AT</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @material.material_histories.order(changed_at: :desc).each do |history| %>
+          <tr>
+            <td><%= history.previous_length %>m</td>
+            <td><%= history.new_length %>m</td>
+            <td><%= history.changed_at.strftime("%d/%m/%Y %H:%M") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="back-container">
+    <%= link_to edit_quantity_material_path(@material) do %>
+      <%= image_tag "white.png", alt: "White Image", class: "back-button" %>
+    <% end %>
+    <h5>BACK</h5>
+  </div>
+</div>
