@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get :process_ai, on: :member
     member do
       get :edit_quantity
+      get :edit_history
       patch :update_quantity
     end
   end
