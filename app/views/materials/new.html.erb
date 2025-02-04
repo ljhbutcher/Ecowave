@@ -11,7 +11,6 @@
                       class: "material-photo",
                       alt: "Upload Fabric Photo",
                       data: { fabric_form_target: "image" }) %>
-        <!-- This plus sign is decorative; clicking the label (image) triggers the file input -->
         <div class="quantity-toggle">+</div>
       </label>
       <%= f.input :photo, label: false, as: :file, input_html: { id: "material_photo", class: "d-none", data: { action: "change->fabric-form#previewImage" } } %>
@@ -19,10 +18,10 @@
 
     <!-- FABRIC TYPE & QUANTITY -->
     <div class="fabric-info-wrapper">
-      <h2 id="fabric-type-display" class="fabric-title" data-fabric-form-target="fabricType">
+      <h2 id="fabric-type-display" class="fabric-title placeholder-text" data-fabric-form-target="fabricType">
         <%= @material.fabric_type.presence || "FABRIC TYPE" %>
       </h2>
-      <p class="fabric-quantity">
+      <p class="fabric-quantity placeholder-text">
         QUANTITY: <span id="quantity-display" data-fabric-form-target="quantity">
           <%= @material.length || '...' %>
         </span>m

@@ -6,7 +6,7 @@
       <% if @material.photo.attached? %>
         <%= cl_image_tag @material.photo.key, class: "material-photo", crop: :fill, alt: "Fabric Photo" %>
       <% else %>
-        <p>No image available</p>
+        <%= image_tag "placeholder-image.png", class: "material-photo", alt: "Default placeholder" %>
       <% end %>
       <div class="quantity-toggle">
         +/-
@@ -40,7 +40,7 @@
     <!-- WATER USAGE -->
     <div class="materials-show-single-chart">
       <% water = @material.water_usage %>
-      <% water_threshold = 2000.0 %> <!-- "Bad" threshold for water usage -->
+      <% water_threshold = 2000.0 %>
       <% water_ratio = if water.present?
                          ratio = (water / water_threshold) * 100
                          ratio = 100 if ratio > 100
@@ -74,7 +74,7 @@
     <!-- CO₂ EMISSIONS -->
     <div class="materials-show-single-chart">
       <% co2_val = @material.co2 %>
-      <% co2_threshold = 2.0 %> <!-- "Bad" threshold for CO₂ -->
+      <% co2_threshold = 2.0 %>
       <% co2_ratio = if co2_val.present?
                        ratio = (co2_val / co2_threshold) * 100
                        ratio = 100 if ratio > 100
@@ -108,7 +108,7 @@
     <!-- ELECTRICITY USED -->
     <div class="materials-show-single-chart">
       <% elec = @material.electricity_used %>
-      <% elec_threshold = 1.0 %> <!-- "Bad" threshold for electricity (1 kWh/m²) -->
+      <% elec_threshold = 1.0 %>
       <% elec_ratio = if elec.present?
                         ratio = (elec / elec_threshold) * 100
                         ratio = 100 if ratio > 100
