@@ -1,17 +1,48 @@
 <h1 class="ecowave-header">EcoWave</h1>
-<h2>Add a new project</h2>
+<div class="materials-show-container">
 
-<%= simple_form_for @project do |f| %>
-  <%= f.input :name, label: "Name" %>
-  <%= f.input :deadline,
-            as: :string,
-            input_html: { data: { controller: "datepicker" },
-                          placeholder: "📅 dd/mm/yyyy" },
-            label: "Deadline" %>
+  <%= simple_form_for(@project, url: projects_path, html: { multipart: true, id: "fabric-form" }) do |f| %>
 
+    <!-- Material Photo Container -->
+    <div class="material-photo-container">
+      <label for="material_photo" class="material-photo-label">
+        <%= image_tag(@project.photo.attached? ? @project.photo : asset_path("placeholder-image.png"),
+                      class: "material-photo",
+                      alt: "Upload Project Photo") %>
+        <div class="quantity-toggle">+</div>
+      </label>
+      <%= f.input :photo, label: false, as: :file, input_html: { id: "project_photo", class: "d-none" } %>
+    </div>
 
-   <%= f.input :description, label: "Description", as: :text %>
+    <!-- Details Card -->
+    <div class="details-card">
+      <div class="details-input-container">
+        <%= f.input :name,
+                    label: false,
+                    placeholder: "NAME",
+                    wrapper_html: { class: "material-input" },
+                    input_html: { class: "material-input-field" } %>
+        <div class="details-date">
+          <%= f.input :deadline,
+                      as: :string,
+                      label: false,
+                      input_html: { data: { controller: "datepicker" }, placeholder: "📅 DEADLINE" },
+                      wrapper_html: { class: "material-input" } %>
+        </div>
 
-  <%= f.button :submit, "Add Project" %>
-  <div>  <%= link_to "Cancel", projects_path, class: "btn-cancel" %> </div>
-<% end %>
+        <!-- Notes Section -->
+        <div class="details-notes">
+          <%= f.input :description, label: false, placeholder: "DESCRIPTION", wrapper_html: { class: "material-input" } %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Buttons (moved outside of the details-card) -->
+    <div class="form-buttons">
+      <%= f.submit "ADD PROJECT", class: "interface-white-button" %>
+      <%= link_to "CANCEL", projects_path, class: "interface-black-button" %>
+    </div>
+
+  <% end %>
+
+</div>
