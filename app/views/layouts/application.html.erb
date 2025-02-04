@@ -14,7 +14,7 @@
   </head>
 
   <body>
-    <% if user_signed_in? && request.path != "/materials/20/edit_quantity" %>
+    <% if user_signed_in? && !request.path.match?(/^\/materials\/\d+\/edit_quantity$/) %>
       <%= render "shared/navbar" %>
     <% end %>
     <%= yield %>
