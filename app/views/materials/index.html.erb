@@ -2,7 +2,7 @@
 
   <!-- SEARCH BAR -->
   <div class="search-container">
-  <!-- Left Black Line -->
+    <!-- Left Black Line -->
     <div class="search-line-container">
       <span class="search-line"></span>
     </div>
@@ -18,16 +18,16 @@
     </div>
   </div>
 
-
-
   <ul class="project-list">
     <% @materials.each do |material| %>
       <li class="project-item">
 
         <!-- Material Image -->
-        <% if material.photo.attached? %>
-          <%= link_to material_path(material) do %>
-            <%= cl_image_tag material.photo.key, class: "project-img", crop: :fill, alt: material.name %>
+        <%= link_to material_path(material) do %>
+          <% if material.photo.attached? %>
+            <%= cl_image_tag material.photo.key, class: "project-img", crop: :fill, alt: material.fabric_type %>
+          <% else %>
+            <%= image_tag "placeholder-image.png", class: "project-img", alt: "Default placeholder" %>
           <% end %>
         <% end %>
 

@@ -7,6 +7,8 @@
   padding: 22px 15px 1px 15px; /* Adds padding inside the dark grey card */
 }
 
+
+
 /* General styling for input fields */
 .details-card .details-input-container .material-input input,
 .details-card .details-input-container .material-input-small input {
@@ -14,6 +16,7 @@
   padding: 5px; /* Consistent padding with buttons */
   font-family: 'Exo', sans-serif;
   font-size: 1rem;
+  text-transform: uppercase;
   border: 1px solid #adb5bd;
   border-radius: 20px; /* Rounded corners */
   background-color: #fff; /* Fully white background */

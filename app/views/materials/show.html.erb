@@ -1,19 +1,18 @@
 <h1 class="ecowave-header">EcoWave</h1>
 <div class="materials-show-container">
 
- <div class="material-photo-container">
-  <%= link_to edit_quantity_material_path(@material), class: "material-photo-link" do %>
-    <% if @material.photo.attached? %>
-      <%= cl_image_tag @material.photo.key, class: "material-photo", crop: :fill, alt: "Fabric Photo" %>
-    <% else %>
-      <p>No image available</p>
+  <div class="material-photo-container">
+    <%= link_to edit_quantity_material_path(@material), class: "material-photo-link" do %>
+      <% if @material.photo.attached? %>
+        <%= cl_image_tag @material.photo.key, class: "material-photo", crop: :fill, alt: "Fabric Photo" %>
+      <% else %>
+        <%= image_tag "placeholder-image.png", class: "material-photo", alt: "Default placeholder" %>
+      <% end %>
+      <div class="quantity-toggle">
+        +/-
+      </div>
     <% end %>
-    <div class="quantity-toggle">
-      +/-
-    </div>
-  <% end %>
-</div>
-
+  </div>
 
   <!-- Fabric Title and Quantity -->
   <h2 class="fabric-title">
@@ -41,16 +40,14 @@
     <!-- WATER USAGE -->
     <div class="materials-show-single-chart">
       <% water = @material.water_usage %>
-      <% water_threshold = 2000.0 %> <!-- "Bad" threshold for water usage -->
+      <% water_threshold = 2000.0 %>
       <% water_ratio = if water.present?
-                        ratio = (water / water_threshold) * 100
-                        ratio = 100 if ratio > 100
-                        ratio
-                      else
-                        0
-                      end
-      %>
-
+                         ratio = (water / water_threshold) * 100
+                         ratio = 100 if ratio > 100
+                         ratio
+                       else
+                         0
+                       end %>
       <svg viewBox="0 0 36 36" class="materials-show-circular-chart materials-show-water-chart">
         <path class="materials-show-circle-bg"
           d="M18 2.0845
@@ -65,8 +62,7 @@
         />
         <text x="18" y="20.35" class="materials-show-percentage">
           <% if water.present? %>
-            <%= "#{
-              .round(1)} L/m²" %>
+            <%= "#{water.round(1)} L/m²" %>
           <% else %>
             Not Provided
           <% end %>
@@ -75,19 +71,17 @@
       <p class="materials-show-chart-label">Water</p>
     </div>
 
-    <!-- CO2 EMISSIONS -->
+    <!-- CO₂ EMISSIONS -->
     <div class="materials-show-single-chart">
       <% co2_val = @material.co2 %>
-      <% co2_threshold = 2.0 %> <!-- "Bad" threshold for CO₂ -->
+      <% co2_threshold = 2.0 %>
       <% co2_ratio = if co2_val.present?
                        ratio = (co2_val / co2_threshold) * 100
                        ratio = 100 if ratio > 100
                        ratio
                      else
                        0
-                     end
-      %>
-
+                     end %>
       <svg viewBox="0 0 36 36" class="materials-show-circular-chart materials-show-co2-chart">
         <path class="materials-show-circle-bg"
           d="M18 2.0845
@@ -114,16 +108,14 @@
     <!-- ELECTRICITY USED -->
     <div class="materials-show-single-chart">
       <% elec = @material.electricity_used %>
-      <% elec_threshold = 1.0 %> <!-- "Bad" threshold for electricity (1 kWh/m²) -->
+      <% elec_threshold = 1.0 %>
       <% elec_ratio = if elec.present?
                         ratio = (elec / elec_threshold) * 100
                         ratio = 100 if ratio > 100
                         ratio
                       else
                         0
-                      end
-      %>
-
+                      end %>
       <svg viewBox="0 0 36 36" class="materials-show-circular-chart materials-show-electricity-chart">
         <path class="materials-show-circle-bg"
           d="M18 2.0845
@@ -151,7 +143,6 @@
   <!-- Material Details Card -->
   <div class="details-card">
     <h2 class="details-card-header">DETAILS</h2>
-
     <div class="details-row">
       <!-- LEFT COLUMN -->
       <div class="details-column">
@@ -169,7 +160,6 @@
           <li>TEXTURE: <%= @material.texture.presence || "Not Provided" %></li>
         </ul>
       </div>
-
       <!-- RIGHT COLUMN -->
       <div class="details-column">
         <ul>
@@ -183,7 +173,6 @@
         </ul>
       </div>
     </div>
-
     <!-- NOTES at the Bottom -->
     <div class="details-notes">
       NOTES:
@@ -191,22 +180,17 @@
     </div>
   </div>
 
-
   <!-- ADD TO PROJECT (White Button) -->
   <% if @project %>
-    <%= link_to "ADD TO PROJECT",
-                project_project_material_path(@project, @material),
-                class: "interface-white-button" %>
+    <%= link_to "ADD TO PROJECT", project_project_material_path(@project, @material), class: "interface-white-button" %>
   <% else %>
     <%= link_to "ADD TO PROJECT", projects_path, class: "interface-white-button" %>
   <% end %>
 
   <!-- EDIT (White Button) -->
-  <%= link_to "EDIT", edit_material_path(@material),
-              class: "interface-white-button" %>
+  <%= link_to "EDIT", edit_material_path(@material), class: "interface-white-button" %>
 
   <!-- DELETE (Black Button) -->
-  <%= link_to "DELETE", material_path(@material),
-              method: :delete,
-              data: { confirm: "Are you sure?" },
-              class: "interface-black-button" %>
+  <%= link_to "DELETE", material_path(@material), method: :delete, data: { confirm: "Are you sure?" }, class: "interface-black-button" %>
+
+</div>
