@@ -26,19 +26,21 @@
 
 
   <div id="summary-section" data-controller="summary">
-    <!-- Display summary text -->
-    <p data-summary-target="text" data-action="click->summary#edit">
-      <%= @project.summary.presence || "Click to add summary" %>
-    </p>
+  <!-- Display summary text -->
+  <p data-summary-target="text" data-action="click->summary#edit">
+    <%= @project.summary.presence || "Click to add summary" %>
+  </p>
 
-    <!-- Form should be hidden by default -->
-    <%= form_with model: @project, url: project_path(@project), method: :patch, local: true, data: { summary_target: "form", action: "submit->summary#save" }, style: "display: none;" do |f| %>
-      <%= f.text_area :summary, rows: 5, class: "form-control", data: { summary_target: "textarea" } %>
-      <br>
-      <%= f.submit "Save", class: "btn btn-primary" %>
-      <button type="button" data-action="summary#cancel" class="btn btn-secondary">Cancel</button>
-    <% end %>
-  </div>
+  <!-- Hidden form -->
+  <%= form_with model: @project, url: project_path(@project), method: :patch, local: true,
+      data: { summary_target: "form", action: "submit->summary#save" }, style: "display: none;" do |f| %>
+    <%= f.text_area :summary, rows: 5, class: "form-control", data: { summary_target: "textarea" } %>
+    <br>
+    <%= f.submit "Save", class: "btn btn-primary" %>
+    <button type="button" data-action="summary#cancel" class="btn btn-secondary">Cancel</button>
+  <% end %>
+</div>
+
 
   <!-- Environmental Score Heading -->
   <h2 class="env-score-heading">PROJECT AVERAGE ENVIRONMENTAL SCORE</h2>
@@ -118,18 +120,22 @@
     </div>
 
     <!-- NOTES Section -->
-    <div id="notes-section" class="details-notes" data-controller="notes">
-      <p data-notes-target="text" data-action="click->notes#edit">
-        <%= @project.notes.presence || "Click here to add notes" %>
-      </p>
-      <%= form_with model: @project, url: project_path(@project), method: :patch, local: true, data: { notes_target: "form", action: "submit->notes#save" }, style: "display: none;" do |f| %>
-        <%= f.text_area :notes, rows: 5, class: "form-control", data: { notes_target: "textarea" } %>
-        <br>
-        <%= f.submit "Save", class: "btn btn-primary" %>
-        <button type="button" data-action="notes#cancel" class="btn btn-secondary">Cancel</button>
-      <% end %>
-    </div>
-  </div>
+   <div id="notes-section" class="details-notes" data-controller="notes">
+  NOTES:
+  <p data-notes-target="text" data-action="click->notes#edit">
+    <%= @project.notes.presence || "Click here to add notes" %>
+  </p>
+
+  <!-- Editable Form for Notes -->
+  <%= form_with model: @project, url: project_path(@project), method: :patch, local: true,
+      data: { notes_target: "form", action: "submit->notes#save" }, style: "display: none;" do |f| %>
+    <%= f.text_area :notes, rows: 5, class: "form-control", data: { notes_target: "textarea" } %>
+    <br>
+    <%= f.submit "Save", class: "btn btn-primary" %>
+    <button type="button" data-action="notes#cancel" class="btn btn-secondary">Cancel</button>
+  <% end %>
+</div>
+
 
   <%= link_to "ADD FABRICS", new_project_project_material_path(@project), class: "interface-white-button" %>
   <%= link_to "DELETE PROJECT", project_path(@project), method: :delete, data: { confirm: "Are you sure?" }, class: "interface-black-button" %>
