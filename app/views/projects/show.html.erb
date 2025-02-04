@@ -125,18 +125,18 @@
     <div class="details-card">
       <h2 class="details-card-header">SELECTED FABRICS</h2>
         <div class="material-list">
-          <% @project.materials.each do |material| %>
+          <% @project.project_materials.each do |project_material| %>
             <div class="material-item">
               <div class="material-info">
                 <div class="material-header">
-                  <h3 class="material-name"><%= material.name %></h3>
+                  <h3 class="material-name"><%= project_material.material.fabric_type %></h3>
                   <div class="material-remove">
-                    <%= button_to project_material_path(@project, material), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-delete" do %>
+                    <%= button_to project_material_path(project_material), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-delete" do %>
                       <%= image_tag "bin.png", alt: "Delete", class: "bin-icon" %>
                     <% end %>
                   </div>
                 </div>
-                <p>Quantity: <%= material.length %></p>
+                <p>Quantity: <%= project_material.material.length %></p>
                 <p>Environmental score: </p>
               </div>
             </div>
