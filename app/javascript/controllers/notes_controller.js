@@ -35,7 +35,12 @@ export default class extends Controller {
 
       if (response.ok) {
         const data = await response.json();
-        this.textTarget.innerHTML = data.notes; // Update notes text
+
+        // Make sure we're updating the correct target
+        if (data.notes !== undefined) {
+          this.textTarget.innerHTML = data.notes;
+        }
+
         this.resetForm();
       } else {
         console.error("Failed to update notes");
