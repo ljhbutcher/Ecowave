@@ -57,12 +57,33 @@ class MaterialsController < ApplicationController
     # Render edit_quantity.html.erb (you can include a form for adjusting quantity)
   end
 
+  def edit_history
+    @material = Material.find(params[:id])
+  end
+
   def update_quantity
     @material = Material.find(params[:id])
     if @material.update(quantity_params)
       redirect_to @material, notice: 'Quantity updated successfully.'
     else
       render :edit_quantity
+    end
+  end
+
+  def update_quantity
+    @material = Material.find(params[:id])
+    previous_length = @material.length
+
+    if @material.update(material_params_2)
+      MaterialHistory.create!(
+        material: @material,
+        previous_length: previous_length,
+        new_length: @material.length,
+        changed_at: Time.current
+      )
+      redirect_to @material, notice: "Quantity updated successfully."
+    else
+      render :edit_quantity, alert: "Failed to update quantity."
     end
   end
 
@@ -88,5 +109,9 @@ class MaterialsController < ApplicationController
 
   def quantity_params
     params.require(:material).permit(:length)  # or whatever attribute represents quantity
+  end
+
+  def material_params_2
+    params.require(:material).permit(:length)
   end
 end

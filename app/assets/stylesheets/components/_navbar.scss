@@ -8,6 +8,8 @@
 }
 
 .navbar {
+
+  overflow: visible; /* Allow child elements to escape */
   position: fixed;
   bottom: 0;
   left: 0;
@@ -16,7 +18,7 @@
   padding-bottom: 7vh;
   background-color: white;
   border-top: 1px solid #000;
-  overflow: hidden;
+
   display: flex;
   justify-content: center;  /* Center items horizontally */
   z-index: 9999;
@@ -27,7 +29,7 @@
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 20px; /* Adjust the gap between navbar items here */
+  gap: 30px; /* Adjust the gap between navbar items here */
   align-items: center; /* Vertically center the icons */
 }
 
@@ -53,4 +55,30 @@
   width: auto;
   max-width: 100%;
   vertical-align: middle;
+}
+
+.dropup .dropdown-menu {
+  position: absolute !important; /* Escape from parent box */
+  top: 100%; /* Move below the button */
+  left: 0;
+  z-index: 1050; /* Ensure it's on top */
+}
+
+.nav-item .avatar {
+  border-radius: 0% !important;
+}
+
+.nav-item .avatar:hover {
+  background-color: #ccc !important;
+}
+
+.dropdown-menu-end {
+  border: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-evenly !important;
+  min-width: fit-content !important;
+  background-color: white !important;
+  margin-bottom: 10px !important;
+  padding: 0px !important;
 }
