@@ -1,45 +1,34 @@
 <nav class="navbar">
-      <ul class="navbar-items">
-        <li class="navbar-item">
-          <a href="/home">
-            <%= image_tag "user.png" %>
-          </a>
-        </li>
-        <li class="navbar-item">
-          <a href="/materials">
-            <%= image_tag "textile.png" %>
-          </a>
-        </li>
-        <li class="navbar-item">
-          <% if current_page?(projects_path) %>
-            <a href="/projects/new"><%= image_tag "plus.png" %></a>
-          <% else %>
-            <a href="/materials/new"><%= image_tag "plus.png" %></a>
-          <% end %>
-        </li>
-        <li class="navbar-item">
-          <a href="/projects">
-            <%= image_tag "project-management.png" %>
-          </a>
-        </li>
-        <li class="navbar-item">
-          <a href="/questions">
-            <%= image_tag "artificial-intelligence.png" %>
-          </a>
-        </li>
-        <li class="navbar-item">
-          <%= link_to destroy_user_session_path, data: { turbo_method: :delete } do %>
+  <ul class="navbar-items">
+    <li class="nav-item dropup">
+        <%= image_tag "user.png",
+              class: "avatar dropdown-toggle",
+              id: "navbarDropdown",
+              data: { bs_toggle: "dropdown" },
+              'aria-haspopup': true,
+              'aria-expanded': false %>
+        <div class="dropdown-menu dropdown-menu-end">
+          <a href="/home"><%= image_tag "home.png", class: "navbar-item", width: 40, height: 40 %></a>
+          <%= link_to destroy_user_session_path, class: "navbar-item", data: { turbo_method: :delete } do %>
           <%= image_tag "log-out.png", alt: "Log Out" %>
           <% end %>
-        </li>
-      </ul>
-
-      <script>
-        document.getElementById("nav-icon").addEventListener("click", function() {
-          document.getElementById("icon1").classList.toggle("show");
-          document.getElementById("icon2").classList.toggle("show");
-        });
-      </script>
-
-
+        </div>
+    </li>
+    <li class="navbar-item">
+      <a href="/materials"><%= image_tag "textile.png" %></a>
+    </li>
+    <li class="navbar-item">
+      <% if current_page?(projects_path) %>
+        <a href="/projects/new"><%= image_tag "plus.png" %></a>
+      <% else %>
+        <a href="/materials/new"><%= image_tag "plus.png" %></a>
+      <% end %>
+    </li>
+    <li class="navbar-item">
+      <a href="/projects"><%= image_tag "project-management.png" %></a>
+    </li>
+    <li class="navbar-item">
+      <a href="/questions"><%= image_tag "artificial-intelligence.png" %></a>
+    </li>
+  </ul>
 </nav>
