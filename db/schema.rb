@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_03_160039) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_04_113439) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,16 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_03_160039) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["material_id"], name: "index_adjustment_histories_on_material_id"
+  end
+
+  create_table "material_histories", force: :cascade do |t|
+    t.bigint "material_id", null: false
+    t.integer "previous_length"
+    t.integer "new_length"
+    t.datetime "changed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["material_id"], name: "index_material_histories_on_material_id"
   end
 
   create_table "materials", force: :cascade do |t|
@@ -273,6 +283,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_03_160039) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "adjustment_histories", "materials"
+  add_foreign_key "material_histories", "materials"
   add_foreign_key "project_materials", "materials"
   add_foreign_key "project_materials", "projects"
   add_foreign_key "questions", "users"

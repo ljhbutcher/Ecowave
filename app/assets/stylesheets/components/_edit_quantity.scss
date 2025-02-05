@@ -1,13 +1,16 @@
 .background {
   background-color: #2F2F2F;
-  height: 100vh;
+  min-height: 100vh;
   color: white;
+  position: absolute;
+  width: 100%;
 }
 
 .quantity-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 40px;
 }
 
 .quantity-btn {
@@ -40,7 +43,7 @@
 .back-container {
   text-align: center;
   justify-content: space-around;
-  margin-top: 80px;
+  margin-top: 60px;
 }
 
 .back-button {
@@ -65,4 +68,33 @@
   height: 165px;
   border: 1.5px solid #ffffff;
   margin-bottom: 2.5vh;      /* Adjust as desired */
+}
+
+/* Center the table horizontally */
+.table-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Style the table */
+table {
+  width: 90%; /* Adjust width as needed */
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+/* Style table headers */
+th {
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid white;
+}
+
+/* Style table cells */
+td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid white;
 }
