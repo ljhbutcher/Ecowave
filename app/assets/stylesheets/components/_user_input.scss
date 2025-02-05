@@ -132,3 +132,16 @@
   color: #333 !important;
   text-align: center;
 }
+
+.was-validated .form-control:valid,
+.form-control.is-valid {
+  background-image: none !important;
+  padding-right: 0.75rem !important;
+  border-color: #ced4da !important;  // default Bootstrap gray border
+  box-shadow: none !important;
+}
+/* Also override focus state on form controls */
+.form-control:focus {
+  border-color: #ced4da !important;
+  box-shadow: 0 0 0 0.25rem rgba(0, 85, 255, 0.179) !important;
+}

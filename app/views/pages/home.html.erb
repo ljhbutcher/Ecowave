@@ -1,10 +1,19 @@
-<h1 class="ecowave-header">EcoWave</h1>
-<div class="homepage-background">
-  <div class="homepage-info">
-    <br>
-    <br>
-      <p class="homepage-title" style="text-decoration: none;">Your Average Environmental Score</p>
-    <br>
-    <br>
+<div class="homepage-container" data-controller="particles">
+  <!-- Absolutely positioned header that only appears on home page -->
+  <div class="homepage-header">
+    EcoWave
   </div>
+
+  <!-- Full-screen Canvas for orbiting particles -->
+  <canvas data-particles-target="canvas"></canvas>
+
+  <div data-particles-target="score" class="homepage-score">
+    <%= @average_score || 0 %>/100
+  </div>
+
+  <p class="homepage-score-subtitle">
+      A score of 100 represents the most sustainable choice, while 0 is the least.
+      Improve your score by asking our in-build AI for recommendation.
+  </p>
+
 </div>

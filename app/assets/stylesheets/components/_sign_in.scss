@@ -1,84 +1,126 @@
 /******************************************/
-/* DEV. SESSIONS NEW PAGE                 */
+/* LOGIN PAGE STYLES                      */
 /******************************************/
 
 .session-body {
-  /* Full white background filling the screen */
-  background-color: #fff;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  width: 100vw;
-  font-family: Arial, sans-serif;
-  position: relative;
-  overflow: hidden;
-}
-
-.session-container {
-  /* Full viewport container */
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-/* EcoWave Title at the Very Top */
-.session-logo {
-  position: absolute;
-  top: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 2.5rem; /* or 60px if you prefer */
-  letter-spacing: 4px;
-  margin: 0;
-}
-
-/* Center the fields in the page */
-.session-fields {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 250px; /* Control how wide the form is */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px; /* Space between email & password fields */
+  justify-content: center;
+  height: 100vh;
+  background: #fff;
 }
 
-/* Style the form inputs */
-.session-input {
-  width:100%;
-  padding: 10px;
-  border-radius: 30px;
-  border: 2px solid #000;
-  font-size: 1rem;
-  color: #000;
+/* Form Container */
+.session-container {
+  width: 300px;
   text-align: center;
 }
 
-/* Submit Button Container */
+/* Input Fields */
+.session-fields .session-input {
+  width: 100%;
+  padding: 10px;
+  font-family: 'Exo', sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  border: 1px solid #adb5bd;
+  border-radius: 20px;
+  background-color: #fff;
+  color: #333;
+  transition: border-color 0.3s ease;
+  text-align: center;
+  margin-bottom: 15px;
+
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+  }
+}
+
+/* Sign In Button */
 .session-btn-container {
+  margin-top: 10px;
+}
+
+.session-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #000;
+  color: #fff;
+  border: 1px solid black;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: #333;
+  }
+}
+
+/* Sign Up Link */
+.session-signup-link {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.signup-text {
+  color: black;
+  text-decoration: underline;
+  font-size: 0.9rem;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+/* Toggle Button */
+.landing-toggle {
   position: absolute;
-  top: calc(50% + 110px);
+  bottom: 5vh;
   left: 50%;
   transform: translateX(-50%);
-}
-
-/* The actual button */
-.session-btn {
-  display: inline-block;
-  width: 150px;
-  padding: 10px;
-  border-radius: 30px;
-  text-decoration: none;
-  text-align: center;
-  font-weight: bold;
-  font-size: 1rem;
-  border: 2px solid #000;
-}
-
-/* LOG IN => White background, black text */
-.btn-login {
+  width: 87px;
+  height: 35px;
   background-color: #fff;
-  color: #000;
+  border-radius: 30px;
+  border: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Toggle Icon */
+.toggle-icon {
+  width: 25px;
+  height: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Dark Mode Adjustments */
+.dark-mode .session-body {
+  background-color: #000;
+  filter: invert(100%) hue-rotate(180deg);
+}
+
+.dark-mode .session-input,
+.dark-mode .session-btn {
+  filter: invert(100%) hue-rotate(180deg);
+}
+
+.dark-mode .signup-text {
+  filter: invert(100%);
+}
+
+.dark-mode .landing-toggle {
+  justify-content: flex-end;
+  background-color: #000;
+  border: 1px solid white;
+}
+
+.dark-mode .toggle-icon {
+  filter: invert(100%);
 }

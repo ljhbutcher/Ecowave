@@ -3,13 +3,10 @@ Rails.application.routes.draw do
 
   root to: "pages#landing_page"
   get "/home", to: "pages#home"
-  # get "/sign_in", to: "sessions#new"
-  # get "/sign_up", to: "users#new"
-  # delete "/sign_out", to: "sessions#destroy"
 
   resources :projects do
-    resources :project_materials, only: [:new, :create, :show,]
-    resources :materials, controller: 'project_materials', only: [:destroy,]
+    resources :project_materials, only: [:new, :create, :show]
+    resources :materials, controller: 'project_materials', only: [:destroy]
   end
 
   # resources :project_materials, only: [:destroy]
