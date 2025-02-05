@@ -74,26 +74,6 @@
   margin-bottom: 0px !important; /* Forces it to 0 */
 }
 
-// /* Fix NOTES (Textarea inside .details-notes) */
-// .details-notes .material-input textarea.form-control {
-//   width: 100%;
-//   padding: 5px !important; /* Consistent padding */
-//   font-family: 'Exo', sans-serif;
-//   font-size: 1rem;
-//   border: 1px solid #adb5bd !important;
-//   border-radius: 20px !important; /* Rounded corners */
-//   background-color: #fff !important; /* Fully white */
-//   color: #333 !important;
-//   text-align: center;
-//   min-height: 70px; /* Slightly taller */
-//   resize: none; /* Prevent resizing */
-
-//   &::placeholder {
-//     color: rgba(0, 0, 0, 0.5);
-//     text-align: center;
-//   }
-// }
-
 /* Fix NOTES (Textarea inside .details-notes) */
 .details-notes .material-input textarea.form-control {
   width: 100%;
