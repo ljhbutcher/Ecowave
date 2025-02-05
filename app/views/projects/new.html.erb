@@ -1,17 +1,24 @@
 <h1 class="ecowave-header">EcoWave</h1>
+
 <div class="materials-show-container">
+  <%= simple_form_for(@project, method: :post, html: { multipart: true, id: "fabric-form", data: { controller: "fabric-form" } }) do |f| %>
 
-  <%= simple_form_for(@project, url: projects_path, html: { multipart: true, id: "fabric-form" }) do |f| %>
-
-    <!-- Material Photo Container -->
+    <!-- IMAGE UPLOAD -->
     <div class="material-photo-container">
       <label for="material_photo" class="material-photo-label">
-        <%= image_tag(@project.photo.attached? ? @project.photo : asset_path("placeholder-image.png"),
+        <%= image_tag(@project.persisted? && @project.photo.attached? ? @project.photo : "placeholder-image.png",
+                      id: "material-image-preview",
                       class: "material-photo",
-                      alt: "Upload Project Photo") %>
+                      alt: "Upload Fabric Photo",
+                      data: { fabric_form_target: "image" }) %>
         <div class="quantity-toggle">+</div>
       </label>
-      <%= f.input :photo, label: false, as: :file, input_html: { id: "project_photo", class: "d-none" } %>
+      <%= f.input :photo, label: false, as: :file, input_html: { id: "material_photo", class: "d-none", data: { action: "change->fabric-form#previewImage" } } %>
+    </div>
+
+    <div class="form-buttons">
+      <%= f.button :submit, class: "interface-white-button" %>
+      <%= link_to "CANCEL", materials_path, class: "interface-black-button" %>
     </div>
 
     <!-- Details Card -->
@@ -22,6 +29,7 @@
                     placeholder: "NAME",
                     wrapper_html: { class: "material-input" },
                     input_html: { class: "material-input-field" } %>
+
         <div class="details-date">
           <%= f.input :deadline,
                       as: :string,
@@ -43,6 +51,6 @@
       <%= link_to "CANCEL", projects_path, class: "interface-black-button" %>
     </div>
 
-  <% end %>
+  <% end %> <!-- This is where the `simple_form_for` block ends -->
 
 </div>
