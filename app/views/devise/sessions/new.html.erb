@@ -1,8 +1,7 @@
 <h1 class="ecowave-header">EcoWave</h1>
+
 <body class="session-body">
   <div class="session-container">
-    <!-- EcoWave Title at Top -->
-
     <!-- Devise Login Form -->
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <!-- Fields in the center -->
@@ -23,11 +22,18 @@
 
       <!-- Submit Button -->
       <div class="session-btn-container">
-        <%= f.button :submit, "LOG IN", class: "session-btn btn-login" %>
+        <%= f.button :submit, "SIGN IN", class: "session-btn btn-login" %>
       </div>
     <% end %>
+
+    <!-- Link to Sign Up -->
+    <div class="session-signup-link">
+      <%= link_to "Don't have an account yet?", new_user_registration_path, class: "signup-text" %>
+    </div>
+
+    <!-- Day/Night Toggle -->
+    <div class="landing-toggle" data-action="click->theme#toggle">
+      <img src="<%= asset_path('day.png') %>" alt="Toggle Theme" class="toggle-icon" data-theme-target="icon">
+    </div>
   </div>
 </body>
-
-<!-- Uncomment if you want the Devise shared links (forgot password, etc.) -->
-<%# <%= render "devise/shared/links" %> %>
