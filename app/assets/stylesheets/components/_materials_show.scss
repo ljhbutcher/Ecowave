@@ -77,7 +77,13 @@
 
 
 .quantity-toggle {
-  position: absolute;
+
+  /* position: absolute; */
+  text-decoration: none;
+
+
+
+
   top: 14px;     /* Adjusted so roughly half overlaps the top of the image */
   right: 97px;   /* Adjusted so roughly half overlaps the right side */
   width: 30px;    /* Size of the toggle circle */
@@ -125,6 +131,11 @@
 /* 4) FABRIC QUANTITY                     */
 /******************************************/
 .fabric-quantity {
+  justify-content: center;
+
+  display: flex;
+  align-items: center;
+  gap: 7px; /* Adjust spacing as needed */
   text-align: center;
 
   /* Customize letter spacing, line-height, weight, size if desired */
