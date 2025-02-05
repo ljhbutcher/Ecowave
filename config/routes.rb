@@ -9,10 +9,13 @@ Rails.application.routes.draw do
     resources :materials, controller: 'project_materials', only: [:destroy]
   end
 
+  # resources :project_materials, only: [:destroy]
+
   resources :materials do
     get :process_ai, on: :member
     member do
       get :edit_quantity
+      get :edit_history
       patch :update_quantity
     end
   end

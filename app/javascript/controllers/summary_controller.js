@@ -35,7 +35,12 @@ export default class extends Controller {
 
       if (response.ok) {
         const data = await response.json();
-        this.textTarget.innerHTML = data.summary; // Update summary text
+
+        // Make sure we're updating the correct target
+        if (data.summary !== undefined) {
+          this.textTarget.innerHTML = data.summary;
+        }
+
         this.resetForm();
       } else {
         console.error("Failed to update summary");

@@ -3,6 +3,7 @@ class Material < ApplicationRecord
   has_many :project_materials, dependent: :destroy
   has_many :projects, through: :project_materials
   has_one_attached :photo
+  has_many :material_histories, dependent: :destroy
 
   # Required fields for a valid material
   validates :fabric_type, :fiber, :colour, presence: true
