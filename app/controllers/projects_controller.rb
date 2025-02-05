@@ -37,7 +37,7 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    if @project.update(photo: project_params[:photo])
+    if @project.update(project_params)
       respond_to do |format|
         format.html { redirect_to @project, notice: "Summary updated successfully." }
         format.json { render json: { summary: @project.summary, notes: @project.notes} }
