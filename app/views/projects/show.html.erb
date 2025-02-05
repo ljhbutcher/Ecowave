@@ -21,19 +21,16 @@
         <%= f.button :submit, class: "interface-white-button" %>
         <%= link_to "CANCEL", materials_path, class: "interface-black-button" %>
       </div>
-
     <% end %>
 
-
-  <div id="summary-section" data-controller="summary">
+<div id="summary-section" data-controller="summary">
   <!-- Display summary text -->
   <p data-summary-target="text" data-action="click->summary#edit">
     <%= @project.summary.presence || "Click to add summary" %>
   </p>
 
   <!-- Hidden form -->
-  <%= form_with model: @project, url: project_path(@project), method: :patch, local: true,
-      data: { summary_target: "form", action: "submit->summary#save" }, style: "display: none;" do |f| %>
+  <%= form_with model: @project, url: project_path(@project), method: :patch, local: true, data: { summary_target: "form", action: "submit->summary#save" }, style: "display: none;" do |f| %>
     <%= f.text_area :summary, rows: 5, class: "form-control", data: { summary_target: "textarea" } %>
     <br>
     <%= f.submit "Save", class: "btn btn-primary" %>
@@ -42,11 +39,11 @@
 </div>
 
 
-  <!-- Environmental Score Heading -->
+ <!-- Environmental Score Heading -->
   <h2 class="env-score-heading">PROJECT AVERAGE ENVIRONMENTAL SCORE</h2>
 
-  <% if @materials.any? %>
-    <div class="materials-show-flex-wrapper">
+<% if @materials.any? %>
+  <div class="materials-show-flex-wrapper">
 
       <!-- Average Water Usage -->
       <div class="materials-show-single-chart">
@@ -93,51 +90,51 @@
         <p class="materials-show-chart-label">Electricity</p>
       </div>
     </div>
-  <% else %>
-    <p>No materials added to this project yet.</p>
-  <% end %>
+<% else %>
+  <p>No materials added to this project yet.</p>
+<% end %>
 
   <!-- Material Details Card -->
   <div class="details-card">
     <h2 class="details-card-header">SELECTED FABRICS</h2>
-    <div class="material-list">
-      <% @project.materials.each do |material| %>
-        <div class="material-item">
-          <div class="material-info">
-            <div class="material-header">
-              <h3 class="material-name"><%= material.fabric_type %></h3>
-              <div class="material-remove">
-                <%= button_to project_material_path(@project, material), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-delete" do %>
-                  <%= image_tag "bin.png", alt: "Delete", class: "bin-icon" %>
-                <% end %>
+      <div class="material-list">
+        <% @project.materials.each do |material| %>
+          <div class="material-item">
+            <div class="material-info">
+              <div class="material-header">
+                <h3 class="material-name"><%= material.fabric_type %></h3>
+                <div class="material-remove">
+                  <%= button_to project_material_path(@project, material), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-delete" do %>
+                    <%= image_tag "bin.png", alt: "Delete", class: "bin-icon" %>
+                  <% end %>
+               </div>
               </div>
+              <p>Quantity: <%= material.length %></p>
+              <p>Environmental score: </p>
             </div>
-            <p>Quantity: <%= material.length %></p>
-            <p>Environmental score: </p>
           </div>
-        </div>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
 
     <!-- NOTES Section -->
-   <div id="notes-section" class="details-notes" data-controller="notes">
-  NOTES:
-  <p data-notes-target="text" data-action="click->notes#edit">
-    <%= @project.notes.presence || "Click here to add notes" %>
-  </p>
+    <div id="notes-section" class="details-notes" data-controller="notes">
+    NOTES:
+    <p data-notes-target="text" data-action="click->notes#edit">
+      <%= @project.notes.presence || "Click here to add notes" %>
+    </p>
 
-  <!-- Editable Form for Notes -->
-  <%= form_with model: @project, url: project_path(@project), method: :patch, local: true,
-      data: { notes_target: "form", action: "submit->notes#save" }, style: "display: none;" do |f| %>
-    <%= f.text_area :notes, rows: 5, class: "form-control", data: { notes_target: "textarea" } %>
-    <br>
-    <%= f.submit "Save", class: "btn btn-primary" %>
-    <button type="button" data-action="notes#cancel" class="btn btn-secondary">Cancel</button>
-  <% end %>
+    <!-- Editable Form for Notes -->
+    <%= form_with model: @project, url: project_path(@project), method: :patch, local: true, data: { notes_target: "form", action: "submit->notes#save" }, style: "display: none;" do |f| %>
+      <%= f.text_area :notes, rows: 5, class: "form-control", data: { notes_target: "textarea" } %>
+      <br>
+      <%= f.submit "Save", class: "btn btn-primary" %>
+      <button type="button" data-action="notes#cancel" class="btn btn-secondary">Cancel</button>
+    <% end %>
+    </div>
+  </div>
 </div>
 
 
-  <%= link_to "ADD FABRICS", new_project_project_material_path(@project), class: "interface-white-button" %>
-  <%= link_to "DELETE PROJECT", project_path(@project), method: :delete, data: { confirm: "Are you sure?" }, class: "interface-black-button" %>
-  <%= link_to "BACK", projects_path, class: "interface-white-button" %>
-</div>
+<%= link_to "ADD FABRICS", new_project_project_material_path(@project), class: "interface-white-button" %>
+<%= link_to "DELETE PROJECT", project_path(@project), method: :delete, data: { confirm: "Are you sure?" }, class: "interface-black-button" %>
+<%= link_to "BACK", projects_path, class: "interface-white-button" %>
