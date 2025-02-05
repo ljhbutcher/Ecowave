@@ -21,8 +21,16 @@
   <ul class="project-list">
     <% @projects.each do |project| %>
       <li class="project-item">
+
         <!-- Project Image -->
-        <%= image_tag "https://i.guim.co.uk/img/media/7863867c40c8715a756d7fbd08c8e33bc5ac6ffb/0_221_4134_2480/master/4134.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=88bd9bc16c79306542c5ac7741148042", class: "project-img" %>
+        <%# <%= image_tag "https://i.guim.co.uk/img/media/7863867c40c8715a756d7fbd08c8e33bc5ac6ffb/0_221_4134_2480/master/4134.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=88bd9bc16c79306542c5ac7741148042", class: "project-img" %>
+        <%= link_to project_path(project) do %>
+          <% if project.photo.attached? %>
+            <%= cl_image_tag project.photo.key, class: "project-img", crop: :fill, alt: project.name %>
+          <% else %>
+            <%= image_tag "placeholder-image.png", class: "project-img", alt: "Default placeholder" %>
+          <% end %>
+        <% end %>
 
         <!-- Project Info -->
         <div class="project-info">

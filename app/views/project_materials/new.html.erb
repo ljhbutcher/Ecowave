@@ -1,9 +1,28 @@
-<h1 class="hr-lines">E C O W A V E</h1>
+<div class="project-container">
+
+  <div class="search-container">
+    <!-- Left Black Line -->
+    <div class="search-line-container">
+      <span class="search-line"></span>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-bar-container">
+      <%= form_with url: projects_path, method: :get, local: true, class: "search-form" do %>
+        <%= text_field_tag :query, params[:query], placeholder: "SEARCH", class: "search-input", autocomplete: "off" %>
+        <button type="submit" class="search-icon">
+          <img src="<%= asset_path('magnifying-glass.png') %>" alt="Search" class="search-img">
+        </button>
+      <% end %>
+    </div>
+  </div>
+
+
 <h1>add to project</h1>
 
 <div>
   <% @materials.each do |material| %>
-    <%= link_to material.name, material_path(material) %>
+    <%= link_to material.fabric_type, material_path(material) %>
     <%= simple_form_for [@project, @project_material] do |f| %>
     <%= f.input :material_id, input_html: { value: material.id, class: "d-none"}, label_html: {class: "d-none"} %>
     <%= f.submit "+" %>
@@ -20,3 +39,5 @@
 
 
 <%= link_to "Back", materials_path %>
+
+</div>
