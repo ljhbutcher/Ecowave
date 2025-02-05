@@ -3,7 +3,7 @@
 
     <div class="material-photo-container">
       <%= link_to edit_quantity_material_path(@material), class: "material-photo-link" do %>
-        <%= cl_image_tag @material.photo.key, id: "material-photo", crop: :fill, alt: "Fabric Photo" %>
+        <%= cl_image_tag @material.photo&.key, id: "material-photo", crop: :fill, alt: "Fabric Photo"  if @material.photo&.key.present? %>
       <% end %>
     </div>
 
