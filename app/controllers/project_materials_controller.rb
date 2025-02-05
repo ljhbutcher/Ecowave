@@ -4,7 +4,12 @@ class ProjectMaterialsController < ApplicationController
 
   def index
     @project_material = ProjectMaterial.all
-
+    if params[:query].present?
+      @materials = current_user.materials.where("fabric_type ILIKE ? OR fiber ILIKE ? OR colour ILIKE ?",
+                                  "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%")
+    else
+      @materials = current_user.materials
+    end
   end
 
   def create
