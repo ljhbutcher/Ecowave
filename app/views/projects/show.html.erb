@@ -18,7 +18,7 @@
       </div>
 
       <div class="form-buttons">
-        <%= f.button :submit, class: "interface-black-button" %>
+        <%= f.button :submit, class: "d-none interface-black-button", value: "save picture"  %>
         <%#= link_to "CANCEL", materials_path, class: "interface-black-button" %>
       </div>
     <% end %>
@@ -101,17 +101,18 @@
         <% @project.materials.each do |material| %>
           <div class="material-item">
             <div class="material-info">
-              <div class="material-header">
-                <h3 class="material-name"><%= material.name %></h3>
-                <div class="material-remove">
+              <%= cl_image_tag material&.photo.key, class: "project-img", crop: :fill, alt: material.fabric_type %>
+
+              <div class="material-text">
+              <p class="fabric-details"> Fabric: <%= material.fabric_type %> </p>
+              <p class="fabric-details">Quantity: <%= material.length %></p>
+              <p class="fabric-details">Environmental score: </p>
+              </div>
+              <div class="material-remove">
                   <%= button_to project_material_path(@project, material), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-delete" do %>
                     <%= image_tag "bin-white_.png", alt: "Delete", class: "bin-icon" %>
                   <% end %>
                </div>
-              </div>
-              <p class="fabric-details"> Fabric: <%= material.fabric_type %> </p>
-              <p class="fabric-details">Quantity: <%= material.length %></p>
-              <p class="fabric-details">Environmental score: </p>
             </div>
           </div>
         <% end %>
