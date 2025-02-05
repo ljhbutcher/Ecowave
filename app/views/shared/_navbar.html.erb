@@ -8,8 +8,8 @@
               'aria-haspopup': true,
               'aria-expanded': false %>
         <div class="dropdown-menu dropdown-menu-end">
-          <a href="/home"><%= image_tag "home.png", class: "navbar-item", width: 40, height: 40 %></a>
-          <%= link_to destroy_user_session_path, class: "navbar-item", data: { turbo_method: :delete } do %>
+          <a href="/home"><%= image_tag "home.png", class: "navbar-item mt-3 p-1", width: 40, height: 40 %></a>
+          <%= link_to destroy_user_session_path, class: "navbar-item mt-3 p-1", data: { turbo_method: :delete } do %>
           <%= image_tag "log-out.png", alt: "Log Out" %>
           <% end %>
         </div>
@@ -17,13 +17,20 @@
     <li class="navbar-item">
       <a href="/materials"><%= image_tag "textile.png" %></a>
     </li>
-    <li class="navbar-item">
-      <% if current_page?(projects_path) %>
-        <a href="/projects/new"><%= image_tag "plus.png" %></a>
-      <% else %>
-        <a href="/materials/new"><%= image_tag "plus.png" %></a>
-      <% end %>
+
+    <li class="nav-item dropup">
+        <%= image_tag "plus.png",
+              class: "avatar dropdown-toggle",
+              id: "navbarDropdown",
+              data: { bs_toggle: "dropdown" },
+              'aria-haspopup': true,
+              'aria-expanded': false %>
+        <div class="dropdown-menu dropdown-menu-end">
+          <a href="/materials/new"><%= image_tag "textile.png", class: "navbar-item mt-3 p-1", width: 40, height: 40 %></a>
+          <a href="/projects/new"><%= image_tag "project-management.png", class: "navbar-item mt-3 p-1", width: 40, height: 40 %></a>
+        </div>
     </li>
+
     <li class="navbar-item">
       <a href="/projects"><%= image_tag "project-management.png" %></a>
     </li>
