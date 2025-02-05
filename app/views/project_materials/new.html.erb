@@ -6,7 +6,7 @@
     <%= link_to material.name, material_path(material) %>
     <%= simple_form_for [@project, @project_material] do |f| %>
     <%= f.input :material_id, input_html: { value: material.id, class: "d-none"}, label_html: {class: "d-none"} %>
-    <%= f.submit "+" %>
+    `<%= f.submit "+" %>`
     <% end %>
 
 

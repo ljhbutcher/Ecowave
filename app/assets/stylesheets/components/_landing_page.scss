@@ -2,17 +2,18 @@
 /* LANDING PAGE STYLES                    */
 /******************************************/
 
-.landing-show-container {
-  max-width: 900px;
-  margin: 0 auto;
-  margin-bottom: 11.1vh;
-  position: relative; /* Prevents unwanted shifting */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh; /* Full height to maintain structure */
-}
+// .landing-show-container {
+//   max-width: 500px;
+//   height: 830px !important;
+//   margin: 0px;
+//   position: relative;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+// }
+
+// I OVERWROTE IT IN _SIGN_IN.SCSS
 
 /******************************************/
 /* ECO WAVE HEADER                        */
@@ -36,6 +37,30 @@
 }
 
 /******************************************/
+/* LOGO STYLING                           */
+/******************************************/
+.logo-placeholder {
+  position: absolute;
+    top: 10vh;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120%;
+    z-index: 10;
+}
+
+.logo-img {
+  width: 500px;
+  max-width: 100%;
+  height: auto;
+  padding-left: 5px;
+}
+
+
+
+/******************************************/
 /* SIGN-IN / SIGN-UP BUTTONS              */
 /******************************************/
 .landing-buttons {
@@ -47,7 +72,7 @@
   flex-direction: column;
   align-items: center;
   gap: 17px;
-  margin-bottom: 90px !important;
+  margin-bottom: 45px !important;
 }
 
 /* Base class for both buttons */
