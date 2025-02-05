@@ -1,35 +1,48 @@
-<h1 class="ecowave-header">EcoWave</h1>
-<body class="session-body">
-  <div class="session-container">
+<body class="landing-show-container" data-controller="theme">
+  <!-- EcoWave Header -->
+  <h1 class="landing-header">EcoWave</h1>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+  <div>
+    <!-- Devise Sign-Up Form -->
+    <div class="session-container">
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <!-- Input Fields -->
+        <div class="session-fields">
+          <%= f.input :email,
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "email", class: "material-input" },
+                      placeholder: "EMAIL",
+                      label: false %>
 
-  <div class="session-fields">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email", class: "session-input" },
-                    placeholder: "EMAIL",
-                    label: false %>
-    <%= f.input :password,
-                required: true,
-                input_html: { autocomplete: "new-password", class: "session-input" },
-                placeholder: "PASSWORD",
-                label: false %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password", class: "session-input" },
-                placeholder: "CONFIRM PASSWORD",
-                label: false %>
-  </div>
+          <%= f.input :password,
+                      required: true,
+                      input_html: { autocomplete: "new-password", class: "material-input" },
+                      placeholder: "PASSWORD",
+                      label: false %>
 
+          <%= f.input :password_confirmation,
+                      required: true,
+                      input_html: { autocomplete: "new-password", class: "material-input" },
+                      placeholder: "CONFIRM PASSWORD",
+                      label: false %>
+        </div>
+
+        <!-- Sign Up Button -->
         <div class="session-btn-container">
-          <%= f.button :submit, "SIGN UP", class: "session-btn btn-login" %>
+          <%= f.button :submit, "SIGN UP", class: "sign-in-page-btn" %>
         </div>
       <% end %>
 
+      <!-- Already Have an Account? -->
+      <div class="session-signup-link">
+        <%= link_to "Already have an account?", new_user_session_path, class: "signup-text" %>
+      </div>
+    </div>
+
+    <!-- Night Mode Toggle -->
+    <div class="landing-toggle" data-action="click->theme#toggle">
+      <img src="<%= asset_path('day.png') %>" alt="Toggle Theme" class="toggle-icon" data-theme-target="icon">
+    </div>
   </div>
 </body>
-
-<%# <%= render "devise/shared/links" %>

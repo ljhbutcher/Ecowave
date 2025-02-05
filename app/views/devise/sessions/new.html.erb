@@ -1,37 +1,40 @@
-<h1 class="ecowave-header">EcoWave</h1>
+<body class="landing-show-container" data-controller="theme">
+  <!-- EcoWave Header -->
+  <h1 class="landing-header">EcoWave</h1>
 
-<body class="session-body">
-  <div class="session-container">
+  <div>
     <!-- Devise Login Form -->
-    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <!-- Fields in the center -->
-      <div class="session-fields">
-        <%= f.input :email,
-                    required: false,
-                    autofocus: true,
-                    input_html: { autocomplete: "email", class: "session-input" },
-                    placeholder: "EMAIL",
-                    label: false %>
+    <div class="session-container">
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <!-- Input Fields -->
+        <div class="session-fields">
+          <%= f.input :email,
+                      required: false,
+                      autofocus: true,
+                      input_html: { autocomplete: "email", class: "material-input" },
+                      placeholder: "EMAIL",
+                      label: false %>
 
-        <%= f.input :password,
-                    required: false,
-                    input_html: { autocomplete: "current-password", class: "session-input" },
-                    placeholder: "PASSWORD",
-                    label: false %>
+          <%= f.input :password,
+                      required: false,
+                      input_html: { autocomplete: "current-password", class: "material-input" },
+                      placeholder: "PASSWORD",
+                      label: false %>
+        </div>
+
+        <!-- Sign In Button -->
+        <div class="session-btn-container">
+          <%= f.button :submit, "SIGN IN", class: "sign-in-page-btn" %>
+        </div>
+      <% end %>
+
+      <!-- Sign Up Link -->
+      <div class="session-signup-link">
+        <%= link_to "Don't have an account yet?", new_user_registration_path, class: "signup-text" %>
       </div>
-
-      <!-- Submit Button -->
-      <div class="session-btn-container">
-        <%= f.button :submit, "SIGN IN", class: "session-btn btn-login" %>
-      </div>
-    <% end %>
-
-    <!-- Link to Sign Up -->
-    <div class="session-signup-link">
-      <%= link_to "Don't have an account yet?", new_user_registration_path, class: "signup-text" %>
     </div>
 
-    <!-- Day/Night Toggle -->
+    <!-- Night Mode Toggle -->
     <div class="landing-toggle" data-action="click->theme#toggle">
       <img src="<%= asset_path('day.png') %>" alt="Toggle Theme" class="toggle-icon" data-theme-target="icon">
     </div>

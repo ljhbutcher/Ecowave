@@ -19,15 +19,13 @@ export default class extends Controller {
 
   applyDarkMode() {
     document.body.classList.add("dark-mode");
-    this.iconTarget.src = "/assets/night.png"; // Switch to night mode icon
-    this.iconTarget.style.filter = "invert(100%) hue-rotate(180deg)"; // Apply inversion to the night icon
+    this.iconTarget.src = "/assets/night.png"; // Switch to night icon
     localStorage.setItem("theme", "dark");
   }
 
   applyLightMode() {
     document.body.classList.remove("dark-mode");
-    this.iconTarget.src = "/assets/day.png"; // Switch back to day mode icon
-    this.iconTarget.style.filter = "none"; // Remove inversion effect
+    this.iconTarget.src = "/assets/day.png"; // Switch back to day icon
     localStorage.setItem("theme", "light");
   }
 }
