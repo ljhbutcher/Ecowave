@@ -132,9 +132,7 @@
     <% end %>
     </div>
   </div>
+  <%= link_to "ADD FABRICS", new_project_project_material_path(@project), class: "interface-white-button" %>
+  <%= link_to "DELETE PROJECT", project_path(@project), method: :delete, data: { confirm: "Are you sure?" }, class: "interface-black-button" %>
+  <%= link_to "BACK", projects_path, class: "interface-white-button" %>
 </div>
-
-
-<%= link_to "ADD FABRICS", new_project_project_material_path(@project), class: "interface-white-button" %>
-<%= link_to "DELETE PROJECT", project_path(@project), method: :delete, data: { confirm: "Are you sure?" }, class: "interface-black-button" %>
-<%= link_to "BACK", projects_path, class: "interface-white-button" %>
