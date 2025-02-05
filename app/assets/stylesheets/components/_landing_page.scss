@@ -2,48 +2,42 @@
 /* LANDING PAGE STYLES                    */
 /******************************************/
 
-.landing-body {
-  /* Full white background filling the screen */
-  background-color: #fff;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  width: 100vw;
-  font-family: Arial, sans-serif;
-  position: relative;
-  overflow: hidden;
+.landing-show-container {
+  max-width: 900px;
+  margin: 0 auto;
+  margin-bottom: 11.1vh;
+  position: relative; /* Prevents unwanted shifting */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full height to maintain structure */
 }
 
-.landing-container {
-  /* Full-viewport container */
-  position: relative;
+/******************************************/
+/* ECO WAVE HEADER                        */
+/******************************************/
+.landing-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -15px;
+  margin-bottom: 25px;
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 1.8rem;
+  letter-spacing: 0.2em;
+  color: black;
   width: 100%;
-  height: 100%;
-}
-
-/* EcoWave Title at the Very Top */
-.landing-logo {
   position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 2.5rem; /* or 60px if you prefer */
-  letter-spacing: 4px;
-  margin: 0;
+  top: 30px;
+  z-index: 10;
+  margin-left: 6px;
 }
 
-/* Logo Placeholder (centered, just below the title if you like) */
-.logo-placeholder {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 3rem;
-  color: #000;
-  text-align: center;
-}
-
-/* Buttons near the bottom center */
+/******************************************/
+/* SIGN-IN / SIGN-UP BUTTONS              */
+/******************************************/
 .landing-buttons {
   position: absolute;
   bottom: 100px;
@@ -53,9 +47,8 @@
   flex-direction: column;
   align-items: center;
   gap: 17px;
-  margin-bottom: 15vh !important;
+  margin-bottom: 90px !important;
 }
-
 
 /* Base class for both buttons */
 .landing-btn {
@@ -70,32 +63,85 @@
   border: 1px solid #000;
 }
 
-/* SIGN IN => white with black text */
+/* SIGN IN => White with Black text */
 .btn-sign-in {
   background-color: #fff;
   color: #000;
 }
 
-/* SIGN UP => black with white text */
+/* SIGN UP => Black with White text */
 .btn-sign-up {
   background-color: #000;
   color: #fff;
 }
 
-/* Day/Night Toggle at the very bottom center */
+/******************************************/
+/* DAY/NIGHT TOGGLE BUTTON                */
+/******************************************/
 .landing-toggle {
   position: absolute;
-  bottom: 20px;
+  bottom: 5vh;
   left: 50%;
   transform: translateX(-50%);
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
-  border: 2px solid #000;
+  width: 87px;
+  height: 35px;
+  background-color: #fff;
+  border-radius: 30px;
+  border: 1px solid #000;
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: #000;
-  font-size: 1.2rem;
+  justify-content: flex-start;
+  padding: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  z-index: 15; /* Ensures toggle stays in place */
 }
-// gg
+
+/* Toggle Image */
+.toggle-icon {
+  width: 25px;
+  height: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+/******************************************/
+/* DARK MODE STYLING                      */
+/******************************************/
+
+/* Apply Dark Mode */
+.dark-mode {
+  background-color: #000;
+  color: white;
+}
+
+/* Keep Toggle in Place */
+.dark-mode .landing-toggle {
+  justify-content: flex-end;
+  background-color: #000;
+  border: 1px solid #fff;
+}
+
+/* Prevent Header and Buttons from Changing */
+.dark-mode .landing-header,
+.dark-mode .btn-sign-in,
+.dark-mode .btn-sign-up {
+  color: black !important;
+  background-color: white !important;
+  border: 1px solid black !important;
+}
+
+.dark-mode .landing-header {
+  color: white !important;
+  background-color: black !important;
+}
+
+.dark-mode .btn-sign-up {
+  background-color: black !important;
+  color: white !important;
+  border: 1px solid white !important;
+}
+
+/* Invert the Toggle Icon in Dark Mode */
+.dark-mode .toggle-icon {
+  filter: invert(100%) hue-rotate(180deg); /* Inverts the colors of night.png */
+}

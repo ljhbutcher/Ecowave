@@ -11,3 +11,4 @@ pin "custom_summary", to: "custom_summary.js"
 pin "flatpickr" # @4.6.13
 pin "fabric-form", to: "controllers/fabric_form_controller.js"
 pin "particles", to: "controllers/particles_controller.js"
+pin "theme", to: "controllers/theme_controller.js"
