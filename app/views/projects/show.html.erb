@@ -26,33 +26,31 @@
         class: "d-none interface-black-button",
         data: { fabric_form_target: "uploadButton" } %>
     </div>
-
   <% end %>
-</div>
 
-<div id="summary-section" data-controller="summary">
-  <!-- Display summary text -->
-  <p data-summary-target="text" data-action="click->summary#edit">
-    <%= @project.summary.presence || "Click to add summary" %>
-  </p>
+  <div id="summary-section" data-controller="summary">
+    <!-- Display summary text -->
+    <p data-summary-target="text" data-action="click->summary#edit">
+      <%= @project.summary.presence || "Click to add summary" %>
+    </p>
 
-  <!-- Hidden form -->
-  <%= form_with model: @project, url: project_path(@project), method: :patch, local: true, data: { summary_target: "form", action: "submit->summary#save" }, style: "display: none;" do |f| %>
-    <%= f.text_area :summary, rows: 5, class: "form-control", data: { summary_target: "textarea" } %>
-    <br>
-    <%= f.submit "Save", class: "btn btn-dark" %>
-    <button type="button" data-action="summary#cancel" class="btn btn-secondary">Cancel</button>
-  <% end %>
-</div>
+    <!-- Hidden form -->
+    <%= form_with model: @project, url: project_path(@project), method: :patch, local: true, data: { summary_target: "form", action: "submit->summary#save" }, style: "display: none;" do |f| %>
+      <%= f.text_area :summary, rows: 5, class: "form-control", data: { summary_target: "textarea" } %>
+      <br>
+      <%= f.submit "Save", class: "btn btn-dark" %>
+      <button type="button" data-action="summary#cancel" class="btn btn-secondary">Cancel</button>
+    <% end %>
+  </div>
 
 
- <!-- Environmental Score Heading -->
-  <h2 class="env-score-heading">PROJECT SCORE</h2>
+  <!-- Environmental Score Heading -->
+    <h2 class="env-score-heading">PROJECT SCORE</h2>
 
-<% if @materials.any? %>
-  <div class="materials-show-flex-wrapper">
+  <% if @materials.any? %>
+    <div class="materials-show-flex-wrapper">
 
-      <!-- Average Water Usage -->
+        <!-- Average Water Usage -->
       <div class="materials-show-single-chart">
         <% water_avg = @project.average_water_usage %>
         <% water_ratio_avg = [(water_avg / 2000.0) * 100, 100].min %>
@@ -67,7 +65,7 @@
         <p class="materials-show-chart-label">Water</p>
       </div>
 
-      <!-- Average CO2 Emissions -->
+        <!-- Average CO2 Emissions -->
       <div class="materials-show-single-chart">
         <% co2_avg = @project.average_co2_emissions %>
         <% co2_ratio_avg = [(co2_avg / 2.0) * 100, 100].min %>
@@ -82,7 +80,7 @@
         <p class="materials-show-chart-label">CO₂</p>
       </div>
 
-      <!-- Average Electricity Usage -->
+        <!-- Average Electricity Usage -->
       <div class="materials-show-single-chart">
         <% electricity_avg = @project.average_electricity_usage %>
         <% electricity_ratio_avg = [(electricity_avg / 1.0) * 100, 100].min %>
@@ -97,11 +95,11 @@
         <p class="materials-show-chart-label">Electricity</p>
       </div>
     </div>
-<% else %>
-  <p>No materials added to this project yet.</p>
-<% end %>
+  <% else %>
+    <p>No materials added to this project yet.</p>
+  <% end %>
 
-  <!-- Material Details Card -->
+    <!-- Material Details Card -->
   <div class="details-card">
     <h2 class="details-card-header">SELECTED FABRICS</h2>
       <div class="material-list">
@@ -113,13 +111,13 @@
               <div class="material-text">
               <p class="fabric-details"> Fabric: <%= material.fabric_type %> </p>
               <p class="fabric-details">Quantity: <%= material.length %></p>
-              <p class="fabric-details">Environmental score: </p>
+              <p class="fabric-details">Score: </p>
               </div>
               <div class="material-remove">
                   <%= button_to project_material_path(@project, material), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-delete" do %>
                     <%= image_tag "bin-white_.png", alt: "Delete", class: "bin-icon" %>
                   <% end %>
-               </div>
+              </div>
             </div>
           </div>
         <% end %>
@@ -141,7 +139,10 @@
     <% end %>
     </div>
   </div>
+  <div>
+    <%= link_to "ADD FABRICS", new_project_project_material_path(@project), class: "interface-black-button" %>
+    <%= link_to "DELETE PROJECT", project_path(@project), method: :delete, data: { confirm: "Are you sure?" }, class: "interface-white-button" %>
+    <%= link_to "BACK", projects_path, class: "interface-white-button" %>
+  </div>
+
 </div>
- <%= link_to "ADD FABRICS", new_project_project_material_path(@project), class: "interface-black-button" %>
-  <%= link_to "DELETE PROJECT", project_path(@project), method: :delete, data: { confirm: "Are you sure?" }, class: "interface-white-button" %>
-  <%= link_to "BACK", projects_path, class: "interface-white-button" %>
