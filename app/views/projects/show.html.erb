@@ -106,7 +106,7 @@
         <% @project.materials.each do |material| %>
           <div class="material-item">
             <div class="material-info">
-              <%= cl_image_tag material&.photo.key, class: "project-img", crop: :fill, alt: material.fabric_type %>
+              <%= cl_image_tag material&.photo.key, class: "project-img", crop: :fill, alt: material.fabric_type  if material.photo&.key.present? %>
 
               <div class="material-text">
               <p class="fabric-details"> Fabric: <%= material.fabric_type %> </p>
