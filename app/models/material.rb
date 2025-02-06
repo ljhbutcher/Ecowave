@@ -67,8 +67,6 @@ class Material < ApplicationRecord
 
 
 
-
-
   # used for the average score per project
   def sustainability_score
     water = water_usage.to_f
