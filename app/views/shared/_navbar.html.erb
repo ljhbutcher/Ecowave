@@ -1,40 +1,58 @@
 <nav class="navbar">
   <ul class="navbar-items">
-    <li class="nav-item dropup">
-        <%= image_tag "user.png",
-              class: "avatar dropdown-toggle",
-              id: "navbarDropdown",
-              data: { bs_toggle: "dropdown" },
-              'aria-haspopup': true,
-              'aria-expanded': false %>
-        <div class="dropdown-menu dropdown-menu-end">
-          <a href="/home"><%= image_tag "home.png", class: "navbar-item mt-3 p-1", width: 40, height: 40 %></a>
-          <%= link_to destroy_user_session_path, class: "navbar-item mt-3 p-1", data: { turbo_method: :delete } do %>
-          <%= image_tag "log-out.png", alt: "Log Out" %>
-          <% end %>
-        </div>
-    </li>
-    <li class="navbar-item">
-      <a href="/materials"><%= image_tag "black_fabric.png" %></a>
-    </li>
-    <li class="nav-item dropup">
-        <%= image_tag "plus.png",
-              class: "avatar dropdown-toggle",
-              id: "navbarDropdown",
-              data: { bs_toggle: "dropdown" },
-              'aria-haspopup': true,
-              'aria-expanded': false %>
-        <div class="dropdown-menu dropdown-menu-end">
-          <a href="/materials/new"><%= image_tag "black_fabric.png", class: "navbar-item mt-3 p-1", width: 40, height: 40 %></a>
-          <a href="/projects/new"><%= image_tag "project.png", class: "navbar-item mt-3 p-1", width: 40, height: 40 %></a>
-        </div>
+    <!-- User Icon Dropup -->
+    <li class="nav-item dropup" data-controller="dropdown">
+      <%= image_tag "user.png",
+            class: "avatar dropdown-toggle",
+            data: { action: "click->dropdown#toggle" },
+            'aria-haspopup': true,
+            'aria-expanded': false %>
+      <div class="dropdown-menu" data-dropdown-target="menu">
+        <a href="/home" class="navbar-dropdown-item-home">
+          <%= image_tag "home.png", class: "navbar-item", width: 40, height: 40 %>
+        </a>
+        <%= link_to destroy_user_session_path, class: "navbar-dropdown-item-logout", data: { turbo_method: :delete } do %>
+          <%= image_tag "log-out.png", alt: "Log Out", width: 40, height: 40 %>
+        <% end %>
+      </div>
     </li>
 
-    <li class="navbar-item">
-      <a href="/projects"><%= image_tag "project.png" %></a>
+    <!-- Black Fabric Icon (Navbar) -->
+    <li class="navbar-item black-fabric-icon">
+      <a href="/materials">
+        <%= image_tag "black_fabric.png", class: "black-fabric-img" %>
+      </a>
     </li>
+
+    <!-- Plus Icon Dropup -->
+    <li class="nav-item dropup" data-controller="dropdown">
+      <%= image_tag "plus.png",
+            class: "avatar dropdown-toggle",
+            data: { action: "click->dropdown#toggle" },
+            'aria-haspopup': true,
+            'aria-expanded': false %>
+      <div class="dropdown-menu" data-dropdown-target="menu">
+        <a href="/materials/new" class="navbar-dropdown-item">
+          <%= image_tag "black_fabric.png", class: "black-fabric-img navbar-item", width: 40, height: 40 %>
+        </a>
+        <a href="/projects/new" class="navbar-dropdown-item-project">
+          <%= image_tag "project.png", class: "navbar-item", width: 44, height: 44 %>
+        </a>
+      </div>
+    </li>
+
+    <!-- Project Icon (Navbar Only, Separate from Dropdown) -->
+    <li class="navbar-item project-navbar-icon">
+      <a href="/projects">
+        <%= image_tag "project.png", class: "project-navbar-img" %>
+      </a>
+    </li>
+
+    <!-- Questions Icon -->
     <li class="navbar-item">
-      <a href="/questions"><%= image_tag "artificial-intelligence.png" %></a>
+      <a href="/questions">
+        <%= image_tag "artificial-intelligence.png" %>
+      </a>
     </li>
   </ul>
 </nav>
