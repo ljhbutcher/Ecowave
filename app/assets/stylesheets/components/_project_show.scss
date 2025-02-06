@@ -1,6 +1,11 @@
 .details-notes {
-color: white;
-
+  color: white;
+  border-top: 1px solid #fff;
+    border-radius: 0 0 20px 20px;
+    text-align: center;
+    padding: 14px 15px 15px 15px;
+    margin: 0;
+    font-weight: 300;
 }
 
 .material-name {
@@ -9,16 +14,67 @@ color: white;
   justify-content: space-between;
 }
 
-.material-remove {
-  margin-left: 10px; /* Space between name and bin icon */
-}
 
 .bin-icon {
-  width: 20px;  /* Adjust size */
-  height: 20px;
+  width: 20px;
+  height: auto;
   cursor: pointer;
 }
 
-#notes-section {
+h2 {
+  margin: 20px;
+}
+
+.fabric-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
   color: white;
+  margin: 5px 0;
+}
+
+.material-list {
+  margin: 20px;
+}
+
+// .material-header {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center; /* This ensures vertical alignment */
+// }
+
+.material-info {
+  display: flex;
+  // flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 5px;
+
+}
+
+.material-text {
+  display: flex;
+  flex-direction: column; /* Keeps text stacked */
+}
+
+.material-item {
+  margin-top: 24px;
+}
+
+.fabric-summary {
+
+  text-transform: uppercase;
+
+  /* Justified or left, pick your preference */
+  text-align: justify;
+  /* text-align: justify; */
+
+  letter-spacing: 1.9px;
+  line-height: 2.2;
+  font-weight: 300;
+  font-size: 13px;
+
+  margin-top: 22px; /* Space above the summary */
+  margin-bottom: 30px;
 }

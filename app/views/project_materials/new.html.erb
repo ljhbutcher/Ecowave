@@ -1,22 +1,75 @@
-<h1 class="hr-lines">E C O W A V E</h1>
-<h1>add to project</h1>
+<div class="project-container">
 
-<div>
-  <% @materials.each do |material| %>
-    <%= link_to material.name, material_path(material) %>
-    <%= simple_form_for [@project, @project_material] do |f| %>
-    <%= f.input :material_id, input_html: { value: material.id, class: "d-none"}, label_html: {class: "d-none"} %>
-    `<%= f.submit "+" %>`
-    <% end %>
+  <div class="search-container">
+    <!-- Left Black Line -->
+    <div class="search-line-container">
+      <span class="search-line"></span>
+    </div>
 
+    <!-- Search Bar -->
+    <div class="search-bar-container">
+      <%= form_with url: new_project_project_material_path, method: :get, local: true, class: "search-form" do %>
+        <%= text_field_tag :query, params[:query], placeholder: "SEARCH", class: "search-input", autocomplete: "off" %>
+        <button type="submit" class="search-icon">
+          <img src="<%= asset_path('magnifying-glass.png') %>" alt="Search" class="search-img">
+        </button>
+      <% end %>
+    </div>
+  </div>
 
-  <% end %>
+  <h2 class="projectmat-title">Add to project</h2>
+
+  <!-- MATERIALS LIST -->
+  <ul class="project-list">
+    <% @materials.each do |material| %>
+      <li class="project-item">
+
+      <!-- Material Image -->
+      <%= link_to material_path(material) do %>
+          <% if material.photo.attached? %>
+            <%= cl_image_tag material.photo.key, class: "project-img", crop: :fill, alt: material.name %>
+          <% else %>
+            <%= image_tag "placeholder-image.png", class: "project-img", alt: "Default placeholder" %>
+          <% end %>
+        <% end %>
+
+        <!-- Material Info -->
+        <div class="project-info">
+          <p><strong>NAME:</strong> <%= material.fabric_type.presence || "Not Provided" %></p>
+          <p><strong>QUANTITY:</strong> <%= material.length.present? ? "#{material.length}m" : "Not Provided" %></p>
+          <!-- Sustainability Score Calculation -->
+          <%
+            water = material.water_usage.to_f
+            co2 = material.co2.to_f
+            electricity = material.electricity_used.to_f
+
+            # Define thresholds for normalization
+            water_threshold = 2000.0
+            co2_threshold = 2.0
+            electricity_threshold = 1.0
+
+            # Normalize values
+            water_score = water > 0 ? [(100 - ((water / water_threshold) * 100)), 0].max : 100
+            co2_score = co2 > 0 ? [(100 - ((co2 / co2_threshold) * 100)), 0].max : 100
+            electricity_score = electricity > 0 ? [(100 - ((electricity / electricity_threshold) * 100)), 0].max : 100
+
+            # Calculate overall score
+            total_score = ((water_score + co2_score + electricity_score) / 3).round
+          %>
+
+          <p><strong>SCORE:</strong> <%= total_score %>/100</p>
+        </div>
+        <div class="button-pm">
+          <%= simple_form_for [@project, @project_material] do |f| %>
+          <%= f.input :material_id, input_html: { value: material.id, class: "d-none"}, label_html: {class: "d-none"} %>
+          <%= f.submit "+", class: "interface-black-button-pm" %>
+          <% end %>
+          <% end %>
+        </div>
+
+ </ul>
+
+        <!-- BUTTON TO GET BACK TO PROJECT PAGE -->
+        <%= link_to "Back to project", project_path(@project), class: "interface-white-button" %>
+
 </div>
-
-
-<%= link_to home_path, class: "btn-home" do %>
-   <i class="fa-solid fa-home"></i>
-<% end %>
-
-
-<%= link_to "Back", materials_path %>

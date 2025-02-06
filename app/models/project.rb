@@ -20,4 +20,11 @@ class Project < ApplicationRecord
   end
 
 
+  def sustainability_score
+    return 100 if materials.empty? # Default score if no materials
+
+    scores = materials.map(&:sustainability_score) # Get scores of all materials
+    (scores.sum / scores.size.to_f).round # Average score
+  end
+
 end
