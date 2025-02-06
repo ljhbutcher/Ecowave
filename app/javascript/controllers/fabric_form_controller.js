@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="fabric-form"
 export default class extends Controller {
-  static targets = ["image", "fabricType", "fabricTypeInput", "quantity", "quantityInput"]
+  static targets = ["image", "fabricType", "fabricTypeInput", "quantity", "quantityInput", "uploadButton", "fileInput"]
 
   previewImage(event) {
     const input = event.target;
@@ -12,6 +12,8 @@ export default class extends Controller {
         this.imageTarget.src = e.target.result;
       };
       reader.readAsDataURL(input.files[0]);
+
+      this.showUploadButton();
     }
   }
 
@@ -22,5 +24,9 @@ export default class extends Controller {
     } else if (target.id === "fabric-length-input") {
       this.quantityTarget.textContent = target.value || "...";
     }
+  }
+
+  showUploadButton() {
+    this.uploadButtonTarget.classList.remove("d-none"); // Reveal the button
   }
 }

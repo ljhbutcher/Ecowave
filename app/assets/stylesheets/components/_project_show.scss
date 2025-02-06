@@ -55,3 +55,13 @@ h2 {
 .material-item {
   margin-top: 24px;
 }
+
+.interface-black-button {
+  position: relative; /* Ensures it's on top of other elements */
+  z-index: 10; /* Higher than the navbar */
+  // margin-top: 20px; /* Push it down */
+}
+
+// .materials-show-container {
+//   padding-bottom: 100px; /* Adjust based on how much space is needed */
+// }
