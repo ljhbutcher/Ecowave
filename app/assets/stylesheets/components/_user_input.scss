@@ -77,7 +77,7 @@
 /* Fix NOTES (Textarea inside .details-notes) */
 .details-notes .material-input textarea.form-control {
   width: 100%;
-  padding: 5px !important; /* Consistent padding */
+  padding: 10px 5px !important; /* Consistent padding */
   font-family: 'Exo', sans-serif;
   font-size: 1rem;
   border: 1px solid #adb5bd !important;
@@ -91,9 +91,9 @@
   max-height: 45px !important;
   line-height: 1.2 !important;
   resize: none;
+  text-transform: uppercase;
 
   &::placeholder {
-    padding-top: 5px;
     color: rgba(0, 0, 0, 0.5);
     text-align: center;
   }
