@@ -1,9 +1,68 @@
 .background {
   background-color: #2F2F2F;
-  min-height: 100vh;
+  min-height: 102vh;
   color: white;
   position: absolute;
   width: 100%;
+}
+
+.quantity-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  margin-bottom: 25px; /* Adjust this value to control the bottom margin */
+  font-family: 'Exo', sans-serif; /* Make sure Exo is imported in your project */
+  font-weight: 300; /* Weight for a sleek appearance */
+  font-size: 1.8rem; /* Adjust font size as needed */
+  letter-spacing: 0.2em; /* Adjust this for letter spacing */
+  left: 5px;
+  position: relative;
+  gap: 10px;
+
+  /* Lines on either side of the text */
+  &::before,
+  &::after {
+    content: "";
+    flex: 1; /* Make the lines take up available space */
+    border-bottom: 1px solid #fff; /* Thin line; adjust thickness and color if needed */
+    position: relative;
+    left: -5px;
+  }
+
+  .ecowave-header::before {
+    left: 0;
+  }
+
+  .ecowave-header::after {
+    right: 0;
+  }
+}
+
+.fabric-title-quantity {
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  font-weight: 300;
+  font-size: 1.6rem;
+  margin-top: 10px;
+  border-bottom: 1px solid white;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.quantity-photo-container {
+  display: block;
+  margin: 0 auto;      /* Center the photo */
+  border-radius: 50%;  /* Make it circular */
+  object-fit: cover;
+  width: 165px;        /* Adjust as desired */
+  height: 165px;
+  border: 1.5px solid #fff;
+  margin-bottom: 2.5vh;      /* Adjust as desired */
 }
 
 .quantity-container {

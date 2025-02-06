@@ -1,14 +1,18 @@
 <div class="background">
-  <h1 class="ecowave-header">EcoWave</h1>
+  <h1 class="quantity-header">EcoWave</h1>
 
-    <div class="material-photo-container">
+    <div class="quantity-photo-container">
       <%= link_to edit_quantity_material_path(@material), class: "material-photo-link" do %>
-        <%= cl_image_tag @material.photo&.key, id: "material-photo", crop: :fill, alt: "Fabric Photo"  if @material.photo&.key.present? %>
+        <% if @material.photo.attached? %>
+          <%= cl_image_tag @material.photo.key, class: "quantity-photo-container", crop: :fill, alt: "Fabric Photo" %>
+        <% else %>
+          <%= image_tag "placeholder-image.png", class: "quantity-photo-container", alt: "Default placeholder" %>
+        <% end %>
       <% end %>
     </div>
 
       <!-- Fabric Title and Quantity -->
-    <h2 class="fabric-title">
+    <h2 class="fabric-title-quantity">
       <%= @material.fabric_type.presence || "Not Provided" %>
     </h2>
     <p class="quantity">
