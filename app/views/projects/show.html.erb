@@ -1,6 +1,4 @@
 <h1 class="ecowave-header">EcoWave</h1>
-<h2><%= @project.name %></h2>
-
 <div class="materials-show-container">
   <%= simple_form_for(@project, method: :patch, html: { multipart: true, id: "fabric-form", data: { controller: "fabric-form" } }) do |f| %>
 
@@ -28,11 +26,14 @@
     </div>
   <% end %>
 
+  <h2 class="fabric-title"><%= @project.name.presence || "Not Provided" %></h2>
+
   <div id="summary-section" data-controller="summary">
     <!-- Display summary text -->
     <p class="fabric-summary" data-summary-target="text" data-action="click->summary#edit">
-      <%= @project.summary.presence || "Click to add summary" %>
+      <%= @project.summary.presence || @project.description.presence || "Click to add summary" %>
     </p>
+
 
     <!-- Hidden form -->
     <%= form_with model: @project, url: project_path(@project), method: :patch, local: true, data: { summary_target: "form", action: "submit->summary#save" }, style: "display: none;" do |f| %>
@@ -141,7 +142,7 @@
   </div>
   <div>
     <%= link_to "ADD FABRICS", new_project_project_material_path(@project), class: "interface-black-button" %>
-    <%= link_to "DELETE PROJECT", project_path(@project), method: :delete, data: { confirm: "Are you sure?" }, class: "interface-white-button" %>
+    <%= button_to "DELETE PROJECT", project_path(@project), method: :delete, data: { confirm: "Are you sure?" }, class: "interface-white-button", form: { class: "delete-form" } %>
     <%= link_to "BACK", projects_path, class: "interface-white-button" %>
   </div>
 
