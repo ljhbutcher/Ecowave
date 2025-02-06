@@ -35,18 +35,13 @@
         <!-- Project Info -->
         <div class="project-info">
           <p><strong>PROJECT:</strong> <%= link_to project.name, project_path(project) %></p>
-
-         <p><strong>DEADLINE:</strong> <%= project.deadline.present? ? project.deadline.strftime("%d/%m/%Y") : "No deadline set" %> </p>
-
-
-
-
-          <p><strong>SCORE:</strong> 80/100</p>
+          <p><strong>DEADLINE:</strong> 22/09/2025</p>
+          <p><strong>SCORE:</strong> <%= project.sustainability_score %></p>
         </div>
 
         <!-- Delete Button -->
         <%= button_to project_path(project), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-delete" do %>
-          <%= image_tag "bin.png", alt: "Delete" %>
+          <%= image_tag "bin_black.png", alt: "Delete" %>
         <% end %>
       </li>
     <% end %>

@@ -46,6 +46,47 @@ class Material < ApplicationRecord
     }
   end
 
+
+  # calculation for materials individual score
+  def total_score
+    water = water_usage.to_f
+    co2 = co2.to_f
+    electricity = electricity_used.to_f
+
+    water_threshold = 2000.0
+    co2_threshold = 2.0
+    electricity_threshold = 1.0
+
+    water_score = water.positive? ? [(100 - ((water / water_threshold) * 100)), 0].max : 100
+    co2_score = co2.positive? ? [(100 - ((co2 / co2_threshold) * 100)), 0].max : 100
+    electricity_score = electricity.positive? ? [(100 - ((electricity / electricity_threshold) * 100)), 0].max : 100
+
+    ((water_score + co2_score + electricity_score) / 3).round
+  end
+
+
+
+
+  # used for the average score per project
+  def sustainability_score
+    water = water_usage.to_f
+    co2 = co2.to_f
+    electricity = electricity_used.to_f
+
+    # Define thresholds for normalization
+    water_threshold = 2000.0
+    co2_threshold = 2.0
+    electricity_threshold = 1.0
+
+    # Normalize values
+    water_score = water.positive? ? [(100 - ((water / water_threshold) * 100)), 0].max : 100
+    co2_score = co2.positive? ? [(100 - ((co2 / co2_threshold) * 100)), 0].max : 100
+    electricity_score = electricity.positive? ? [(100 - ((electricity / electricity_threshold) * 100)), 0].max : 100
+
+    # Calculate overall score
+    ((water_score + co2_score + electricity_score) / 3).round
+  end
+
   private
 
   def gpt_prompt
@@ -104,4 +145,6 @@ class Material < ApplicationRecord
   def self.avg_co2
     average(:co2)
   end
+
+
 end

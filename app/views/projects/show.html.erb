@@ -2,50 +2,55 @@
 <h2><%= @project.name %></h2>
 
 <div class="materials-show-container">
-    <%= simple_form_for(@project, method: :patch, html: { multipart: true, id: "fabric-form", data: { controller: "fabric-form" } }) do |f| %>
+  <%= simple_form_for(@project, method: :patch, html: { multipart: true, id: "fabric-form", data: { controller: "fabric-form" } }) do |f| %>
 
-      <!-- IMAGE UPLOAD -->
-      <div class="material-photo-container">
-        <label for="material_photo" class="material-photo-label">
-          <%= image_tag(@project.persisted? && @project.photo.attached? ? @project.photo : "placeholder-image.png",
-                        id: "material-image-preview",
-                        class: "material-photo",
-                        alt: "Upload Fabric Photo",
-                        data: { fabric_form_target: "image" }) %>
-          <div class="quantity-toggle">+</div>
-        </label>
-        <%= f.input :photo, label: false, as: :file, input_html: { id: "material_photo", class: "d-none", data: { action: "change->fabric-form#previewImage" } } %>
-      </div>
+    <!-- IMAGE UPLOAD -->
+    <div class="material-photo-container">
+      <label for="material_photo" class="material-photo-label">
+        <%= image_tag(@project.persisted? && @project.photo.attached? ? @project.photo : "placeholder-image.png",
+                      id: "material-image-preview",
+                      class: "material-photo",
+                      alt: "Upload Fabric Photo",
+                      data: { fabric_form_target: "image "}) %>
+        <div class="quantity-toggle" data-action="click->fabric-form#showUploadButton">+</div>
+      </label>
 
-      <div class="form-buttons">
-        <%= f.button :submit, class: "interface-white-button" %>
-        <%= link_to "CANCEL", materials_path, class: "interface-black-button" %>
-      </div>
-    <% end %>
+      <%= f.input :photo, label: false, as: :file,
+        input_html: { id: "material_photo", class: "d-none",
+        data: { action: "change->fabric-form#previewImage", fabric_form_target: "fileInput" } } %>
+    </div>
 
-<div id="summary-section" data-controller="summary">
-  <!-- Display summary text -->
-  <p data-summary-target="text" data-action="click->summary#edit">
-    <%= @project.summary.presence || "Click to add summary" %>
-  </p>
-
-  <!-- Hidden form -->
-  <%= form_with model: @project, url: project_path(@project), method: :patch, local: true, data: { summary_target: "form", action: "submit->summary#save" }, style: "display: none;" do |f| %>
-    <%= f.text_area :summary, rows: 5, class: "form-control", data: { summary_target: "textarea" } %>
-    <br>
-    <%= f.submit "Save", class: "btn btn-primary" %>
-    <button type="button" data-action="summary#cancel" class="btn btn-secondary">Cancel</button>
+    <!-- Hidden Submit Button -->
+    <div class="form-buttons">
+      <%= f.button :submit, "Save Picture",
+        class: "d-none interface-black-button",
+        data: { fabric_form_target: "uploadButton" } %>
+    </div>
   <% end %>
-</div>
+
+  <div id="summary-section" data-controller="summary">
+    <!-- Display summary text -->
+    <p class="fabric-summary" data-summary-target="text" data-action="click->summary#edit">
+      <%= @project.summary.presence || "Click to add summary" %>
+    </p>
+
+    <!-- Hidden form -->
+    <%= form_with model: @project, url: project_path(@project), method: :patch, local: true, data: { summary_target: "form", action: "submit->summary#save" }, style: "display: none;" do |f| %>
+      <%= f.text_area :summary, rows: 5, class: "form-control", data: { summary_target: "textarea" } %>
+      <br>
+      <%= f.submit "Save", class: "btn btn-dark" %>
+      <button type="button" data-action="summary#cancel" class="btn btn-secondary">Cancel</button>
+    <% end %>
+  </div>
 
 
- <!-- Environmental Score Heading -->
-  <h2 class="env-score-heading">PROJECT AVERAGE ENVIRONMENTAL SCORE</h2>
+  <!-- Environmental Score Heading -->
+    <h2 class="env-score-heading">PROJECT SCORE</h2>
 
-<% if @materials.any? %>
-  <div class="materials-show-flex-wrapper">
+  <% if @materials.any? %>
+    <div class="materials-show-flex-wrapper">
 
-      <!-- Average Water Usage -->
+        <!-- Average Water Usage -->
       <div class="materials-show-single-chart">
         <% water_avg = @project.average_water_usage %>
         <% water_ratio_avg = [(water_avg / 2000.0) * 100, 100].min %>
@@ -60,7 +65,7 @@
         <p class="materials-show-chart-label">Water</p>
       </div>
 
-      <!-- Average CO2 Emissions -->
+        <!-- Average CO2 Emissions -->
       <div class="materials-show-single-chart">
         <% co2_avg = @project.average_co2_emissions %>
         <% co2_ratio_avg = [(co2_avg / 2.0) * 100, 100].min %>
@@ -75,7 +80,7 @@
         <p class="materials-show-chart-label">CO₂</p>
       </div>
 
-      <!-- Average Electricity Usage -->
+        <!-- Average Electricity Usage -->
       <div class="materials-show-single-chart">
         <% electricity_avg = @project.average_electricity_usage %>
         <% electricity_ratio_avg = [(electricity_avg / 1.0) * 100, 100].min %>
@@ -90,27 +95,29 @@
         <p class="materials-show-chart-label">Electricity</p>
       </div>
     </div>
-<% else %>
-  <p>No materials added to this project yet.</p>
-<% end %>
+  <% else %>
+    <p>No materials added to this project yet.</p>
+  <% end %>
 
-  <!-- Material Details Card -->
+    <!-- Material Details Card -->
   <div class="details-card">
     <h2 class="details-card-header">SELECTED FABRICS</h2>
       <div class="material-list">
         <% @project.materials.each do |material| %>
           <div class="material-item">
             <div class="material-info">
-              <div class="material-header">
-                <h3 class="material-name"><%= material.fabric_type %></h3>
-                <div class="material-remove">
-                  <%= button_to project_material_path(@project, material), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-delete" do %>
-                    <%= image_tag "bin.png", alt: "Delete", class: "bin-icon" %>
-                  <% end %>
-               </div>
+              <%= cl_image_tag material&.photo.key, class: "project-img", crop: :fill, alt: material.fabric_type %>
+
+              <div class="material-text">
+              <p class="fabric-details"> Fabric: <%= material.fabric_type %> </p>
+              <p class="fabric-details">Quantity: <%= material.length %></p>
+              <p class="fabric-details">Score: <%= material.total_score %>/100</p>
               </div>
-              <p>Quantity: <%= material.length %></p>
-              <p>Environmental score: </p>
+              <div class="material-remove">
+                  <%= button_to project_material_path(@project, material), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-delete" do %>
+                    <%= image_tag "bin-white_.png", alt: "Delete", class: "bin-icon" %>
+                  <% end %>
+              </div>
             </div>
           </div>
         <% end %>
@@ -119,7 +126,7 @@
     <!-- NOTES Section -->
     <div id="notes-section" class="details-notes" data-controller="notes">
     NOTES:
-    <p data-notes-target="text" data-action="click->notes#edit">
+    <p class="fabric-details" data-notes-target="text" data-action="click->notes#edit">
       <%= @project.notes.presence || "Click here to add notes" %>
     </p>
 
@@ -127,14 +134,15 @@
     <%= form_with model: @project, url: project_path(@project), method: :patch, local: true, data: { notes_target: "form", action: "submit->notes#save" }, style: "display: none;" do |f| %>
       <%= f.text_area :notes, rows: 5, class: "form-control", data: { notes_target: "textarea" } %>
       <br>
-      <%= f.submit "Save", class: "btn btn-primary" %>
+      <%= f.submit "Save", class: "btn btn-dark" %>
       <button type="button" data-action="notes#cancel" class="btn btn-secondary">Cancel</button>
     <% end %>
     </div>
   </div>
+  <div>
+    <%= link_to "ADD FABRICS", new_project_project_material_path(@project), class: "interface-black-button" %>
+    <%= link_to "DELETE PROJECT", project_path(@project), method: :delete, data: { confirm: "Are you sure?" }, class: "interface-white-button" %>
+    <%= link_to "BACK", projects_path, class: "interface-white-button" %>
+  </div>
+
 </div>
-
-
-<%= link_to "ADD FABRICS", new_project_project_material_path(@project), class: "interface-white-button" %>
-<%= link_to "DELETE PROJECT", project_path(@project), method: :delete, data: { confirm: "Are you sure?" }, class: "interface-black-button" %>
-<%= link_to "BACK", projects_path, class: "interface-white-button" %>
