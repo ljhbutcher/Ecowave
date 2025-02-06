@@ -1,16 +1,9 @@
 class ProjectMaterialsController < ApplicationController
   before_action :set_project
 
-
-  def index
-    @project_material = ProjectMaterial.all
-    if params[:query].present?
-      @materials = current_user.materials.where("fabric_type ILIKE ? OR fiber ILIKE ? OR colour ILIKE ?",
-                                  "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%")
-    else
-      @materials = current_user.materials
-    end
-  end
+  # def index
+  #   @project_material = ProjectMaterial.all
+  # end
 
   def create
     @project = Project.find(params[:project_id])
@@ -28,6 +21,13 @@ class ProjectMaterialsController < ApplicationController
     @project_material = ProjectMaterial.new
     @materials = Material.all
     @project = Project.find(params[:project_id])
+
+    if params[:query].present?
+      @materials = current_user.materials.where("fabric_type ILIKE ? OR fiber ILIKE ? OR colour ILIKE ?",
+                                  "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%")
+    else
+      @materials = current_user.materials
+    end
   end
 
   def destroy
