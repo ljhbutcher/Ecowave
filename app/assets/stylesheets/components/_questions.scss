@@ -1,6 +1,6 @@
 .chatbot {
   background: white;
-  margin-top: 9px;
+  margin-top: 2vh;
   height: calc(100vh - 75px);
   display: flex;
   flex-direction: column;
@@ -10,14 +10,15 @@
   h1 {
     border-bottom: 1px solid $gray-200;
     margin-bottom: 0;
-    padding: 1rem;
+    padding: 1rem 1rem 0.7rem 1rem;
     text-align: center;
+    top: 2vh;
   }
 
   #questions {
     height: 100%;
     overflow: scroll;
-    padding: 1rem;
+    padding: 3.7rem 1rem 0rem 1rem;
   }
 
   .question {
@@ -68,4 +69,116 @@
     font-weight: 300;
     font-size: 13px;
   }
+}
+
+
+//******************************************/
+/* CHATBOT INPUT STYLING                   */
+/******************************************/
+
+/* Container for the input field */
+.form-floating {
+  position: relative;
+  width: 100%;
+}
+
+/* Apply material-input styles */
+.form-floating .chat {
+  padding-top: 1rem !important;
+  width: 100%;
+  padding: 5px;
+  font-family: 'Exo', sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  border: 1px solid #adb5bd !important;
+  border-radius: 40px !important;
+  background-color: #fff !important;
+  color: #333 !important;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  height: 50px; /* Adjust height if needed */
+
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+  }
+}
+
+/******************************************/
+/* FIX FLOATING LABEL BEHAVIOR            */
+/******************************************/
+
+.floating-label {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+/* Moves label up when field is focused or has text */
+.form-floating .chat:focus + .floating-label,
+.form-floating .chat:not(:placeholder-shown) + .floating-label {
+  top: 10px;
+  font-size: 0.75rem;
+  color: #000;
+}
+
+/******************************************/
+/* FIXING FORM BEHAVIOR                   */
+/******************************************/
+
+/* Override Bootstrap focus effects */
+.form-floating > .form-control:focus,
+.form-floating > .form-control:not(:placeholder-shown),
+.form-floating > .form-control-plaintext:focus,
+.form-floating > .form-control-plaintext:not(:placeholder-shown) {
+  padding-top: 1rem !important;
+  padding-bottom: 0.625rem !important;
+  border-radius: 40px !important;
+  border-color: #adb5bd !important;
+  box-shadow: 0 0 8px rgba(0, 85, 255, 0.4) !important;
+  outline: none !important;
+  transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+/******************************************/
+/* BOOTSTRAP OVERRIDES                    */
+/******************************************/
+
+/* Ensure Bootstrap validation does not interfere */
+.was-validated .form-control:valid,
+.form-control.is-valid,
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+  border-color: #adb5bd !important;
+  box-shadow: none !important;
+  background-image: none !important;
+}
+
+/* Prevent Bootstrap hover effects */
+.chat:hover {
+  border-color: #adb5bd !important;
+}
+
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -15px;
+  margin-bottom: 25px;
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 1.8rem;
+  letter-spacing: 0.2em;
+  color: black;
+  width: 93.5%;
+  position: absolute;
+  top: 30px;
+  z-index: 10;
+  background-color: #fff;
 }

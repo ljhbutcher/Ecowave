@@ -11,7 +11,7 @@
                       class: "material-photo",
                       alt: "Upload Fabric Photo",
                       data: { fabric_form_target: "image" }) %>
-        <div class="quantity-toggle">+</div>
+        <div class="photo-toggle">+</div>
       </label>
       <%= f.input :photo, label: false, as: :file, input_html: { id: "material_photo", class: "d-none", data: { action: "change->fabric-form#previewImage" } } %>
     </div>

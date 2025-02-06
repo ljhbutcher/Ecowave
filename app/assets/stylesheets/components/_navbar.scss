@@ -1,6 +1,7 @@
 /******************************************/
 /* NAVBAR STYLES                          */
 /******************************************/
+
 .navbar-container {
   margin: 0;
   padding: 0;
@@ -8,19 +9,15 @@
 }
 
 .navbar {
-
-  overflow: visible; /* Allow child elements to escape */
+  overflow: visible;
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 7.5vh;
-  padding-bottom: 7vh;
+  height: 8vh;
   background-color: white;
-  border-top: 1px solid #000;
-
   display: flex;
-  justify-content: center;  /* Center items horizontally */
+  justify-content: center;
   z-index: 9999;
 }
 
@@ -29,8 +26,10 @@
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 30px; /* Adjust the gap between navbar items here */
-  align-items: center; /* Vertically center the icons */
+  gap: 25px;
+  align-items: center;
+  position: absolute;
+  bottom: 1vh;
 }
 
 .navbar-item {
@@ -47,38 +46,141 @@
 }
 
 .navbar-item:hover {
-  background-color: #ccc; /* Change hover color if desired */
+  background-color: #ccc;
 }
 
 .navbar-item img {
-  height: 40px; /* Adjust icon size here */
+  height: 40px; /* Default icon size */
   width: auto;
   max-width: 100%;
   vertical-align: middle;
 }
 
-.dropup .dropdown-menu {
-  position: absolute !important; /* Escape from parent box */
-  top: 100%; /* Move below the button */
-  left: 0;
-  z-index: 1050; /* Ensure it's on top */
+/* Specific styling for black_fabric.png in Navbar */
+.black-fabric-icon img,
+.black-fabric-img {
+  height: 57px;
+  width: 45px;
 }
 
+/* Specific styling for project.png in Navbar */
+.project-navbar-icon img,
+.project-navbar-img {
+  height: 38px;
+  padding-left: 5px;
+}
+
+/* ----- Custom Dropup Styling ----- */
+/* Remove Bootstrap-specific classes and override dropup behavior */
+
+.dropup .dropdown-menu {
+  position: absolute !important;
+  bottom: 100%; /* Place menu above the toggle */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1050;
+  background-color: #fffffff2 !important;
+  padding: 5px !important;
+  // border: 1px solid #000 !important;
+  border-radius: 10px 10px 0 0; /* Rounded top corners */
+  min-width: auto !important; /* Shrink to fit content */
+  display: none; /* Hidden by default */
+  // box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dropup .dropdown-menu.show {
+  display: flex !important;
+  border: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Remove Bootstrap's default styles from dropdown toggles if necessary */
 .nav-item .avatar {
-  border-radius: 0% !important;
+  border-radius: 0; /* We'll style manually if needed */
 }
 
 .nav-item .avatar:hover {
-  background-color: #ccc !important;
+  background-color: #ccc;
 }
 
+/* Retain your existing navbar items styling for links etc. */
 .dropdown-menu-end {
-  border: none !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: space-evenly !important;
-  min-width: fit-content !important;
-  background-color: white !important;
-  margin-bottom: 10px !important;
-  padding: 0px !important;
+  /* Not used now; our custom styling above applies. */
+}
+
+
+/******************************************/
+/* NAVBAR DROPDOWN ITEM STYLING           */
+/******************************************/
+
+.navbar-dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  margin: 8px 4px;
+  width: 50px;
+  height: 40px;
+}
+
+/* If you want to ensure the dropdown items are exactly the size of the icon plus a little extra, you might do something like: */
+.navbar-dropdown-item img {
+  width: 38px;
+  height: 47px;
+  max-width: 100%;
+  display: block;
+}
+
+.navbar-dropdown-item-logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  margin: 8px 4px;
+  width: 50px;
+  height: 40px;
+}
+
+.navbar-dropdown-item-logout img {
+  width: 45px;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  padding-left: 8px;
+}
+
+.navbar-dropdown-item-home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  margin: 8px 4px;
+  width: 50px;
+  height: 40px;
+}
+
+.navbar-dropdown-item-home img {
+  width: 35px;
+  height: auto;
+  max-width: 100%;
+  display: block;
+}
+
+.navbar-dropdown-item-project {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  margin: 8px 4px;
+  width: 50px;
+  height: 40px;
+}
+
+.navbar-dropdown-item-project img {
+  width: 35px;
+  height: 38px;
+  max-width: 100%;
+  display: block;
 }
