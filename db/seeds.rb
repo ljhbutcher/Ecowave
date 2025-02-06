@@ -71,19 +71,29 @@ puts "#{Material.count} materials created!"
 
 puts "Seeding projects..."
 
-Project.create!([
-  {
-    name: "Summer Collection",
-    description: "Exploring pink tones"
-  },
-  {
-    name: "Winter Collection",
-    description: "Coats and knits"
-  },
-  {
-    name: "Evening Dresses",
-    description: "Range of dark colors"
-  }
-])
+
+Project.create!(
+  name: "Winter Collection 2025 - Alpha",
+  description: "A stunning collection of winter apparel featuring the latest styles and fabrics for the cold season.",
+  summary: "Winter Collection with the finest designs for warmth and style.",
+  notes: "The project will feature jackets, scarves, and boots.",
+  deadline: Date.new(2025, 11, 15) # Deadline: 15th November 2025
+)
+
+Project.create!(
+  name: "Autumn Collection 2025 - Beta",
+  description: "Cozy and stylish pieces for winter, including outerwear and accessories.",
+  summary: "Pieces designed to keep you warm and fashionable during the winter months.",
+  notes: "The project includes outerwear, gloves, and thermal clothing.",
+  deadline: Date.new(2025, 12, 5) # Deadline: 5th December 2025
+)
+
+Project.create!(
+  name: "Summer Collection 2025 - Gamma",
+  description: "A breezy and fashionable summer collection with light fabrics and vibrant colors.",
+  summary: "Summer collection with a focus on comfortable and breathable outfits for hot days.",
+  notes: "The project will focus on dresses, shorts, and beachwear.",
+  deadline: Date.new(2025, 6, 1) # Deadline: 1st June 2025
+)
 
 puts "#{Project.count} projects created!"

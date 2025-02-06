@@ -35,7 +35,12 @@
         <!-- Project Info -->
         <div class="project-info">
           <p><strong>PROJECT:</strong> <%= link_to project.name, project_path(project) %></p>
-          <p><strong>DEADLINE:</strong> 22/09/2025</p>
+
+         <p><strong>DEADLINE:</strong> <%= project.deadline.present? ? project.deadline.strftime("%d/%m/%Y") : "No deadline set" %> </p>
+
+
+
+
           <p><strong>SCORE:</strong> 80/100</p>
         </div>
 
