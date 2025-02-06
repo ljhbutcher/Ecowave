@@ -30,7 +30,7 @@
 
   <div id="summary-section" data-controller="summary">
     <!-- Display summary text -->
-    <p data-summary-target="text" data-action="click->summary#edit">
+    <p class="fabric-summary" data-summary-target="text" data-action="click->summary#edit">
       <%= @project.summary.presence || "Click to add summary" %>
     </p>
 
@@ -111,7 +111,7 @@
               <div class="material-text">
               <p class="fabric-details"> Fabric: <%= material.fabric_type %> </p>
               <p class="fabric-details">Quantity: <%= material.length %></p>
-              <p class="fabric-details">Score: </p>
+              <p class="fabric-details">Score: <%= material.total_score %>/100</p>
               </div>
               <div class="material-remove">
                   <%= button_to project_material_path(@project, material), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-delete" do %>

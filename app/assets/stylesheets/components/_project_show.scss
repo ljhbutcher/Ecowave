@@ -1,5 +1,11 @@
 .details-notes {
   color: white;
+  border-top: 1px solid #fff;
+    border-radius: 0 0 20px 20px;
+    text-align: center;
+    padding: 14px 15px 15px 15px;
+    margin: 0;
+    font-weight: 300;
 }
 
 .material-name {
@@ -56,12 +62,19 @@ h2 {
   margin-top: 24px;
 }
 
-// .interface-black-button {
-//   position: relative; /* Ensures it's on top of other elements */
-//   z-index: 10; /* Higher than the navbar */
-//   // margin-top: 20px; /* Push it down */
-// }
+.fabric-summary {
 
-// .materials-show-container {
-//   padding-bottom: 100px; /* Adjust based on how much space is needed */
-// }
+  text-transform: uppercase;
+
+  /* Justified or left, pick your preference */
+  text-align: justify;
+  /* text-align: justify; */
+
+  letter-spacing: 1.9px;
+  line-height: 2.2;
+  font-weight: 300;
+  font-size: 13px;
+
+  margin-top: 22px; /* Space above the summary */
+  margin-bottom: 30px;
+}
