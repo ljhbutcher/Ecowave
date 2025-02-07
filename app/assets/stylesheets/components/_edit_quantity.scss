@@ -11,7 +11,7 @@
   align-items: center;
   justify-content: center;
   margin-top: 15px;
-  margin-bottom: 25px; /* Adjust this value to control the bottom margin */
+  margin-bottom: 6vh; /* Adjust this value to control the bottom margin */
   font-family: 'Exo', sans-serif; /* Make sure Exo is imported in your project */
   font-weight: 300; /* Weight for a sleek appearance */
   font-size: 1.8rem; /* Adjust font size as needed */
@@ -67,7 +67,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 40px;
+  margin-top: 6vh;
 }
 
 .quantity-btn {
@@ -78,11 +78,13 @@
   font-size: 500%;
   margin-left: 10px;
   margin-right: 10px;
+  font-weight: 100;
 }
 
 #quantity-value {
   font-size: 400%;
   text-align: center;
+  font-weight: 100;
 }
 
 .quantity {
@@ -100,14 +102,14 @@
 .back-container {
   text-align: center;
   justify-content: space-around;
-  margin-top: 60px;
+  margin-top: 12vh;
 }
 
 .back-button {
   display: block;
   margin: 0 auto;
-  width: 80px;
-  height: 80px;
+  width: 62px;
+  height: 70px;
 }
 .back-link {
   display: block;
@@ -116,16 +118,24 @@
   text-decoration: none;
 }
 
-#material-photo {
-  display: block;
-  margin: 0 auto;      /* Center the photo */
-  border-radius: 50%;  /* Make it circular */
-  object-fit: cover;
-  width: 165px;        /* Adjust as desired */
-  height: 165px;
-  border: 1.5px solid #ffffff;
-  margin-bottom: 2.5vh;      /* Adjust as desired */
+.back-style {
+  font-family: 'Exo', sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  letter-spacing: 0.2em;
+  margin-top: -7px;
 }
+
+// #material-photo {
+//   display: block;
+//   margin: 0 auto;      /* Center the photo */
+//   border-radius: 50%;  /* Make it circular */
+//   object-fit: cover;
+//   width: 165px;        /* Adjust as desired */
+//   height: 165px;
+//   border: 1.5px solid #ffffff;
+//   margin-bottom: 2.5vh;      /* Adjust as desired */
+// }
 
 /* Center the table horizontally */
 .table-container {

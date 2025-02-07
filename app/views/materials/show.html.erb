@@ -208,13 +208,13 @@
   <% if @project %>
     <%= link_to "ADD TO PROJECT", project_project_material_path(@project, @material), class: "interface-white-button" %>
   <% else %>
-    <%= link_to "ADD TO PROJECT", projects_path, class: "interface-white-button" %>
+    <%= link_to "ADD TO PROJECT", projects_path, class: "interface-black-button" %>
   <% end %>
 
   <!-- EDIT (White Button) -->
   <%= link_to "EDIT", edit_material_path(@material), class: "interface-white-button" %>
 
   <!-- DELETE (Black Button) -->
-  <%= link_to "DELETE", material_path(@material), method: :delete, data: { confirm: "Are you sure?" }, class: "interface-black-button" %>
+  <%= link_to "DELETE", material_path(@material), method: :delete, data: { confirm: "Are you sure?" }, class: "interface-white-button" %>
 
 </div>
