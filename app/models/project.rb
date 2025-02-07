@@ -28,11 +28,10 @@ class Project < ApplicationRecord
     materials.average(:electricity_used).to_f
   end
 
-  # Calculate overall sustainability score
   def sustainability_score
     return 100 if materials.empty? # Default score if no materials
 
     scores = materials.map(&:sustainability_score) # Get scores of all materials
-    (scores.sum / scores.size.to_f).round # Average score
+    [(scores.sum / scores.size.to_f).round, 100].min # Ensure max 100
   end
 end
