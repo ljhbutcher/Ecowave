@@ -10,23 +10,21 @@ class Project < ApplicationRecord
     self.summary = description if summary.blank?
   end
 
-  # Calculate average water usage of materials
   def average_water_usage
     return 0 if materials.empty?
     materials.average(:water_usage).to_f
   end
 
-  # Calculate average CO2 emissions of materials
   def average_co2_emissions
     return 0 if materials.empty?
     materials.average(:co2).to_f
   end
 
-  # Calculate average electricity usage of materials
   def average_electricity_usage
     return 0 if materials.empty?
     materials.average(:electricity_used).to_f
   end
+
 
   def sustainability_score
     return 100 if materials.empty? # Default score if no materials

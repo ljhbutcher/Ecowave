@@ -104,24 +104,48 @@
   <div class="details-card">
     <h2 class="details-card-header">SELECTED FABRICS</h2>
       <div class="material-list">
-        <% @project.materials.each do |material| %>
+        <% @materials.each do |material| %>
+          <% fresh_material = Material.find(material.id) %>
           <div class="material-item">
             <div class="material-info">
-              <%= cl_image_tag material&.photo.key, class: "project-img", crop: :fill, alt: material.fabric_type  if material.photo&.key.present? %>
-
+              <%= cl_image_tag fresh_material&.photo.key, class: "project-material-img", crop: :fill, alt: fresh_material.fabric_type if fresh_material.photo&.key.present? %>
               <div class="material-text">
-              <p class="fabric-details"> Fabric: <%= material.fabric_type %> </p>
-              <p class="fabric-details">Quantity: <%= material.length %></p>
-              <p class="fabric-details">Score: <%= material.total_score %>/100</p>
+                <p class="fabric-details">Fabric: <%= fresh_material.fabric_type %></p>
+                <p class="fabric-details">Quantity: <%= fresh_material.length %></p>
+                <%
+                  water = material.water_usage.to_f
+                  co2 = material.co2.to_f
+                  electricity = material.electricity_used.to_f
+
+                  # Define thresholds for normalization
+                  water_threshold = 2000.0
+                  co2_threshold = 2.0
+                  electricity_threshold = 1.0
+
+                  # Normalize values
+                  water_score = water > 0 ? [(100 - ((water / water_threshold) * 100)), 0].max : 100
+                  co2_score = co2 > 0 ? [(100 - ((co2 / co2_threshold) * 100)), 0].max : 100
+                  electricity_score = electricity > 0 ? [(100 - ((electricity / electricity_threshold) * 100)), 0].max : 100
+
+                  # Calculate overall score
+                  total_score = ((water_score + co2_score + electricity_score) / 3).round
+                %>
+
+                <p class="fabric-details">SCORE: <%= total_score %>/100</p>
               </div>
               <div class="material-remove">
-                  <%= button_to project_material_path(@project, material), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-delete" do %>
-                    <%= image_tag "bin-white_.png", alt: "Delete", class: "bin-icon" %>
-                  <% end %>
+                <%= button_to project_material_path(@project, fresh_material),
+                              method: :delete,
+                              data: { confirm: "Are you sure?" },
+                              class: "btn-delete" do %>
+                  <%= image_tag "bin-white_.png", alt: "Delete", class: "bin-icon" %>
+                <% end %>
               </div>
             </div>
           </div>
         <% end %>
+
+
       </div>
 
     <!-- NOTES Section -->
