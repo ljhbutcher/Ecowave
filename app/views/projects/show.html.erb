@@ -27,6 +27,7 @@
   <% end %>
 
   <h2 class="fabric-title"><%= @project.name.presence || "Not Provided" %></h2>
+  <p class="fabric-quantity">DEADLINE: <%= @project.deadline.presence || "Not Provided" %></p>
 
   <div id="summary-section" data-controller="summary">
     <!-- Display summary text -->
