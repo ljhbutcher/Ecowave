@@ -76,7 +76,7 @@
 }
 
 .quantity-toggle {
-  position: absolute;
+  position: sticky;
   text-decoration: none;
   top: 318.5px;
   right: 110px;
@@ -133,7 +133,7 @@
   font-weight: 300;
   font-size: 1.6rem;
   border-bottom: 1px solid #000;
-  width: 50%;
+  width: 60%;
   margin: 10px auto 8px auto !important;
 }
 
