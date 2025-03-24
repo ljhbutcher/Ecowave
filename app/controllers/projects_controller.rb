@@ -10,11 +10,13 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @materials = @project.materials
+    @project.reload
+    @materials = Material.where(id: @project.material_ids)
     @material = @materials.first
     @project_materials = @project.project_materials.includes(:material)
     @project_material = ProjectMaterial.new
   end
+
 
   def new
     @project = Project.new

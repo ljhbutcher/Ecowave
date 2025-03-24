@@ -16,13 +16,6 @@
       <%= f.input :photo, label: false, as: :file, input_html: { id: "material_photo", class: "d-none", data: { action: "change->fabric-form#previewImage" } } %>
     </div>
 
-    <!--<div class="form-buttons">
-      <%= f.button :submit, class: "interface-white-button" %>
-      <%= link_to "CANCEL", materials_path, class: "interface-black-button" %>
-    </div>-->
-
-
-
     <!-- Details Card -->
     <div class="details-card">
       <div class="details-input-container">
@@ -39,20 +32,19 @@
                       input_html: { data: { controller: "datepicker" }, placeholder: "📅 DEADLINE" },
                       wrapper_html: { class: "material-input" } %>
         </div>
+      </div>
 
-        <!-- Notes Section -->
-        <div class="details-notes">
-          <%= f.input :description, label: false, placeholder: "DESCRIPTION", wrapper_html: { class: "material-input" } %>
-        </div>
+      <!-- Notes Section: moved outside of .details-input-container to match materials/new.html.erb -->
+      <div class="details-notes">
+        <%= f.input :description, label: false, placeholder: "DESCRIPTION", wrapper_html: { class: "material-input" } %>
       </div>
     </div>
 
     <!-- Form Buttons (moved outside of the details-card) -->
     <div class="form-buttons">
-      <%= f.submit "ADD PROJECT", class: "interface-white-button" %>
-      <%= link_to "CANCEL", projects_path, class: "interface-black-button" %>
+      <%= f.submit "ADD PROJECT", class: "interface-black-button" %>
+      <%= link_to "CANCEL", projects_path, class: "interface-white-button" %>
     </div>
 
-  <% end %> <!-- This is where the `simple_form_for` block ends -->
-
+  <% end %>
 </div>

@@ -24,31 +24,14 @@
   </h2>
   <p class="fabric-quantity">
     QUANTITY:
-
-
-
     <% if @material.length.present? %>
       <%= "#{@material.length.to_i}m" %>
     <% else %>
       Not Provided
-
     <% end %>
-
-
-
-
        <%= link_to edit_quantity_material_path(@material), class: "quantity-toggle" do %>
       <span>+/-</span>
-
-
-
   <% end %>
-
-
-
-
-
-
   </p>
 
   <!-- Summary Paragraph -->
